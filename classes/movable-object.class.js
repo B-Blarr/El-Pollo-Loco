@@ -6,6 +6,10 @@ class MoveableObject {
 
 
         moveRight(){
+
+        }
+
+        moveLeft(){
             
         }
 }

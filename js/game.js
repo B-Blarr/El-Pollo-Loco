@@ -1,15 +1,16 @@
 let canvas;
-let ctx;
-let character = new Character();
-let world = new World();
+let world;
 
 
 function init() {
     canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
+    world = new World(canvas);
 
-    character.src = '../assets/img/2_character_pepe/1_idle/idle/I-1.png';
+    // character.src = '../assets/img/2_character_pepe/1_idle/idle/I-1.png';
+
+    console.log('My Character is', world.character);
+    
 
 // (Welches Bild, Koordinate X, Koordinate Y, Breite, Höhe)
-    ctx.drawImage(character, 20, 20, 50, 150);
+    // ctx.drawImage(character, 20, 20, 50, 150);
 }

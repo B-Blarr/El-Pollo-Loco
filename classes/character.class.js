@@ -5,9 +5,23 @@ class Character extends MoveableObject{
 
         // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.
         constructor(){
+                // super();
           super().loadImage(ImageHub.character.idle[0]);
+          this.loadImages(ImageHub.character.idle);
 
+          this.animate();
         }
+        currentImage = 0;
+
+        animate(){
+           setInterval(() => {  
+           let i = this.currentImage % ImageHub.character.idle.length;   
+           let path = ImageHub.character.idle[i];
+           this.img = this.imageCache[path];     
+           this.currentImage++;
+           },  100); 
+        };
+
 
         jump(){
 

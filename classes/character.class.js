@@ -2,6 +2,7 @@ class Character extends MoveableObject {
   height = 520;
   width = 250;
   y = 335;
+  speed = 10;
   world;
 
   // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.
@@ -17,18 +18,27 @@ class Character extends MoveableObject {
   animate() {
     setInterval(() => {
       if (this.world.keyboard.RIGHT) {
+        this.x += this.speed;
+      }
+      if (this.world.keyboard.LEFT) {
+        this.x -= this.speed;
+      }
+    }, 1000 / 60);
+
+    setInterval(() => {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        this.x += this.speed;
         let i = this.currentImage % ImageHub.character.walking.length;
         let path = ImageHub.character.walking[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-
-      }else{
+      } else {
         let i = this.currentImage % ImageHub.character.idle.length;
         let path = ImageHub.character.idle[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-      } 
-    }, 150);
+      }
+    }, 50);
   }
 
   jump() {}

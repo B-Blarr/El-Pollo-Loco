@@ -40,7 +40,7 @@ class Character extends MoveableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
       }
-    }, 50);
+    }, 300);
   }
 
   jump() {}

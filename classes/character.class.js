@@ -11,7 +11,6 @@ class Character extends MoveableObject{
 
           this.animate();
         }
-        currentImage = 0;
 
         animate(){
            setInterval(() => {  
@@ -19,7 +18,7 @@ class Character extends MoveableObject{
            let path = ImageHub.character.idle[i];
            this.img = this.imageCache[path];     
            this.currentImage++;
-           },  100); 
+           },  150); 
         };
 
 

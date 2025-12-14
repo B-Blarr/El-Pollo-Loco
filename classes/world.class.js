@@ -5,6 +5,8 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
+  gameOver = false;
+  collisionIntervalId = null;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -20,15 +22,24 @@ class World {
   }
 
 checkCollisions(){
-  setInterval(() => {
+  this.collisionIntervalId = setInterval(() => {
+    if (this.gameOver) return;
     this.level.enemies.forEach((enemy) => {
      if(this.character.isColliding(enemy)) {
-      console.log("Treffer");
-      
-     }
+      this.character.hit();
+      console.log(this.character.hitPoints);
+      }
+     
     });
 
   }, 200);
+}
+
+stopGame() {
+  this.gameOver = true;
+  if (this.collisionIntervalId) {
+    clearInterval(this.collisionIntervalId);
+  }
 }
 
   draw() {

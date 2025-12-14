@@ -5,15 +5,16 @@ class Character extends MoveableObject {
   y = 135;
   speed = 25;
   world;
-
-
+  moveIntervalId = null;
+  animationIntervalId = null;
+  isDying = false;
 
   offset = {
-        top: 200, 
-        right: 70,
-        bottom: 25,
-        left: 40
-  }
+    top: 235,
+    right: 80,
+    bottom: 30,
+    left: 50,
+  };
 
   // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.
   constructor() {
@@ -22,13 +23,18 @@ class Character extends MoveableObject {
     this.loadImages(ImageHub.character.idle);
     this.loadImages(ImageHub.character.walking);
     this.loadImages(ImageHub.character.jumping);
+    this.loadImages(ImageHub.character.dead);
+    this.loadImages(ImageHub.character.hurt);
+    this.loadImages(ImageHub.character.sleeping);
     this.applyGravity();
     this.animate();
     this.getRealFrame();
   }
 
   animate() {
-    setInterval(() => {
+    this.moveIntervalId = setInterval(() => {
+      if (this.isDead()) return;
+      // this.walking_sound.pause();
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
         // this.walking_sound.play();
@@ -45,17 +51,31 @@ class Character extends MoveableObject {
       this.world.camera_x = -this.x + 95;
     }, 1000 / 60);
 
-    setInterval(() => {
-      if (this.isAboveGround()) {
-        this.playJumpingAnimation(ImageHub.character.jumping);
+    this.animationIntervalId = setInterval(() => {
+      if (this.isDead()) {
+        if (!this.isDying) {
+          this.isDying = true;
+          this.currentImage = 0;
+          clearInterval(this.moveIntervalId);
+        }
+        this.playDeadAnimation(ImageHub.character.dead);
+        const lastDeadIndex = ImageHub.character.dead.length - 1;
+        const lastPath = ImageHub.character.dead[lastDeadIndex];
+
+        if (this.currentImage === lastDeadIndex && this.img === this.imageCache[lastPath]) {
+          clearInterval(this.animationIntervalId);
+        }
+        return;
+      } else if(this.isHurt()){
+        this.playAnimation(ImageHub.character.hurt);
+      }
+      else if (this.isAboveGround()) {
+        this.playAnimation(ImageHub.character.jumping);
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        this.playWalkingAnimation(ImageHub.character.walking);
+        this.playAnimation(ImageHub.character.walking);
       } else {
-        this.playStandingAnimation(ImageHub.character.idle);
+        this.playAnimation(ImageHub.character.idle);
       }
     }, 150);
-   }
-
-
-
+  }
 }

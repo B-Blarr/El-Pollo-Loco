@@ -10,29 +10,31 @@ class MoveableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 1;
-//   groundY = 846;
+  //   groundY = 846;
   rX;
   rY;
   rWidth;
   rHeight;
+  hitPoints = 100;
+  lastHit = 0;
 
-    offset = {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-  }
+  offset = {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  };
 
-  applyGravity(){
+  applyGravity() {
     setInterval(() => {
-        if (this.isAboveGround() || this.speedY > 0) {
+      if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-    }
+      }
     }, 1000 / 75);
   }
 
-  isAboveGround(){
+  isAboveGround() {
     return this.y < 326;
   }
 
@@ -50,73 +52,108 @@ class MoveableObject {
     });
   }
 
-  draw(ctx){
-   ctx.drawImage(this.img, this.x, this.y, this.width, this.height); 
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
-  drawFrame(ctx){
+  drawFrame(ctx) {
     if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
-    ctx.beginPath();
-    ctx.lineWidth = "5";
-    ctx.strokeStyle = "blue";
-    // ctx.rect(this.x, this.y, this.width, this.height,);
-    const frameX = this.x + this.offset.left;
-const frameY = this.y + this.offset.top;
-const frameWidth = this.width - this.offset.left - this.offset.right;
-const frameHeight = this.height - this.offset.top - this.offset.bottom;
+      ctx.beginPath();
+      ctx.lineWidth = "5";
+      ctx.strokeStyle = "blue";
+      // ctx.rect(this.x, this.y, this.width, this.height,);
+      const frameX = this.x + this.offset.left;
+      const frameY = this.y + this.offset.top;
+      const frameWidth = this.width - this.offset.left - this.offset.right;
+      const frameHeight = this.height - this.offset.top - this.offset.bottom;
 
-ctx.rect(frameX, frameY, frameWidth, frameHeight);
-    ctx.stroke();
+      ctx.rect(frameX, frameY, frameWidth, frameHeight);
+      ctx.stroke();
+    }
   }
-}
 
-  playWalkingAnimation(images) {
+//   playWalkingAnimation(images) {
+//     let i = this.currentImage % images.length;
+//     let path = images[i];
+//     this.img = this.imageCache[path];
+//     this.currentImage++;
+//   }
+
+//   playStandingAnimation(images) {
+//     let i = this.currentImage % images.length;
+//     let path = images[i];
+//     this.img = this.imageCache[path];
+//     this.currentImage++;
+//   }
+
+//   playJumpingAnimation(images) {
+//     let i = this.currentImage % images.length;
+//     let path = images[i];
+//     this.img = this.imageCache[path];
+//     this.currentImage++;
+//   }
+
+playAnimation(images){
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-  }
+}
 
-  playStandingAnimation(images){
-    let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-  }
 
-  playJumpingAnimation(images){
-    let i = this.currentImage % images.length;
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+  playDeadAnimation(images){
+    let i = Math.min(this.currentImage, images.length - 1);
+    let path = images[i];
+    this.img = this.imageCache[path];
+    if (this.currentImage < images.length - 1) { 
+    this.currentImage++;
   }
-
+  }
+  
   moveRight() {
-        this.x += this.speed;
-        this.otherDirection = false;        
+    this.x += this.speed;
+    this.otherDirection = false;
   }
 
   moveLeft() {
     this.x -= this.speed;
-    
-  
-}
-  jump(){
+  }
+  jump() {
     this.speedY = 20;
   }
 
-getRealFrame(){
-        this.rX = this.x + this.offset.left;
-        this.rY = this.y + this.offset.top;
-        this.rWidth = this.width - this.offset.left - this.offset.right;
-        this.rHeight = this.height - this.offset.top - this.offset.bottom;
+  getRealFrame() {
+    this.rX = this.x + this.offset.left;
+    this.rY = this.y + this.offset.top;
+    this.rWidth = this.width - this.offset.left - this.offset.right;
+    this.rHeight = this.height - this.offset.top - this.offset.bottom;
+  }
+
+  isColliding(moveableObject) {
+    return (
+      this.rX + this.rWidth > moveableObject.rX &&
+      this.rY + this.rHeight > moveableObject.rY &&
+      this.rX < moveableObject.rX + moveableObject.rWidth &&
+      this.rY < moveableObject.rY + moveableObject.rHeight
+    );
+  }
+
+hit(){
+    this.hitPoints -= 5;
+    if (this.hitPoints < 0) {
+        this.hitPoints = 0;
+    } else{
+        this.lastHit = new Date().getTime();
+    }
 }
 
-   isColliding(moveableObject){
-        return this.rX + this.rWidth > moveableObject.rX &&
-         this.rY + this.rHeight > moveableObject.rY &&
-         this.rX < moveableObject.rX + moveableObject.rWidth &&
-         this.rY < moveableObject.rY + moveableObject.rHeight;
+isHurt(){
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 1.5;
 }
 
+    isDead(){
+        return this.hitPoints == 0;
+}
 }

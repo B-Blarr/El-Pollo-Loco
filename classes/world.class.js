@@ -20,14 +20,11 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(this.camera_x, 0);
-
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
-
     this.ctx.translate(-this.camera_x, 0);
     // draw() wird immer wieder raufgerufen
     let self = this;
@@ -38,21 +35,30 @@ class World {
 
   addToMap(moveableObject) {
     if (moveableObject.otherDirection) {
-      this.ctx.save();
-      this.ctx.translate(moveableObject.width, 0);
-      this.ctx.scale(-1, 1);
-      moveableObject.x = moveableObject.x * -1;
+      this.flipImage(moveableObject);
     }
-    this.ctx.drawImage(moveableObject.img, moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height);
+    moveableObject.draw(this.ctx);
+    moveableObject.drawFrame(this.ctx);
+    
     if (moveableObject.otherDirection) {
-      moveableObject.x = moveableObject.x * -1;
-      this.ctx.restore();
-    }
+      this.flipImageBack(moveableObject);
   }
-
+}
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
+
+flipImage(moveableObject){
+      this.ctx.save();
+      this.ctx.translate(moveableObject.width, 0);
+      this.ctx.scale(-1, 1);
+      moveableObject.x = moveableObject.x * -1;
+}
+
+flipImageBack(moveableObject){
+moveableObject.x = moveableObject.x * -1;
+      this.ctx.restore();
+    }
 }

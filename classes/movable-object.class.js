@@ -8,6 +8,22 @@ class MoveableObject {
   currentImage = 0;
   speed = 0.15;
   otherDirection = false;
+  speedY = 0;
+  acceleration = 1;
+//   groundY = 846;
+
+  applyGravity(){
+    setInterval(() => {
+        if (this.isAboveGround() || this.speedY > 0) {
+        this.y -= this.speedY;
+        this.speedY -= this.acceleration;
+    }
+    }, 1000 / 75);
+  }
+
+  isAboveGround(){
+    return this.y < 326;
+  }
 
   // loadImage('img/test.png')
   loadImage(path) {
@@ -37,13 +53,25 @@ class MoveableObject {
         this.currentImage++;
   }
 
-  moveRight() {
-    console.log("Moving right");
+  playJumpingAnimation(images){
+    let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
   }
 
-  moveLeft(speed) {
-    setInterval(() => {
-      this.x -= speed;
-    }, 1000 / 60);
+  moveRight() {
+        this.x += this.speed;
+        this.otherDirection = false;
+        
+  }
+
+  moveLeft() {
+    this.x -= this.speed;
+    
+  
+}
+  jump(){
+    this.speedY = 20;
   }
 }

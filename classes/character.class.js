@@ -9,10 +9,10 @@ class Character extends MoveableObject {
 
 
   offset = {
-        top: 30,
-        right: 10,
-        bottom: 20,
-        left: 15
+        top: 200, 
+        right: 70,
+        bottom: 25,
+        left: 40
   }
 
   // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.

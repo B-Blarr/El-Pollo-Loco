@@ -11,6 +11,17 @@ class MoveableObject {
   speedY = 0;
   acceleration = 1;
 //   groundY = 846;
+  rX;
+  rY;
+  rWidth;
+  rHeight;
+
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+  }
 
   applyGravity(){
     setInterval(() => {
@@ -44,12 +55,20 @@ class MoveableObject {
   }
 
   drawFrame(ctx){
+    if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
     ctx.beginPath();
     ctx.lineWidth = "5";
     ctx.strokeStyle = "blue";
-    ctx.rect(this.x, this.y, this.width, this.height,);
+    // ctx.rect(this.x, this.y, this.width, this.height,);
+    const frameX = this.x + this.offset.left;
+const frameY = this.y + this.offset.top;
+const frameWidth = this.width - this.offset.left - this.offset.right;
+const frameHeight = this.height - this.offset.top - this.offset.bottom;
+
+ctx.rect(frameX, frameY, frameWidth, frameHeight);
     ctx.stroke();
   }
+}
 
   playWalkingAnimation(images) {
     let i = this.currentImage % images.length;
@@ -74,8 +93,7 @@ class MoveableObject {
 
   moveRight() {
         this.x += this.speed;
-        this.otherDirection = false;
-        
+        this.otherDirection = false;        
   }
 
   moveLeft() {
@@ -86,4 +104,19 @@ class MoveableObject {
   jump(){
     this.speedY = 20;
   }
+
+getRealFrame(){
+        this.rX = this.x + this.offset.left;
+        this.rY = this.y + this.offset.top;
+        this.rWidth = this.width - this.offset.left - this.offset.right;
+        this.rHeight = this.height - this.offset.top - this.offset.bottom;
+}
+
+   isColliding(moveableObject){
+        return this.rX + this.rWidth > moveableObject.rX &&
+         this.rY + this.rHeight > moveableObject.rY &&
+         this.rX < moveableObject.rX + moveableObject.rWidth &&
+         this.rY < moveableObject.rY + moveableObject.rHeight;
+}
+
 }

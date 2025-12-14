@@ -6,6 +6,15 @@ class Character extends MoveableObject {
   speed = 25;
   world;
 
+
+
+  offset = {
+        top: 30,
+        right: 10,
+        bottom: 20,
+        left: 15
+  }
+
   // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.
   constructor() {
     // super();
@@ -15,6 +24,7 @@ class Character extends MoveableObject {
     this.loadImages(ImageHub.character.jumping);
     this.applyGravity();
     this.animate();
+    this.getRealFrame();
   }
 
   animate() {
@@ -31,6 +41,7 @@ class Character extends MoveableObject {
       if (!this.isAboveGround() && this.world.keyboard.SPACE) {
         this.jump();
       }
+      this.getRealFrame();
       this.world.camera_x = -this.x + 95;
     }, 1000 / 60);
 
@@ -44,4 +55,7 @@ class Character extends MoveableObject {
       }
     }, 150);
    }
+
+
+
 }

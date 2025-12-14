@@ -12,11 +12,24 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.character.world = this;
   }
+
+checkCollisions(){
+  setInterval(() => {
+    this.level.enemies.forEach((enemy) => {
+     if(this.character.isColliding(enemy)) {
+      console.log("Treffer");
+      
+     }
+    });
+
+  }, 200);
+}
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -39,7 +52,7 @@ class World {
     }
     moveableObject.draw(this.ctx);
     moveableObject.drawFrame(this.ctx);
-    
+
     if (moveableObject.otherDirection) {
       this.flipImageBack(moveableObject);
   }

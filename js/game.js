@@ -28,7 +28,12 @@ window.addEventListener('keydown', (event) => {
     if (event.keyCode == 70) { 
         keyboard.F = true;
     }
-
+    if (event.keyCode == 65) { 
+        keyboard.A = true;
+    }
+    if (event.keyCode == 68) { 
+        keyboard.D = true;
+    }
 });
 
 window.addEventListener('keyup', (event) => {
@@ -43,6 +48,12 @@ window.addEventListener('keyup', (event) => {
     }
     if (event.keyCode == 70) { 
         keyboard.F = false;
+    }
+    if (event.keyCode == 65) { 
+        keyboard.A = false;
+    }
+    if (event.keyCode == 68) { 
+        keyboard.D = false;
     }
 
 });

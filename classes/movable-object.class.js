@@ -1,11 +1,4 @@
-class MoveableObject {
-  x = 120;
-  y = 570;
-  img;
-  height = 300;
-  width = 150;
-  imageCache = {};
-  currentImage = 0;
+class MoveableObject extends DrawableObject {
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -38,24 +31,6 @@ class MoveableObject {
     return this.y < 326;
   }
 
-  // loadImage('img/test.png')
-  loadImage(path) {
-    this.img = new Image(); // this.img = document.getElementById('image')   <img id='image' scr>
-    this.img.src = path;
-  }
-
-  loadImages(arr) {
-    arr.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
-  }
-
-  draw(ctx) {
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-  }
-
   drawFrame(ctx) {
     if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
       ctx.beginPath();
@@ -72,44 +47,43 @@ class MoveableObject {
     }
   }
 
-//   playWalkingAnimation(images) {
-//     let i = this.currentImage % images.length;
-//     let path = images[i];
-//     this.img = this.imageCache[path];
-//     this.currentImage++;
-//   }
+  //   playWalkingAnimation(images) {
+  //     let i = this.currentImage % images.length;
+  //     let path = images[i];
+  //     this.img = this.imageCache[path];
+  //     this.currentImage++;
+  //   }
 
-//   playStandingAnimation(images) {
-//     let i = this.currentImage % images.length;
-//     let path = images[i];
-//     this.img = this.imageCache[path];
-//     this.currentImage++;
-//   }
+  //   playStandingAnimation(images) {
+  //     let i = this.currentImage % images.length;
+  //     let path = images[i];
+  //     this.img = this.imageCache[path];
+  //     this.currentImage++;
+  //   }
 
-//   playJumpingAnimation(images) {
-//     let i = this.currentImage % images.length;
-//     let path = images[i];
-//     this.img = this.imageCache[path];
-//     this.currentImage++;
-//   }
+  //   playJumpingAnimation(images) {
+  //     let i = this.currentImage % images.length;
+  //     let path = images[i];
+  //     this.img = this.imageCache[path];
+  //     this.currentImage++;
+  //   }
 
-playAnimation(images){
+  playAnimation(images) {
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-}
+  }
 
-
-  playDeadAnimation(images){
+  playDeadAnimation(images) {
     let i = Math.min(this.currentImage, images.length - 1);
     let path = images[i];
     this.img = this.imageCache[path];
-    if (this.currentImage < images.length - 1) { 
-    this.currentImage++;
+    if (this.currentImage < images.length - 1) {
+      this.currentImage++;
+    }
   }
-  }
-  
+
   moveRight() {
     this.x += this.speed;
     this.otherDirection = false;
@@ -138,22 +112,22 @@ playAnimation(images){
     );
   }
 
-hit(){
+  hit() {
     this.hitPoints -= 5;
     if (this.hitPoints < 0) {
-        this.hitPoints = 0;
-    } else{
-        this.lastHit = new Date().getTime();
+      this.hitPoints = 0;
+    } else {
+      this.lastHit = new Date().getTime();
     }
-}
+  }
 
-isHurt(){
+  isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
     return timepassed < 1.5;
-}
+  }
 
-    isDead(){
-        return this.hitPoints == 0;
-}
+  isDead() {
+    return this.hitPoints == 0;
+  }
 }

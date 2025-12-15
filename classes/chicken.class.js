@@ -19,11 +19,11 @@ class Chicken extends MoveableObject {
   }
 
   animate() {
-    setInterval(() => {
+    IntervalHub.startInterval(() => {
       this.moveLeft();
       this.getRealFrame();
     }, 1000 / 60);
-    setInterval(() => {
+    IntervalHub.startInterval(() => {
       this.playAnimation(ImageHub.chicken.walking);
     }, 150);
   }

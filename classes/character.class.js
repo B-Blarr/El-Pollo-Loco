@@ -2,12 +2,14 @@ class Character extends MoveableObject {
   height = 520;
   width = 250;
   //   y = 335;
-  y = 135;
+  y = 326;
   speed = 25;
   world;
-  moveIntervalId = null;
-  animationIntervalId = null;
+//   moveIntervalId = null;
+//   animationIntervalId = null;
   isDying = false;
+  lastDeadIndex = ImageHub.character.dead.length - 1;
+  lastPath = ImageHub.character.dead[this.lastDeadIndex];
 
   offset = {
     top: 235,
@@ -32,7 +34,7 @@ class Character extends MoveableObject {
   }
 
   animate() {
-    this.moveIntervalId = setInterval(() => {
+    IntervalHub.startInterval(() => {
       if (this.isDead()) return;
       // this.walking_sound.pause();
       if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
@@ -51,7 +53,7 @@ class Character extends MoveableObject {
       this.world.camera_x = -this.x + 95;
     }, 1000 / 60);
 
-    this.animationIntervalId = setInterval(() => {
+    IntervalHub.startInterval(() => {
       if (this.isDead()) {
         if (!this.isDying) {
           this.isDying = true;
@@ -59,11 +61,8 @@ class Character extends MoveableObject {
           clearInterval(this.moveIntervalId);
         }
         this.playDeadAnimation(ImageHub.character.dead);
-        const lastDeadIndex = ImageHub.character.dead.length - 1;
-        const lastPath = ImageHub.character.dead[lastDeadIndex];
-
-        if (this.currentImage === lastDeadIndex && this.img === this.imageCache[lastPath]) {
-          clearInterval(this.animationIntervalId);
+        if (this.currentImage === this.lastDeadIndex && this.img === this.imageCache[this.lastPath]) {
+          IntervalHub.stopAllIntervals();
         }
         return;
       } else if(this.isHurt()){

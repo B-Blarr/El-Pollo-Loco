@@ -8,14 +8,21 @@ class World {
   gameOver = false;
   collisionIntervalId = null;
   statusBar = new StatusBar();
+  counter = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-    this.draw();
     this.setWorld();
+    this.draw();
     this.checkCollisions();
+    IntervalHub.startInterval(this.startCounter, 1000);
+  }
+
+  startCounter = () => {
+    this.counter++;
+    
   }
 
   setWorld() {
@@ -23,7 +30,7 @@ class World {
   }
 
 checkCollisions(){
-  this.collisionIntervalId = setInterval(() => {
+  this.collisionIntervalId = IntervalHub.startInterval(() => {
     if (this.gameOver) return;
     this.level.enemies.forEach((enemy) => {
      if(this.character.isColliding(enemy)) {

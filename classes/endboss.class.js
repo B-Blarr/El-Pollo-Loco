@@ -13,7 +13,7 @@ class Endboss extends MoveableObject {
 
   animate() {
     this.moveLeft(this.speed);
-    setInterval(() => {
+    IntervalHub.startInterval(() => {
         this.playAnimation(ImageHub.endboss.alert);
     //   let i = this.currentImage % ImageHub.endboss.walking.length;
     //   let path = ImageHub.endboss.walking[i];

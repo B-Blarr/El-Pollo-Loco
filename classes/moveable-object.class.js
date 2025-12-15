@@ -3,7 +3,6 @@ class MoveableObject extends DrawableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 1;
-  //   groundY = 846;
   rX;
   rY;
   rWidth;
@@ -28,9 +27,13 @@ class MoveableObject extends DrawableObject {
   }
 
   isAboveGround() {
+    if (this instanceof ThrowableObject) {
+      return true;
+    }else{
+
     return this.y < 326;
   }
-
+  }
 
 
   //   playWalkingAnimation(images) {

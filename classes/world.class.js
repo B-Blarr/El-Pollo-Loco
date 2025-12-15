@@ -5,10 +5,11 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  gameOver = false;
-  collisionIntervalId = null;
+  // gameOver = false;
+  // collisionIntervalId = null;
   statusBar = new StatusBar();
   counter = 0;
+  throwableObjects = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -18,6 +19,7 @@ class World {
     this.draw();
     this.checkCollisions();
     IntervalHub.startInterval(this.startCounter, 1000);
+    this.run();
   }
 
   startCounter = () => {
@@ -29,9 +31,24 @@ class World {
     this.character.world = this;
   }
 
+run(){
+IntervalHub.startInterval(() => {
+  this.checkCollisions();
+  this.checkThrowObjects();
+  }, 200);
+}
+
+checkThrowObjects(){
+if (this.keyboard.F) {
+  let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+  this.throwableObjects.push(bottle);
+}
+
+}
+
 checkCollisions(){
-  this.collisionIntervalId = IntervalHub.startInterval(() => {
-    if (this.gameOver) return;
+
+    // if (this.gameOver) return;
     this.level.enemies.forEach((enemy) => {
      if(this.character.isColliding(enemy)) {
       this.character.hit();
@@ -39,16 +56,14 @@ checkCollisions(){
       }
      
     });
-
-  }, 200);
 }
 
-stopGame() {
-  this.gameOver = true;
-  if (this.collisionIntervalId) {
-    clearInterval(this.collisionIntervalId);
-  }
-}
+// stopGame() {
+//   this.gameOver = true;
+//   if (this.collisionIntervalId) {
+//     clearInterval(this.collisionIntervalId);
+//   }
+// }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -62,6 +77,7 @@ stopGame() {
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
+    this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.enemies);
     this.ctx.translate(-this.camera_x, 0);
     // draw() wird immer wieder raufgerufen

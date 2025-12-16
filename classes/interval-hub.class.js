@@ -15,6 +15,4 @@ static allIntervals = [];
                     IntervalHub.allIntervals.forEach(clearInterval);
                     IntervalHub.allIntervals = [];
                 }
-
-
 }

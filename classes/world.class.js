@@ -24,46 +24,52 @@ class World {
 
   startCounter = () => {
     this.counter++;
-    
-  }
+  };
 
   setWorld() {
     this.character.world = this;
   }
 
-run(){
-IntervalHub.startInterval(() => {
-  this.checkCollisions();
-  this.checkThrowObjects();
-  }, 200);
-}
+  run() {
+    IntervalHub.startInterval(() => {
+      this.checkCollisions();
+      this.checkThrowObjects();
+      this.checkBottleCollisions();
+    }, 50);
+  }
 
-checkThrowObjects(){
-if (this.keyboard.F) {
-  let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-  this.throwableObjects.push(bottle);
-}
+  checkThrowObjects() {
+    if (this.keyboard.F) {
+      let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
+      this.throwableObjects.push(bottle);
+    }
+  }
 
-}
-
-checkCollisions(){
-
-    // if (this.gameOver) return;
+  checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-     if(this.character.isColliding(enemy)) {
-      this.character.hit();
-      this.statusBar.setPercentage(this.character.hitPoints);
+      if (this.character.isColliding(enemy)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.hitPoints);
       }
-     
     });
-}
+  }
 
-// stopGame() {
-//   this.gameOver = true;
-//   if (this.collisionIntervalId) {
-//     clearInterval(this.collisionIntervalId);
-//   }
-// }
+checkBottleCollisions() {
+    this.throwableObjects.forEach((bottle) => {
+      this.level.enemies.forEach((enemy) => {
+      if (bottle.isColliding(enemy)) {
+        // enemy.hitPoints -= 5;
+        // if (this.chicken.hitPoints <= 0) {
+        //   this.playDeadAnimation(ImageHub.chicken.dead);
+        // }else if (this.endboss.hitPoints <= 0) {
+        //   this.playDeadAnimation(ImageHub.endboss.dead);
+        enemy.hit();
+        }
+        
+      // }
+      });
+    });
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -77,15 +83,14 @@ checkCollisions(){
     this.ctx.translate(this.camera_x, 0);
     try {
       this.addToMap(this.character);
-    this.addObjectsToMap(this.level.clouds);
-    this.addObjectsToMap(this.throwableObjects);
-    this.addObjectsToMap(this.level.enemies);
+      this.addObjectsToMap(this.level.clouds);
+      this.addObjectsToMap(this.throwableObjects);
+      this.addObjectsToMap(this.level.enemies);
     } catch (error) {
-      console.warn("Error loading image", error)
-      console.log("Could not load image,", this.flipImage.src );
-      
+      console.warn("Error loading image", error);
+      console.log("Could not load image,", this.flipImage.src);
     }
-    
+
     this.ctx.translate(-this.camera_x, 0);
     // draw() wird immer wieder raufgerufen
     let self = this;
@@ -103,23 +108,23 @@ checkCollisions(){
 
     if (moveableObject.otherDirection) {
       this.flipImageBack(moveableObject);
+    }
   }
-}
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
-flipImage(moveableObject){
-      this.ctx.save();
-      this.ctx.translate(moveableObject.width, 0);
-      this.ctx.scale(-1, 1);
-      moveableObject.x = moveableObject.x * -1;
-}
+  flipImage(moveableObject) {
+    this.ctx.save();
+    this.ctx.translate(moveableObject.width, 0);
+    this.ctx.scale(-1, 1);
+    moveableObject.x = moveableObject.x * -1;
+  }
 
-flipImageBack(moveableObject){
-moveableObject.x = moveableObject.x * -1;
-      this.ctx.restore();
-    }
+  flipImageBack(moveableObject) {
+    moveableObject.x = moveableObject.x * -1;
+    this.ctx.restore();
+  }
 }

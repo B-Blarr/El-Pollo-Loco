@@ -8,6 +8,7 @@ class Endboss extends MoveableObject {
     this.x = 4650
     this.loadImages(ImageHub.endboss.alert);
     this.speed = 0;
+    this.hitPoints = 200;
     this.animate();
   }
 

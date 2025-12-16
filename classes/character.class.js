@@ -1,21 +1,18 @@
 class Character extends MoveableObject {
   height = 520;
   width = 250;
-  //   y = 335;
   y = 326;
   speed = 25;
   world;
-//   moveIntervalId = null;
-//   animationIntervalId = null;
   isDying = false;
   lastDeadIndex = ImageHub.character.dead.length - 1;
   lastPath = ImageHub.character.dead[this.lastDeadIndex];
 
   offset = {
-    top: 235,
-    right: 80,
+    top: 245,
+    right: 85,
     bottom: 30,
-    left: 50,
+    left: 70,
   };
 
   // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.
@@ -58,7 +55,6 @@ class Character extends MoveableObject {
         if (!this.isDying) {
           this.isDying = true;
           this.currentImage = 0;
-          clearInterval(this.moveIntervalId);
         }
         this.playDeadAnimation(ImageHub.character.dead);
         if (this.currentImage === this.lastDeadIndex && this.img === this.imageCache[this.lastPath]) {
@@ -70,7 +66,7 @@ class Character extends MoveableObject {
       }
       else if (this.isAboveGround()) {
         this.playAnimation(ImageHub.character.jumping);
-      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.D || this.world.keyboard.A) {
         this.playAnimation(ImageHub.character.walking);
       } else {
         this.playAnimation(ImageHub.character.idle);

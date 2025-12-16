@@ -75,10 +75,17 @@ checkCollisions(){
 
     this.addToMap(this.statusBar);
     this.ctx.translate(this.camera_x, 0);
-    this.addToMap(this.character);
+    try {
+      this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.enemies);
+    } catch (error) {
+      console.warn("Error loading image", error)
+      console.log("Could not load image,", this.flipImage.src );
+      
+    }
+    
     this.ctx.translate(-this.camera_x, 0);
     // draw() wird immer wieder raufgerufen
     let self = this;

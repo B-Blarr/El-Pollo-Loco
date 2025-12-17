@@ -5,8 +5,6 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  // gameOver = false;
-  // collisionIntervalId = null;
   statusBar = new StatusBar();
   counter = 0;
   throwableObjects = [];
@@ -44,12 +42,12 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.F) {
       let actualTime = new Date().getTime();
-      if (actualTime - this.lastThrowTime > 200) { 
-            let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
-            this.throwableObjects.push(bottle);
-            this.lastThrowTime = actualTime;
+      if (actualTime - this.lastThrowTime > 200) {
+        let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
+        this.throwableObjects.push(bottle);
+        this.lastThrowTime = actualTime;
+      }
     }
-  }
   }
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
@@ -60,12 +58,12 @@ class World {
     });
   }
 
-checkBottleCollisions() {
+  checkBottleCollisions() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
-      if (bottle.isColliding(enemy)) {
-        enemy.hit();
-        bottle.bottleExplodes();
+        if (bottle.isColliding(enemy)) {
+          enemy.hit();
+          bottle.bottleExplodes();
         }
       });
     });
@@ -75,17 +73,19 @@ checkBottleCollisions() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     // Space for fixed Objects
-
-    this.addObjectsToMap(this.level.backgroundObjects);
+this.addObjectsToMap(this.level.backgroundObjects);
+    
     this.ctx.translate(-this.camera_x, 0);
-
     this.addToMap(this.statusBar);
     this.ctx.translate(this.camera_x, 0);
     try {
+
       this.addToMap(this.character);
+
       this.addObjectsToMap(this.level.clouds);
       this.addObjectsToMap(this.throwableObjects);
       this.addObjectsToMap(this.level.enemies);
+      this.addObjectsToMap(this.level.collectableObjects);
     } catch (error) {
       console.warn("Error loading image", error);
       console.log("Could not load image,", this.flipImage.src);
@@ -133,20 +133,20 @@ checkBottleCollisions() {
     this.level.enemies.forEach((enemy) => {
       // 3. Wenn der Feind NICHT gelöscht werden soll...
       // (Hier übergeben wir die 2000 Millisekunden an den timer!)
-        if (!enemy.objectDisappears(2000)) {
-      // ... dann darf er in die neue Liste umziehen
-            remainingEnemies.push(enemy);
-        }
+      if (!enemy.objectDisappears(2000)) {
+        // ... dann darf er in die neue Liste umziehen
+        remainingEnemies.push(enemy);
+      }
     });
     this.level.enemies = remainingEnemies;
-}
-checkThrowableObjectsCleanup() {
-  let remainingBottles = [];
-  this.throwableObjects.forEach((bottle) => {
-    if (!bottle.objectDisappears(200)) {
-      remainingBottles.push(bottle);
-    }
-  })
-  this.throwableObjects = remainingBottles;
-}
+  }
+  checkThrowableObjectsCleanup() {
+    let remainingBottles = [];
+    this.throwableObjects.forEach((bottle) => {
+      if (!bottle.objectDisappears(200)) {
+        remainingBottles.push(bottle);
+      }
+    });
+    this.throwableObjects = remainingBottles;
+  }
 }

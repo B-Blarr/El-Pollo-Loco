@@ -69,7 +69,6 @@ animate() {
             this.playDeadAnimation(ImageHub.bottle.bottleSplash);
         } else{
       this.playAnimation(ImageHub.bottle.bottleRotation);
-      this.
       }
     }, 150);
   }

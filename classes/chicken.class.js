@@ -30,6 +30,9 @@ class Chicken extends MoveableObject {
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
         this.playAnimation(ImageHub.chicken.dead);
+        if (this.objectDisappears) {
+          
+        }
       }else {
       this.playAnimation(ImageHub.chicken.walking);
       }

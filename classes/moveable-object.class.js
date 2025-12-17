@@ -9,6 +9,7 @@ class MoveableObject extends DrawableObject {
   rHeight;
   hitPoints = 100;
   lastHit = 0;
+  timeOfDeath;
 
   offset = {
     top: 0,
@@ -19,6 +20,7 @@ class MoveableObject extends DrawableObject {
 
   applyGravity() {
     IntervalHub.startInterval(() => {
+      if (this.hasHit) return;
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
@@ -34,28 +36,6 @@ class MoveableObject extends DrawableObject {
     return this.y < 326;
   }
   }
-
-
-  //   playWalkingAnimation(images) {
-  //     let i = this.currentImage % images.length;
-  //     let path = images[i];
-  //     this.img = this.imageCache[path];
-  //     this.currentImage++;
-  //   }
-
-  //   playStandingAnimation(images) {
-  //     let i = this.currentImage % images.length;
-  //     let path = images[i];
-  //     this.img = this.imageCache[path];
-  //     this.currentImage++;
-  //   }
-
-  //   playJumpingAnimation(images) {
-  //     let i = this.currentImage % images.length;
-  //     let path = images[i];
-  //     this.img = this.imageCache[path];
-  //     this.currentImage++;
-  //   }
 
   playAnimation(images) {
     let i = this.currentImage % images.length;
@@ -119,4 +99,15 @@ class MoveableObject extends DrawableObject {
   isDead() {
     return this.hitPoints == 0;
   }
+
+  objectDisappears(timer){
+  if (!this.isDead()) return false;
+        if (!this.timeOfDeath) {
+            this.timeOfDeath = new Date().getTime();
+        }
+        let timepassed = new Date().getTime() - this.timeOfDeath;
+        return timepassed > timer;
+  }
+  
+  
 }

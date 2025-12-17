@@ -1,0 +1,7 @@
+class bottleOnGround extends CollectableObject{
+
+
+
+
+
+}

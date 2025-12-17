@@ -1,18 +1,16 @@
 class IntervalHub {
+  static allIntervals = [];
 
-static allIntervals = [];
+  // Startet ein neues Intervall und
+  // fügt es dem Array allIntervals hinzu
+  static startInterval(func, timer) {
+    const newInterval = setInterval(func, timer);
+    IntervalHub.allIntervals.push(newInterval);
+  }
 
-
-// Startet ein neues Intervall und
-                // fügt es dem Array allIntervals hinzu
-                static startInterval(func, timer) {
-                    const newInterval = setInterval(func, timer);
-                    IntervalHub.allIntervals.push(newInterval);
-                }
-
-                //Stoppt alle registrierten Intervalle und leert die Registry.
-                static stopAllIntervals() {
-                    IntervalHub.allIntervals.forEach(clearInterval);
-                    IntervalHub.allIntervals = [];
-                }
+  //Stoppt alle registrierten Intervalle und leert die Registry.
+  static stopAllIntervals() {
+    IntervalHub.allIntervals.forEach(clearInterval);
+    IntervalHub.allIntervals = [];
+  }
 }

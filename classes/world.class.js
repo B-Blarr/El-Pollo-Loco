@@ -36,6 +36,7 @@ class World {
       this.checkBottleCollisions();
       this.checkEnemyCleanup();
       this.checkThrowableObjectsCleanup();
+      this.checkCollectableCollisions();
     }, 1000 / 60);
   }
 
@@ -51,7 +52,7 @@ class World {
   }
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy)) {
+      if (this.character.isColliding(enemy) && !this.character.isHurt()) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.hitPoints);
       }
@@ -68,6 +69,51 @@ class World {
       });
     });
   }
+
+// checkCollectableCollisions(){
+// if (this.character.isColliding(object)) {
+//   moveableObject.objectDisappears(timer);
+//           addStatusPoints();
+
+//       };
+    // });
+  // }
+
+
+  checkCollectableCollisions(){
+// this.character.forEach((character) => {
+      this.level.collectableObjects.forEach((item, index) => {
+        if (this.character.isColliding(item)) {
+
+// 2. Der "Ausweis-Check": Was bist du?
+            if (item instanceof BottleInAir) {
+                this.character.collectedBottles++; 
+                // Evtl. Flaschen-Sound abspielen
+            } 
+            else if (item instanceof Coin) {
+                this.character.collectedCoins++;
+                // Evtl. Münz-Sound abspielen (pling!)
+            }
+            // 3. Löschen tun wir BEIDE gleich (Code sparen!)
+            this.level.collectableObjects.splice(index, 1);
+        }
+    });
+}
+
+  collectBottle(bottle, index) {
+    // 1. Punkte erhöhen (oder Sound abspielen)
+    // this.character.collectedBottles++; (Stelle sicher, dass die Variable im Character existiert!)
+    console.log("Flasche eingesammelt!");
+
+    // 2. Das Objekt SOFORT aus der Welt entfernen
+    // splice(index, 1) schneidet genau 1 Element an der Position 'index' heraus
+    this.level.collectableObjects.splice(index, 1);
+}
+
+  // addStatusPoints(){
+  //   this.character.collectedBottles++;
+  //   return collectedBottles;
+  // }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

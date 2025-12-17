@@ -7,6 +7,8 @@ class Character extends MoveableObject {
   isDying = false;
   lastDeadIndex = ImageHub.character.dead.length - 1;
   lastPath = ImageHub.character.dead[this.lastDeadIndex];
+  collectedBottles = 0;
+  collectedCoins = 0;
 
   offset = {
     top: 245,

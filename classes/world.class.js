@@ -5,7 +5,8 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  statusBar = new StatusBar();
+  healthBar = new HealthBar();
+  bottleBar = new BottleBar();
   counter = 0;
   throwableObjects = [];
   lastThrowTime = 0;
@@ -43,7 +44,11 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.F) {
       let actualTime = new Date().getTime();
-      if (actualTime - this.lastThrowTime > 200) {
+      if (actualTime - this.lastThrowTime > 200 && this.character.collectedBottles >= 20) {
+        // let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
+        this.character.collectedBottles -= 20;
+        this.bottleBar.setPercentage(this.character.collectedBottles);
+
         let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
         this.throwableObjects.push(bottle);
         this.lastThrowTime = actualTime;
@@ -54,7 +59,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && !this.character.isHurt()) {
         this.character.hit();
-        this.statusBar.setPercentage(this.character.hitPoints);
+        this.healthBar.setPercentage(this.character.hitPoints);
       }
     });
   }
@@ -70,65 +75,40 @@ class World {
     });
   }
 
-// checkCollectableCollisions(){
-// if (this.character.isColliding(object)) {
-//   moveableObject.objectDisappears(timer);
-//           addStatusPoints();
-
-//       };
-    // });
-  // }
-
-
-  checkCollectableCollisions(){
-// this.character.forEach((character) => {
-      this.level.collectableObjects.forEach((item, index) => {
-        if (this.character.isColliding(item)) {
-
-// 2. Der "Ausweis-Check": Was bist du?
-            if (item instanceof BottleInAir) {
-                this.character.collectedBottles++; 
-                // Evtl. Flaschen-Sound abspielen
-            } 
-            else if (item instanceof Coin) {
-                this.character.collectedCoins++;
-                // Evtl. Münz-Sound abspielen (pling!)
-            }
-            // 3. Löschen tun wir BEIDE gleich (Code sparen!)
-            this.level.collectableObjects.splice(index, 1);
+  checkCollectableCollisions() {
+    // this.character.forEach((character) => {
+    this.level.collectableObjects.forEach((item, index) => {
+      if (this.character.isColliding(item)) {
+        if (item instanceof BottleInAir) {
+          this.character.collectedBottles += 20;
+          this.bottleBar.setPercentage(this.character.collectedBottles);
+          // Evtl. Flaschen-Sound abspielen
+        } else if (item instanceof Coin) {
+          this.character.collectedCoins++;
+          // Evtl. Münz-Sound abspielen (pling!)
         }
+        // 3. Löschen tun wir BEIDE gleich (Code sparen!)
+        // splice(index, 1) schneidet genau 1 Element an der Position 'index' heraus
+        this.level.collectableObjects.splice(index, 1);
+      }
     });
-}
-
-  collectBottle(bottle, index) {
-    // 1. Punkte erhöhen (oder Sound abspielen)
-    // this.character.collectedBottles++; (Stelle sicher, dass die Variable im Character existiert!)
-    console.log("Flasche eingesammelt!");
-
-    // 2. Das Objekt SOFORT aus der Welt entfernen
-    // splice(index, 1) schneidet genau 1 Element an der Position 'index' heraus
-    this.level.collectableObjects.splice(index, 1);
-}
-
-  // addStatusPoints(){
-  //   this.character.collectedBottles++;
-  //   return collectedBottles;
-  // }
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     // Space for fixed Objects
-this.addObjectsToMap(this.level.backgroundObjects);
-    
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.clouds);
+
     this.ctx.translate(-this.camera_x, 0);
-    this.addToMap(this.statusBar);
+    this.addToMap(this.healthBar);
+    this.addToMap(this.bottleBar);
     this.ctx.translate(this.camera_x, 0);
     try {
-
       this.addToMap(this.character);
 
-      this.addObjectsToMap(this.level.clouds);
+      
       this.addObjectsToMap(this.throwableObjects);
       this.addObjectsToMap(this.level.enemies);
       this.addObjectsToMap(this.level.collectableObjects);
@@ -138,7 +118,7 @@ this.addObjectsToMap(this.level.backgroundObjects);
     }
 
     this.ctx.translate(-this.camera_x, 0);
-    // draw() wird immer wieder raufgerufen
+    // draw() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
       self.draw();

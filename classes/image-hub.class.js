@@ -144,7 +144,7 @@ class ImageHub {
   };
 
   static statusBar = {
-    healthbar: [
+    healthBar: [
       "./assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
       "./assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png",
       "./assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png",
@@ -161,6 +161,18 @@ class ImageHub {
       "./assets/img/7_statusbars/2_statusbar_endboss/orange/orange20.png",
       "./assets/img/7_statusbars/2_statusbar_endboss/orange/orange0.png",
     ],
+
+    bottleBar: [
+      "./assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png",
+      "./assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png",
+      "./assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png",
+      "./assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png",
+      "./assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png",
+      "./assets/img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png",
+    ]
+
+
+
   };
 
   static icon = {

@@ -16,8 +16,5 @@ super().loadImage("./assets/img/6_salsa_bottle/salsa_bottle.png");
     this.width = 180;
     this.height = 180;
 this.getRealFrame();
-
 }
-
-
 }

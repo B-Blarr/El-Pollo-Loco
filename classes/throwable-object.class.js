@@ -1,21 +1,20 @@
-class ThrowableObject extends MoveableObject{
+class ThrowableObject extends MoveableObject {
+  // speedY = 30;
+  // speedX = 20;
+  // width = 180;
+  // height = 180;
+  // x;
+  // y;
+  hasHit;
 
-// speedY = 30;
-// speedX = 20;
-// width = 180;
-// height = 180;
-// x;
-// y;
-hasHit;
+  offset = {
+    top: 25,
+    right: 25,
+    bottom: 25,
+    left: 25,
+  };
 
-offset = {
-        top: 25,
-        right: 25,
-        bottom: 25,
-        left: 25
-  }
-
-constructor(x, y, otherDirection){
+  constructor(x, y, otherDirection) {
     super().loadImage(ImageHub.icon.bottle);
     this.loadImages(ImageHub.bottle.bottleRotation);
     this.loadImages(ImageHub.bottle.bottleSplash);
@@ -28,58 +27,61 @@ constructor(x, y, otherDirection){
     this.otherDirection = otherDirection;
     this.throwRight();
     this.throwLeft();
-}
+  }
 
-throwRight(){
-if (this.hasHit == true) {
-    return;
-}else{
+  throwRight() {
+    // if (this.character.collectedBottles >= 20) {
+    //   this.character.collectedBottles -= 20;
+      if (this.hasHit == true) {
+        return;
+      } else {
+        if (this.otherDirection == false) {
+          this.speedY = 30;
+          this.applyGravity();
+          IntervalHub.startInterval(() => {
+            if (this.hasHit) return;
+            this.x += 10;
+          }, 25);
+        // }
+      }
+    // } else {
+    //   return;
+    }
+  }
 
-    if (this.otherDirection == false) {
-    this.speedY = 30;
-    this.applyGravity();
-     IntervalHub.startInterval(() => {
-        if (this.hasHit) return;
-    this.x += 10;
-    }, 25);
-    }}
-}
-
-throwLeft(){
+  throwLeft() {
     if (this.hasHit == true) {
-    return;
-}else{
+      return;
+    } else {
+      if (this.otherDirection == true) {
+        this.speedY = 30;
+        this.applyGravity();
+        IntervalHub.startInterval(() => {
+          if (this.hasHit) return;
+          this.x -= 10;
+        }, 25);
+      }
+    }
+  }
 
-   if (this.otherDirection == true) {
-    this.speedY = 30;
-    this.applyGravity();
-     IntervalHub.startInterval(() => {
-        if (this.hasHit) return;
-    this.x -= 10;
-    }, 25);
-   } }
-}
-
-animate() {
+  animate() {
     IntervalHub.startInterval(() => {
       this.getRealFrame();
     }, 1000 / 60);
     IntervalHub.startInterval(() => {
-        if (this.hasHit == true) {
-            this.playDeadAnimation(ImageHub.bottle.bottleSplash);
-        } else{
-      this.playAnimation(ImageHub.bottle.bottleRotation);
+      if (this.hasHit == true) {
+        this.playDeadAnimation(ImageHub.bottle.bottleSplash);
+      } else {
+        this.playAnimation(ImageHub.bottle.bottleRotation);
       }
     }, 150);
   }
 
-bottleExplodes(){
+  bottleExplodes() {
     this.hasHit = true;
     this.hitPoints = 0;
-    this.speedY = 0; 
+    this.speedY = 0;
     this.speedX = 0;
     return this.hasHit;
-    }
-
-
+  }
 }

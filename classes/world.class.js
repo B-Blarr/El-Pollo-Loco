@@ -114,6 +114,7 @@ class World {
       this.addObjectsToMap(this.throwableObjects);
       this.addObjectsToMap(this.level.enemies);
       this.addObjectsToMap(this.level.collectableObjects);
+      this.addObjectsToMap(this.level.coins);
     } catch (error) {
       console.warn("Error loading image", error);
       console.log("Could not load image,", this.flipImage.src);

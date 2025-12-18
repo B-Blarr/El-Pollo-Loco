@@ -1,9 +1,0 @@
-class coins extends CollectableObject {
-
-
-
-
-
-
-    
-}

@@ -183,7 +183,8 @@ class ImageHub {
   };
 
   static icon = {
-    coin: ["./assets/img/8_coin/coin_1.png", "./assets/img/8_coin/coin_2.png"],
+    coin: ["./assets/img/8_coin/coin_1.png", 
+          "./assets/img/8_coin/coin_2.png"],
 
     health: ["./assets/img/7_statusbars/3_icons/icon_health.png"],
 

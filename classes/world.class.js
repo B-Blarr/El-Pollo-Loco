@@ -7,6 +7,7 @@ class World {
   camera_x = 0;
   healthBar = new HealthBar();
   bottleBar = new BottleBar();
+  coinBar = new CoinBar();
   counter = 0;
   throwableObjects = [];
   lastThrowTime = 0;
@@ -104,6 +105,7 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.healthBar);
     this.addToMap(this.bottleBar);
+    this.addToMap(this.coinBar);
     this.ctx.translate(this.camera_x, 0);
     try {
       this.addToMap(this.character);

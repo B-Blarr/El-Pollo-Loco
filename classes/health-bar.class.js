@@ -3,12 +3,12 @@ class HealthBar extends StatusBar{
 
   constructor() {
     super();
-    this.loadImages(ImageHub.statusBar.healthBar);
-    this.x = 40;
-    this.y = 0;
-    this.width = 400;
-    this.height = 100;
-    this.setPercentage(100);
+    // this.loadImages(ImageHub.statusBar.healthBar);
+    // this.x = 40;
+    // this.y = 0;
+    // this.width = 400;
+    // this.height = 100;
+    // this.setPercentage(100);
   }
 
   setPercentage(percentage) {

@@ -17,7 +17,7 @@ this.loadImages(ImageHub.icon.coin);
     this.width = 180;
     this.height = 180;
     this.playAnimation(ImageHub.icon.coin);
-
+    this.getRealFrame();
 }
 
   playAnimation(images) {

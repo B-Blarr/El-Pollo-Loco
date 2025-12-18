@@ -18,7 +18,7 @@ class World {
     this.keyboard = keyboard;
     this.setWorld();
     this.draw();
-    this.checkCollisions();
+    this.checkCollisions(); 
     IntervalHub.startInterval(this.startCounter, 1000);
     this.run();
   }
@@ -35,10 +35,11 @@ class World {
     IntervalHub.startInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
-      this.checkBottleCollisions();
+      this.checkThrownBottleCollisions();
       this.checkEnemyCleanup();
       this.checkThrowableObjectsCleanup();
-      this.checkCollectableCollisions();
+      this.checkCollectableBottleCollisions();
+      this.checkCoinCollisions();
     }, 1000 / 60);
   }
 
@@ -65,7 +66,7 @@ class World {
     });
   }
 
-  checkBottleCollisions() {
+  checkThrownBottleCollisions() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
@@ -76,21 +77,28 @@ class World {
     });
   }
 
-  checkCollectableCollisions() {
-    // this.character.forEach((character) => {
-    this.level.collectableObjects.forEach((item, index) => {
-      if (this.character.isColliding(item)) {
-        if (item instanceof BottleInAir) {
-          this.character.collectedBottles += 20;
-          this.bottleBar.setPercentage(this.character.collectedBottles);
-          // Evtl. Flaschen-Sound abspielen
-        } else if (item instanceof Coin) {
-          this.character.collectedCoins++;
-          // Evtl. Münz-Sound abspielen (pling!)
-        }
-        // 3. Löschen tun wir BEIDE gleich (Code sparen!)
-        // splice(index, 1) schneidet genau 1 Element an der Position 'index' heraus
-        this.level.collectableObjects.splice(index, 1);
+  checkCollectableBottleCollisions() {
+    this.level.bottlesInAir = this.level.bottlesInAir.filter((bottle) => {
+      if (this.character.isColliding(bottle)) {
+        this.character.collectedBottles += 20;
+        this.bottleBar.setPercentage(this.character.collectedBottles);
+        // Evtl. Flaschen-Sound abspielen
+        return false;
+      } else {
+        return true;
+      }      
+    });
+  }
+
+  checkCoinCollisions() {
+    this.level.coins = this.level.coins.filter((coin) => {
+      if (this.character.isColliding(coin)) {
+      this.character.collectedCoins += 10;
+      this.coinBar.setPercentage(this.character.collectedCoins);
+       // Evtl. Münz-Sound abspielen (pling!)
+      return false;
+      } else {
+        return true;
       }
     });
   }
@@ -109,11 +117,9 @@ class World {
     this.ctx.translate(this.camera_x, 0);
     try {
       this.addToMap(this.character);
-
-      
       this.addObjectsToMap(this.throwableObjects);
       this.addObjectsToMap(this.level.enemies);
-      this.addObjectsToMap(this.level.collectableObjects);
+      this.addObjectsToMap(this.level.bottlesInAir);
       this.addObjectsToMap(this.level.coins);
     } catch (error) {
       console.warn("Error loading image", error);
@@ -169,6 +175,7 @@ class World {
     });
     this.level.enemies = remainingEnemies;
   }
+
   checkThrowableObjectsCleanup() {
     let remainingBottles = [];
     this.throwableObjects.forEach((bottle) => {

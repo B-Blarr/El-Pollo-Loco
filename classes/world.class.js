@@ -148,7 +148,7 @@ class World {
     this.addToMap(this.healthBar);
     this.addToMap(this.bottleBar);
     this.addToMap(this.coinBar);
-    if (this.character.x > 3100 || this.hadFirstContact == true) {
+    if (this.character.x > 11350 || this.hadFirstContact == true) {
       this.hadFirstContact = true;
       this.addToMap(this.healthBarEndboss);
     }

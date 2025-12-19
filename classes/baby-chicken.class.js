@@ -12,11 +12,11 @@ class BabyChicken extends MoveableObject {
 
   constructor() {
     super().loadImage("./assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
-    this.x = 680 + Math.random() * 5000;
+    this.x = 680 + Math.random() * 12500;
     this.loadImages(ImageHub.babyChicken.walking);
     this.loadImages(ImageHub.babyChicken.dead);
     this.hitPoints = 5;
-    this.speed = 2.75 + Math.random() * 0.9;
+    this.speed = 2.75 + Math.random() * 1.2;
     this.animate();
   }
 

@@ -1,7 +1,7 @@
 const level1 = new Level(
-[...Array.from({ length: 3 }, () => new Chicken()),
+[...Array.from({ length: 4 }, () => new Chicken()),
   new Endboss(),
-...Array.from({ length: 3 }, () => new BabyChicken()), ],
+...Array.from({ length: 5 }, () => new BabyChicken()), ],
 [new Cloud()],
 
 // [new Endboss()],

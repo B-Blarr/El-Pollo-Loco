@@ -96,6 +96,16 @@ class MoveableObject extends DrawableObject {
     return timepassed < 0.5;
   }
 
+  // isSleeping() {
+  //   if (!this.moveLeft || !this.moveRight || !this.jump || !this.isHurt) {
+  //   let timepassed = new Date().getTime() - this.lastHit;
+  //   timepassed = timepassed / 1000;
+  //   return timepassed > 3; 
+  //   }else {
+  //     return false;
+  //   }
+  // }
+
   isDead() {
     return this.hitPoints == 0;
   }

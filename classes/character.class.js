@@ -9,6 +9,7 @@ class Character extends MoveableObject {
   lastPath = ImageHub.character.dead[this.lastDeadIndex];
   collectedBottles = 0;
   collectedCoins = 0;
+  lastMovement = new Date().getTime();
 
   offset = {
     top: 245,
@@ -33,18 +34,22 @@ class Character extends MoveableObject {
 
   animate() {
     IntervalHub.startInterval(() => {
+      
       if (this.isDead()) return;
       // this.walking_sound.pause();
       if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
+        this.lastMovement = new Date().getTime();
         this.moveRight();
         // this.walking_sound.play();
       }
       if ((this.world.keyboard.LEFT || this.world.keyboard.A) && this.x > 100) {
+        this.lastMovement = new Date().getTime();
         this.moveLeft();
         this.otherDirection = true;
         // this.walking_sound.play();
       }
       if (!this.isAboveGround() && this.world.keyboard.SPACE) {
+        this.lastMovement = new Date().getTime();
         this.jump();
       }
       this.getRealFrame();
@@ -52,6 +57,8 @@ class Character extends MoveableObject {
     }, 1000 / 60);
 
     IntervalHub.startInterval(() => {
+      let timePassed = new Date().getTime() - this.lastMovement;
+      timePassed = timePassed / 1000;
       if (this.isDead()) {
         if (!this.isDying) {
           this.isDying = true;
@@ -64,13 +71,20 @@ class Character extends MoveableObject {
         return;
       } else if(this.isHurt()){
         this.playAnimation(ImageHub.character.hurt);
+        this.lastMovement = new Date().getTime();
       }
       else if (this.isAboveGround()) {
         this.playAnimation(ImageHub.character.jumping);
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.D || this.world.keyboard.A) {
         this.playAnimation(ImageHub.character.walking);
-      } else {
+      }  
+      else {
+        if (timePassed > 3){
+        this.playAnimation(ImageHub.character.sleeping);}
+        else{
         this.playAnimation(ImageHub.character.idle);
+        }
+        
       }
     }, 150);
   }

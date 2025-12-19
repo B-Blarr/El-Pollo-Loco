@@ -35,7 +35,6 @@ class Endboss extends MoveableObject {
         // IntervalHub.stopAllIntervals();
       }  else if (this.isHurt()) {
           this.playAnimation(ImageHub.endboss.hurt);
-          this.playAnimation(ImageHub.endboss.hurt);
       }else {
         this.playAnimation(ImageHub.endboss.alert);
       }

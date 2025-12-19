@@ -59,10 +59,18 @@ class World {
   }
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && !this.character.isHurt()) {
+      if (this.character.isJumpingOn(enemy)) {
+        enemy.hit();
+        this.character.jump();
+      } else if (this.character.isColliding(enemy) && !this.character.isHurt() && !enemy.isDead()) {
         this.character.hit();
         this.healthBar.setPercentage(this.character.hitPoints);
+
+
       }
+      // }  (this.character.isJumpingOn(enemy)) {
+      //   this.enemy.hit();
+      // }
     });
   }
 
@@ -189,7 +197,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       // 3. Wenn der Feind NICHT gelöscht werden soll...
       // (Hier übergeben wir die 2000 Millisekunden an den timer!)
-      if (!enemy.objectDisappears(2000)) {
+      if (!enemy.objectDisappears(500)) {
         // ... dann darf er in die neue Liste umziehen
         remainingEnemies.push(enemy);
       }

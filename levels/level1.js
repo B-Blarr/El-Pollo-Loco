@@ -22,7 +22,8 @@ const level1 = new Level(
     new BackgroundObject("./assets/img/5_background/layers/2_second_layer/2.png", 4320),
     new BackgroundObject("./assets/img/5_background/layers/1_first_layer/2.png", 4320),
   ],
-Array.from({ length: 1 }, () => new BottleInAir()),
+Array.from({ length: 5 }, () => new BottleInAir()),
+Array.from({ length: 5 }, () => new BottleOnGround()),
 Array.from({ length: 20 }, () => new Coin()),
 );
 

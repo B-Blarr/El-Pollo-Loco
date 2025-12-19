@@ -3,16 +3,16 @@ class Coin extends CollectableObject {
 
 
 offset = {
-    top: 60,
-    right: 60,
-    bottom: 60,
-    left: 60,
+    top: 65,
+    right: 65,
+    bottom: 65,
+    left: 65,
   };
 
 constructor(){
 super().loadImage("./assets/img/8_coin/coin_1.png");
 this.loadImages(ImageHub.icon.coin);
-    this.x = 480 + Math.random() * 1800;
+    this.x = 480 + Math.random() * 3500;
     this.y = 500 - Math.random() * 250;
     this.width = 180;
     this.height = 180;

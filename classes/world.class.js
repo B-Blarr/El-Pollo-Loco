@@ -18,7 +18,7 @@ class World {
     this.keyboard = keyboard;
     this.setWorld();
     this.draw();
-    this.checkCollisions(); 
+    this.checkCollisions();
     IntervalHub.startInterval(this.startCounter, 1000);
     this.run();
   }
@@ -78,25 +78,44 @@ class World {
   }
 
   checkCollectableBottleCollisions() {
-    this.level.bottlesInAir = this.level.bottlesInAir.filter((bottle) => {
+    this.level.bottlesInAir = this.checkCollisionsForList(this.level.bottlesInAir);
+    this.level.bottlesOnGround = this.checkCollisionsForList(this.level.bottlesOnGround);
+  }
+
+  checkCollisionsForList(list) {
+    return list.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
+        // Treffer!
         this.character.collectedBottles += 20;
         this.bottleBar.setPercentage(this.character.collectedBottles);
-        // Evtl. Flaschen-Sound abspielen
+        // Sound abspielen...
+
         return false;
-      } else {
-        return true;
-      }      
+      }
+      return true;
     });
   }
+
+  // checkCollectableBottleCollisions() {
+  //   this.level.bottlesInAir = this.level.bottlesInAir.filter((bottle) => {
+  //     if (this.character.isColliding(bottle) || this.character.isColliding(bottle)) {
+  //       this.character.collectedBottles += 20;
+  //       this.bottleBar.setPercentage(this.character.collectedBottles);
+  //       Evtl. Flaschen-Sound abspielen
+  //       return false;
+  //     } else {
+  //       return true;
+  //     }
+  //   });
+  // }
 
   checkCoinCollisions() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
-      this.character.collectedCoins += 10;
-      this.coinBar.setPercentage(this.character.collectedCoins);
-       // Evtl. Münz-Sound abspielen (pling!)
-      return false;
+        this.character.collectedCoins += 10;
+        this.coinBar.setPercentage(this.character.collectedCoins);
+        // Evtl. Münz-Sound abspielen (pling!)
+        return false;
       } else {
         return true;
       }
@@ -120,6 +139,7 @@ class World {
       this.addObjectsToMap(this.throwableObjects);
       this.addObjectsToMap(this.level.enemies);
       this.addObjectsToMap(this.level.bottlesInAir);
+      this.addObjectsToMap(this.level.bottlesOnGround);
       this.addObjectsToMap(this.level.coins);
     } catch (error) {
       console.warn("Error loading image", error);
@@ -145,6 +165,7 @@ class World {
       this.flipImageBack(moveableObject);
     }
   }
+
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);

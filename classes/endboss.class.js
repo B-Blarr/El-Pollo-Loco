@@ -14,18 +14,26 @@ class Endboss extends MoveableObject {
   constructor() {
     super().loadImage("./assets/img/4_enemie_boss_chicken/2_alert/G5.png");
     this.x = 4250;
+    this.loadImages(ImageHub.endboss.walking);
     this.loadImages(ImageHub.endboss.alert);
     this.loadImages(ImageHub.endboss.dead);
     this.loadImages(ImageHub.endboss.hurt);
-    this.speed = 0;
+    this.speed = 10;
     this.hitPoints = 400;
     this.animate();
   }
 
   animate() {
-    this.moveLeft(this.speed);
-    this.getRealFrame();
+    
+
+    
+    
     IntervalHub.startInterval(() => {
+      if (this.world.hadFirstContact == false) {
+      return;
+    }else {
+      this.moveLeft(this.speed);
+    this.getRealFrame();
       if (this.isDead()) {
         if (!this.isDeadAnimationPlaying) {
             this.currentImage = 0; // Zähler auf 0 setzen!
@@ -38,6 +46,7 @@ class Endboss extends MoveableObject {
       }else {
         this.playAnimation(ImageHub.endboss.alert);
       }
+    }
     }, 200); 
   }
 }

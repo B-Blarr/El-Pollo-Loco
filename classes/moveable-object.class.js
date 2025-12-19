@@ -61,6 +61,7 @@ class MoveableObject extends DrawableObject {
   moveLeft() {
     this.x -= this.speed;
   }
+
   jump() {
     this.speedY = 20;
   }
@@ -82,10 +83,6 @@ class MoveableObject extends DrawableObject {
   }
 
   isJumpingOn(moveableObject){
-    // return (
-      // this.rX + this.rWidth > moveableObject.rX &&
-      // this.rY + this.rHeight == moveableObject.rY 
-      // this.rY == moveableObject.rY + moveableObject.rHeight
 if (!this.isColliding(moveableObject)) {
         return false;
     }

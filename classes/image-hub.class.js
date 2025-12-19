@@ -153,7 +153,7 @@ class ImageHub {
       "./assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png",
     ],
 
-    healthbarEndboss: [
+    healthBarEndboss: [
       "./assets/img/7_statusbars/2_statusbar_endboss/orange/orange100.png",
       "./assets/img/7_statusbars/2_statusbar_endboss/orange/orange80.png",
       "./assets/img/7_statusbars/2_statusbar_endboss/orange/orange60.png",

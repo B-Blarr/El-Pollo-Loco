@@ -26,6 +26,10 @@ class DrawableObject {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
+
+
+  // Blauer Rahmen!
+  
   //   drawFrame(ctx) {
   //   if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof ThrowableObject || this instanceof CollectableObject || this instanceof BabyChicken){
   //     ctx.beginPath();

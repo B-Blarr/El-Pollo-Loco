@@ -6,11 +6,13 @@ class World {
   keyboard;
   camera_x = 0;
   healthBar = new HealthBar();
+  healthBarEndboss = new EndbossHealthBar();
   bottleBar = new BottleBar();
   coinBar = new CoinBar();
   counter = 0;
   throwableObjects = [];
   lastThrowTime = 0;
+  hadFirstContact = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -65,12 +67,7 @@ class World {
       } else if (this.character.isColliding(enemy) && !this.character.isHurt() && !enemy.isDead()) {
         this.character.hit();
         this.healthBar.setPercentage(this.character.hitPoints);
-
-
       }
-      // }  (this.character.isJumpingOn(enemy)) {
-      //   this.enemy.hit();
-      // }
     });
   }
 
@@ -79,6 +76,11 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
           enemy.hit();
+
+          if (enemy instanceof Endboss) {
+            // setPercentage(enemy.hitPoints / 2); muss angepasst werden wenn sich Endboss Hitpoints verändern. Dies ist auf 100 eingestellt.
+            this.healthBarEndboss.setPercentage(enemy.hitPoints / 4);
+          }
           bottle.bottleExplodes();
         }
       });
@@ -141,9 +143,19 @@ class World {
     this.addToMap(this.healthBar);
     this.addToMap(this.bottleBar);
     this.addToMap(this.coinBar);
+    if (this.character.x > 3100 || this.hadFirstContact == true) {
+      this.hadFirstContact = true;
+      this.addToMap(this.healthBarEndboss);
+    }
     this.ctx.translate(this.camera_x, 0);
     try {
       this.addToMap(this.character);
+      // if (this.character.x > 4000) {
+      // this.ctx.translate(-this.camera_x, 600);
+      // this.addToMap(this.healthBarEndboss);
+      // this.ctx.translate(this.camera_x, 600);
+      // }
+      // this.addToMap(this.healthBarEndboss);
       this.addObjectsToMap(this.throwableObjects);
       this.addObjectsToMap(this.level.enemies);
       this.addObjectsToMap(this.level.bottlesInAir);

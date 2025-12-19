@@ -42,10 +42,7 @@ class ThrowableObject extends MoveableObject {
             if (this.hasHit) return;
             this.x += 10;
           }, 25);
-        // }
       }
-    // } else {
-    //   return;
     }
   }
 

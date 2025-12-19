@@ -1,7 +1,7 @@
-class Chicken extends MoveableObject {
-  y = 700;
-  height = 140;
-  width = 120;
+class BabyChicken extends MoveableObject {
+  y = 750;
+  height = 80;
+  width = 70;
 
   offset = {
     top: 20,
@@ -11,12 +11,12 @@ class Chicken extends MoveableObject {
   };
 
   constructor() {
-    super().loadImage("./assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+    super().loadImage("./assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
     this.x = 480 + Math.random() * 3500;
-    this.loadImages(ImageHub.chicken.walking);
-    this.loadImages(ImageHub.chicken.dead);
+    this.loadImages(ImageHub.babyChicken.walking);
+    this.loadImages(ImageHub.babyChicken.dead);
     this.hitPoints = 5;
-    this.speed = 0.25 + Math.random() * 0.7;
+    this.speed = 2.75 + Math.random() * 0.9;
     this.animate();
   }
 
@@ -29,11 +29,11 @@ class Chicken extends MoveableObject {
     }, 1000 / 60);
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
-        this.playAnimation(ImageHub.chicken.dead);
+        this.playAnimation(ImageHub.babyChicken.dead);
         if (this.objectDisappears) {
         }
       } else {
-        this.playAnimation(ImageHub.chicken.walking);
+        this.playAnimation(ImageHub.babyChicken.walking);
       }
     }, 150);
   }

@@ -2,6 +2,7 @@ class Endboss extends MoveableObject {
   y = 260;
   height = 640;
   width = 620;
+  isDeadAnimationPlaying = false;
 
    offset = {
         top: 150,
@@ -26,12 +27,18 @@ class Endboss extends MoveableObject {
     this.getRealFrame();
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
+        if (!this.isDeadAnimationPlaying) {
+            this.currentImage = 0; // Zähler auf 0 setzen!
+            this.isDeadAnimationPlaying = true; // Merken, dass wir resetten haben
+        }
         this.playDeadAnimation(ImageHub.endboss.dead);
+        // IntervalHub.stopAllIntervals();
       }  else if (this.isHurt()) {
+          this.playAnimation(ImageHub.endboss.hurt);
           this.playAnimation(ImageHub.endboss.hurt);
       }else {
         this.playAnimation(ImageHub.endboss.alert);
       }
-    }, 450);
+    }, 200); 
   }
 }

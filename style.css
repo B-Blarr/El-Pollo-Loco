@@ -19,12 +19,11 @@ body {
   font-size: 56px;
   letter-spacing: 3px;
   text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-
 }
 
 #fullscreen {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,20 +39,74 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
-  /* Optional: Damit im Fullscreen alles zentriert bleibt */
-  display: flex;       
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.start-screen-overlay,
+.game-over-overlay {
+  position: absolute;
+  background-image: url(./assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+#start-screen .button-area {
+  max-width: 2000px; 
+  padding-left: 50px; 
+  padding-right: 50px;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none; 
+}
+
+#start_btn {
+  position: absolute;
+  top: 12%;
+  right: 18%;
+  background-color: #8b4513;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
+  color: #ffd700;
+  font-family: "zabras", Arial, Helvetica, sans-serif;
+  font-size: 64px;
+  padding: 25px 60px;
+  border: 6px solid #5c3a21;
+  border-radius: 8px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+  transform: rotate(3deg);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  z-index: 100;
+}
+
+#start_btn:hover {
+  transform: rotate(0deg) scale(1.1);
+  background-color: #a0522d; 
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.8);
 }
 
 h1 {
   margin-bottom: 12px;
   margin-top: 12px;
   text-align: center;
-  /* color: #FFC125; */
-  /* -webkit-text-stroke: 2px #5a2d0c; */
-  /* color: #CD5C5C; */
   color: #ffeb3b;
   text-shadow: 2px 2px 0px #d35400, 0 0 10px #ffeb3b;
   -webkit-text-stroke: 1px #8b4513;
@@ -61,12 +114,9 @@ h1 {
 
 canvas {
   background-color: black;
-  /* Ein dicker, brauner Rahmen im "Ridge" (Kante) Stil */
   border: 20px ridge #8b4513;
   display: block;
-  /* Schatten für Tiefe */
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-  /* Optional: Passt sich an */
   max-width: 100%;
   height: auto;
 }
@@ -80,11 +130,13 @@ canvas {
   margin: 0 auto;
 }
 
-.explanation p{
-    font-size: 42px;
-    color: #ffeb3b;
+.explanation p {
+  font-size: 42px;
+  color: #ffeb3b;
   text-shadow: 2px 2px 0px #d35400, 0 0 10px #ffeb3b;
   -webkit-text-stroke: 1px #8b4513;
+  margin-top: 12px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 1440px) {

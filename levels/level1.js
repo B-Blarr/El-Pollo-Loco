@@ -1,3 +1,6 @@
+let level1;
+
+
 function createBackgrounds(order) {
   let backgrounds = [];
   const imageWidth = 1440;
@@ -17,7 +20,8 @@ function createBackgrounds(order) {
   return backgrounds;
 }
 
-const level1 = new Level(
+function initLevel() {
+level1 = new Level(
   [...Array.from({ length: 9 }, () => new Chicken()), new Endboss(), ...Array.from({ length: 12 }, () => new BabyChicken())],
   [new Cloud()],
 
@@ -26,3 +30,4 @@ const level1 = new Level(
   Array.from({ length: 9 }, () => new BottleOnGround()),
   Array.from({ length: 10 }, () => new Coin())
 );
+}

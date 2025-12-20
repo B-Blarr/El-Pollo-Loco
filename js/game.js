@@ -3,9 +3,9 @@ let world;
 let keyboard = new Keyboard();
 
 function init() {
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    
 }
 // (Welches Bild, Koordinate X, Koordinate Y, Breite, Höhe)
     // ctx.drawImage(character, 20, 20, 50, 150);
@@ -33,4 +33,15 @@ function exitFullscreen() {
         document.webkitRequestFullscreen();
     }
 }
+function startGame() {
+    document.getElementById('start_btn').blur();
+    init();
+    startRef = document.getElementById("start-screen");
+    startRef.classList.add('fade-out');
+    
+
+}
+
+
+
 

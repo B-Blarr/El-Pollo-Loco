@@ -31,8 +31,39 @@
     <script src="./levels/level1.js" defer></script>
     <script src="./js/game.js" defer></script>
   </head>
-  <body onload="init()">
+  <body>
     <div id="fullscreen">
+      <div id="start-screen" class="start-screen-overlay">
+        <button id="start_btn" onclick="startGame()">Spiel Starten</button>
+        <img src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
+        <section class="button-area">
+          <div class="sound-area">
+            <div>
+              <button onclick="AudioHub.mute()">mute</button>
+              <button onclick="AudioHub.unmute()">unmute</button>
+            </div>
+            <section class="audio_slider">
+              <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume" min="0" max="1" step="0.01" value="0.2" />
+            </section>
+          </div>
+          <article class="explanation">
+            <p>"A" oder "<==" = Nach links. "D" oder "==>" = Nach rechts.</p>
+            <p></p>
+            <p>"Leertaste" = Springen. "F" = Werfen.</p>
+          </article>
+          <div class="toggle-fullscreen">
+            <button id="fullscreen-toggle-button" onclick="fullscreen()">Fullscreen</button>
+            <button onclick="exitFullscreen()">Window-Modus</button>
+          </div>
+        </section>
+      </div>
+
+      <div id="winning-screen" class="winning-screen-overlay d-none"></div>
+
+      <div id="game-over-screen" class="game-over-overlay d-none">
+        <img src="assets/img/9_intro_outro_screens/game_over/game over!.png" alt="game-over" />
+      </div>
+
       <h1>El Pollo Loco</h1>
 
       <canvas id="canvas" width="1440" height="960"></canvas>
@@ -49,11 +80,10 @@
         <article class="explanation">
           <p>"A" oder "<==" = Nach links. "D" oder "==>" = Nach rechts.</p>
           <p></p>
-          <p>"Leertaste" = Springen.  "F" = Werfen.</p>
-        
+          <p>"Leertaste" = Springen. "F" = Werfen.</p>
         </article>
         <div class="toggle-fullscreen">
-          <button onclick="fullscreen()" >Fullscreen</button>
+          <button onclick="fullscreen()">Fullscreen</button>
           <button onclick="exitFullscreen()">Window-Modus</button>
         </div>
       </section>

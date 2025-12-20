@@ -1,59 +1,82 @@
 @font-face {
-    font-family: "zabras";
-    src: url("./fonts/zabars.ttf");
+  font-family: "zabras";
+  src: url("./fonts/zabars.ttf");
 }
 
-body{
-    height: 100dvh;
-    margin: 0;
+body {
+  height: 100dvh;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "zabras", Arial, Helvetica, sans-serif;
+  font-size: 56px;
+  letter-spacing: 3px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#fullscreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "zabras", Arial, Helvetica, sans-serif;
+  font-size: 56px;
+  letter-spacing: 3px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  margin-bottom: 12px;
+  margin-top: 12px;
+  text-align: center;
+  /* color: #FFC125; */
+  /* -webkit-text-stroke: 2px #5a2d0c; */
+  /* color: #CD5C5C; */
+  color: #ffeb3b;
+  text-shadow: 2px 2px 0px #d35400, 0 0 10px #ffeb3b;
+  -webkit-text-stroke: 1px #8b4513;
+}
+
+canvas {
+  background-color: black;
+  /* Ein dicker, brauner Rahmen im "Ridge" (Kante) Stil */
+  border: 20px ridge #8b4513;
+  display: block;
+  /* Schatten für Tiefe */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  /* Optional: Passt sich an */
+  max-width: 100%;
+  height: auto;
+}
+
+.button-area {
+  width: 100%;
+  max-width: 1480px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 1440px) {
+  canvas {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(./assets/img/5_background/desert06.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    font-family: "zabras", Arial, Helvetica, sans-serif;
-    font-size: 56px;
-    letter-spacing: 3px;
-    text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+  }
 }
 
-h1{
-    margin-bottom: 12px;
-    margin-top: 12px;
-    /* color: #FFC125; */
-    /* -webkit-text-stroke: 2px #5a2d0c; */
-    /* color: #CD5C5C; */
-    color: #ffeb3b;  
-    text-shadow: 
-        2px 2px 0px #d35400, 
-        0 0 10px #ffeb3b;
-    -webkit-text-stroke: 1px #8B4513;
-}
-
-canvas{
-    background-color: black;
-    /* Ein dicker, brauner Rahmen im "Ridge" (Kante) Stil */
-    border: 20px ridge #8B4513; 
-    display: block;
-    /* Schatten für Tiefe */
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
-    /* Optional: Passt sich an */
-    max-width: 100%;
-    height: auto;
-}
-
-@media only screen and (max-width: 1440px){
-    canvas {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-height: 960px){
-    canvas {
-        height: 100dvh;
-    }
+@media only screen and (max-height: 960px) {
+  canvas {
+    height: 100dvh;
+  }
 }

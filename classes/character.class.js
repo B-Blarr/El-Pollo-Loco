@@ -79,7 +79,7 @@ class Character extends MoveableObject {
         this.playAnimation(ImageHub.character.walking);
       }  
       else {
-        if (timePassed > 6){
+        if (timePassed > 8){ 
         this.playAnimation(ImageHub.character.sleeping);}
         else{
         this.playAnimation(ImageHub.character.idle);

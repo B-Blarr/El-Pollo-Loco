@@ -32,17 +32,25 @@
     <script src="./js/game.js" defer></script>
   </head>
   <body onload="init()">
-    <h1>El Pollo Loco</h1>
+    <div id="fullscreen">
+      <h1>El Pollo Loco</h1>
 
-    <canvas id="canvas" width="1440" height="960"></canvas>
-    <!-- <div>
-      <button onclick="AudioHub.mute()">mute</button>
-      <button onclick="AudioHub.unmute()">unmute</button>
+      <canvas id="canvas" width="1440" height="960"></canvas>
+      <section class="button-area">
+        <div class="sound-area">
+          <div>
+            <button onclick="AudioHub.mute()">mute</button>
+            <button onclick="AudioHub.unmute()">unmute</button>
+          </div>
+          <section class="audio_slider">
+            <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume" min="0" max="1" step="0.01" value="0.2" />
+          </section>
+        </div>
+        <div class="toggle-fullscreen">
+          <button onclick="fullscreen()" >Fullscreen</button>
+          <button onclick="exitFullscreen()">Window-Modus</button>
+        </div>
+      </section>
     </div>
-    <section class="audio_slider">
-        <h2>Sound Slider - BONUS !</h2>
-        <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id='volume' min=0 max=1 step=0.01
-            value='0.2'>
-    </section> -->
   </body>
 </html>

@@ -3,12 +3,11 @@ function createBackgrounds(order) {
   const imageWidth = 1440;
 
   order.forEach((id, index) => {
-    let x = imageWidth * index; // Deine Breite (1440), automatisch berechnet
+    let x = imageWidth * index;
     let imgNumber = id + 1;
 
     backgrounds.push(
       new BackgroundObject("./assets/img/5_background/layers/air.png", x),
-      // Hier nutzen wir jetzt die Variable imgNumber (1 oder 2)!
       new BackgroundObject(`./assets/img/5_background/layers/3_third_layer/${imgNumber}.png`, x),
       new BackgroundObject(`./assets/img/5_background/layers/2_second_layer/${imgNumber}.png`, x),
       new BackgroundObject(`./assets/img/5_background/layers/1_first_layer/${imgNumber}.png`, x)

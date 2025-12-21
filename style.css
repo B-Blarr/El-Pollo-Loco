@@ -23,15 +23,12 @@ body {
 
 #fullscreen {
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-family: "zabras", Arial, Helvetica, sans-serif;
-  font-size: 56px;
-  letter-spacing: 3px;
-  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 #fullscreen:fullscreen {
@@ -44,78 +41,129 @@ body {
   align-items: center;
 }
 
-.toggle-button{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+.toggle-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-.toggle-button img{
-width: 64px;
-transition: transform 0.1s ease;
+.toggle-button img {
+  width: 64px;
+  transition: transform 0.1s ease;
 }
 
 .toggle-button:hover img {
-    transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .d-none {
   display: none !important;
 }
 
-.start-screen-overlay,
-.game-over-overlay,
-.winning-screen-overlay {
-  position: absolute;
-  background-image: url(./assets/img/5_background/desert06.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  left: 0; 
-  top: 0;
-  width: 100%;
-  height: 100%;
+.start-screen-overlay {
+  position: fixed; 
+  width: 100vw; 
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease-in-out;
-  opacity: 1;
+  z-index: 999; 
+  background-image: url(./assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-#start-screen {
-  position: absolute; 
+.start-image-wrapper {
+  position: relative; 
+  aspect-ratio: 16 / 9; 
+  width: 100%;
+  max-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0; 
+    object-fit: contain; 
 }
 
-#start-screen img {
-    max-width: 100%; 
-    height: auto;
-    max-height: 75vh; 
-    object-fit: contain;
+.start-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 -5px 15px rgba(0,0,0,0.5));
+    flex: 1; 
+  filter: drop-shadow(0 -5px 15px rgba(0,0,0,0.5));
+  box-sizing: border-box;
 }
 
-#start-screen .button-area {
-  max-width: 2000px; 
-  padding-left: 50px; 
-  padding-right: 50px;
+.game-over-overlay,
+.winning-screen-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-color: black;
+  overflow: hidden;
+}
+
+.game-over-overlay::before,
+.winning-screen-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.8); 
+  z-index: -1; 
+}
+
+#game-over-screen::before {
+  background-image: url("assets/img/9_intro_outro_screens/game_over/game over!.png");
+}
+
+#winning-screen::before {
+  background-image: url("./assets/img/You won, you lost/You Win A.png");
+}
+
+.game-over-overlay,
+.winning-screen-overlay {
+  justify-content: center; 
+}
+
+.game-over-overlay img,
+.winning-screen-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .fade-out {
   opacity: 0;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 #start_btn {
   position: absolute;
-  top: 12%;
-  right: 18%;
+  top: 10%;
+  right: 10%;
   background-color: #8b4513;
   background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
   color: #ffd700;
   font-family: "zabras", Arial, Helvetica, sans-serif;
-  font-size: 64px;
-  padding: 25px 60px;
-  border: 6px solid #5c3a21;
+  font-size: min(64px, 3.5vw);
+  padding: 0.4em 1em;
+  border: 0.1em solid #5c3a21;
   border-radius: 8px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
   transform: rotate(3deg);
@@ -126,7 +174,7 @@ transition: transform 0.1s ease;
 
 #start_btn:hover {
   transform: rotate(0deg) scale(1.1);
-  background-color: #a0522d; 
+  background-color: #a0522d;
   box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.8);
 }
 
@@ -140,40 +188,33 @@ h1 {
 }
 
 canvas {
+  max-width: 100%;
+  max-height: calc(100vh - 180px);
+  object-fit: contain;
   background-color: black;
   border: 20px ridge #8b4513;
-  display: block;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-  max-width: 100%;
-  height: auto;
 }
 
 .button-area {
-  /* Positionierung: Immer ganz unten am Rand */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
+  position: relative;
   width: 100%;
-  max-width: 100%; 
   padding: 10px 40px;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between; 
-  align-items: center;          
-
+  justify-content: space-between;
+  align-items: center;
   background-color: #8b4513;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(0, 0, 0, 0.1) 10px,
-    rgba(0, 0, 0, 0.1) 20px
-  );
-  
-  border-top: 5px solid #5c3a21; 
-  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4); 
-  z-index: 50; 
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
+  border-top: 5px solid #5c3a21;
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  flex-shrink: 0;
+  /* margin-top: auto; */
+}
+
+.button-area:fullscreen{
+margin-top: auto;
 }
 
 .explanation p {
@@ -184,10 +225,6 @@ canvas {
   margin-top: 12px;
   margin-bottom: 10px;
   text-align: center;
-}
-
-#game-over-screen, #winning-screen{
-    z-index: 10;
 }
 
 @media only screen and (max-width: 1440px) {
@@ -201,19 +238,14 @@ canvas {
     height: 100dvh;
   }
 }
-  
+
 @media only screen and (max-width: 720px) {
-  
   .explanation {
     display: none;
   }
 
   .button-area {
     padding: 10px 20px;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
 }
-
-
-
-

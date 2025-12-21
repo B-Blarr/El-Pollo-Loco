@@ -83,7 +83,6 @@ class World {
           enemy.hit();
 
           if (enemy instanceof Endboss) {
-            // setPercentage(enemy.hitPoints / 2); muss angepasst werden wenn sich Endboss Hitpoints verändern. Dies ist auf 100 eingestellt.
             this.healthBarEndboss.setPercentage(enemy.hitPoints / 4);
           }
           bottle.bottleExplodes();
@@ -212,10 +211,7 @@ class World {
   checkEnemyCleanup() {
     let remainingEnemies = [];
     this.level.enemies.forEach((enemy) => {
-      // 3. Wenn der Feind NICHT gelöscht werden soll...
-      // (Hier übergeben wir die 2000 Millisekunden an den timer!)
       if (!enemy.objectDisappears(500)) {
-        // ... dann darf er in die neue Liste umziehen
         remainingEnemies.push(enemy);
       }
     });

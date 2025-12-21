@@ -26,21 +26,14 @@ class Endboss extends MoveableObject {
   }
 
   animate() {
-    // 1. Intervall: Bewegung & Logik (Schnell: 60 FPS)
-    // Hier prüfen wir die Position und bewegen das Objekt.
     IntervalHub.startInterval(() => {
-      // Sicherheits-Check: Gibt es die Welt schon?
       if (this.world && this.world.hadFirstContact && !this.isDead() && !this.isAttacking) {
-        this.moveLeft(this.speed); // Bewegung gehört hier hin!
-        this.getRealFrame(); // Hitbox update
+        this.moveLeft(this.speed); 
+        this.getRealFrame();
       }
     }, 1000 / 60);
-
-    // 2. Intervall: Animation (Langsam: ca. 150-200ms)
-    // Hier entscheiden wir NUR, welches Bild gezeigt wird.
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
-        // ... deine Dead Logic ...
         if (!this.isDeadAnimationPlaying) {
           this.currentImage = 0;
           this.isDeadAnimationPlaying = true;
@@ -49,7 +42,6 @@ class Endboss extends MoveableObject {
         let lastIndex = ImageHub.endboss.dead.length - 1;
 
         if (this.currentImage === lastIndex) {
-          // Erst wenn das letzte Bild erreicht ist: STOPPEN & GEWINNEN
           IntervalHub.stopAllIntervals();
           refWinningScreen.classList.remove("d-none");
         }
@@ -58,15 +50,11 @@ class Endboss extends MoveableObject {
       } else if (this.isAttacking) {
         this.playAnimation(ImageHub.endboss.attacking);
       } else if (this.world && this.world.hadFirstContact) {
-        // WENN Kontakt war: Laufen
         this.playAnimation(ImageHub.endboss.walking);
       } else {
-        // WENN NOCH KEIN Kontakt war: Wachsam sein
         this.playAnimation(ImageHub.endboss.alert);
       }
     }, 200);
-
-    // Wir wollen z.B. alle 3 Sekunden einen Angriff starten
     IntervalHub.startInterval(() => {
       if (this.world && this.world.hadFirstContact && !this.isDead()) {
         this.isAttacking = true;
@@ -74,8 +62,8 @@ class Endboss extends MoveableObject {
           this.isAttacking = false;
           this.currentImage = 0;
           this.speed += 2;
-        }, 1500); // Dauer des Angriffs in ms
+        }, 1500); 
       }
-    }, 4000); // Alle 4 Sekunden passiert das
+    }, 4000); 
   }
 }

@@ -86,17 +86,9 @@ class MoveableObject extends DrawableObject {
 if (!this.isColliding(moveableObject)) {
         return false;
     }
-   // 2. Wo sind Pepes Füße?
     let characterFeet = this.rY + this.rHeight;
-    // 3. Wo ist der Kopf des Gegners?
-    // Wir definieren: Der "Kopf" ist das oberste Viertel (Top 25% der Hitbox)
-    // Das ist viel strenger als vorher!
     let enemyHead = moveableObject.rY + (moveableObject.rHeight * 0.25);
-
-    // 4. Der Profi-Check:
-    // Sind wir ÜBER dem Kopf? 
-    // ODER: Sind wir zwar schon tiefer, aber nur, weil wir so schnell gefallen sind? (-this.speedY ist die Strecke, die wir im letzten Frame zurückgelegt haben)
-    let fallingTolerance = -this.speedY; // z.B. 20 Pixel, wenn wir schnell fallen
+    let fallingTolerance = -this.speedY;
     return (characterFeet < enemyHead + fallingTolerance);
   }
 

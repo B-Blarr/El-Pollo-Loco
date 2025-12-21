@@ -52,6 +52,11 @@ body {
 
 .toggle-button img{
 width: 64px;
+transition: transform 0.1s ease;
+}
+
+.toggle-button:hover img {
+    transform: scale(1.1); 
 }
 
 .d-none {
@@ -76,6 +81,17 @@ width: 64px;
   align-items: center;
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
+}
+
+#start-screen {
+  position: absolute; 
+}
+
+#start-screen img {
+    max-width: 100%; 
+    height: auto;
+    max-height: 75vh; 
+    object-fit: contain;
 }
 
 #start-screen .button-area {
@@ -133,12 +149,31 @@ canvas {
 }
 
 .button-area {
+  /* Positionierung: Immer ganz unten am Rand */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
   width: 100%;
-  max-width: 1480px;
-  display: flex;
-  justify-content: space-between;
+  max-width: 100%; 
+  padding: 10px 40px;
   box-sizing: border-box;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;          
+
+  background-color: #8b4513;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.1) 10px,
+    rgba(0, 0, 0, 0.1) 20px
+  );
+  
+  border-top: 5px solid #5c3a21; 
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4); 
+  z-index: 50; 
 }
 
 .explanation p {
@@ -148,6 +183,7 @@ canvas {
   -webkit-text-stroke: 1px #8b4513;
   margin-top: 12px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 #game-over-screen, #winning-screen{
@@ -165,3 +201,19 @@ canvas {
     height: 100dvh;
   }
 }
+  
+@media only screen and (max-width: 720px) {
+  
+  .explanation {
+    display: none;
+  }
+
+  .button-area {
+    padding: 10px 20px;
+    justify-content: space-between; 
+  }
+}
+
+
+
+

@@ -44,6 +44,14 @@ body {
   align-items: center;
 }
 
+#fullscreen-toggle-button{
+
+}
+
+#window-toggle-button{
+
+}
+
 .d-none {
   display: none !important;
 }

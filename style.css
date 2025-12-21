@@ -44,12 +44,14 @@ body {
   align-items: center;
 }
 
-#fullscreen-toggle-button{
-
+.toggle-button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-#window-toggle-button{
-
+.toggle-button img{
+width: 64px;
 }
 
 .d-none {

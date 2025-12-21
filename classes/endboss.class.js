@@ -46,6 +46,13 @@ class Endboss extends MoveableObject {
           this.isDeadAnimationPlaying = true;
         }
         this.playDeadAnimation(ImageHub.endboss.dead);
+        let lastIndex = ImageHub.endboss.dead.length - 1;
+
+        if (this.currentImage === lastIndex) {
+          // Erst wenn das letzte Bild erreicht ist: STOPPEN & GEWINNEN
+          IntervalHub.stopAllIntervals();
+          refWinningScreen.classList.remove("d-none");
+        }
       } else if (this.isHurt()) {
         this.playAnimation(ImageHub.endboss.hurt);
       } else if (this.isAttacking) {

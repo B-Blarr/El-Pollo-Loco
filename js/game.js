@@ -1,6 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let refWinningScreen = document.getElementById("winning-screen");
+let refGameOverScreen = document.getElementById("game-over-screen");
 
     document.addEventListener('fullscreenchange', updateFullscreenButton);
     document.addEventListener('webkitfullscreenchange', updateFullscreenButton);

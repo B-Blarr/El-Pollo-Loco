@@ -67,7 +67,9 @@ class Character extends MoveableObject {
         this.playDeadAnimation(ImageHub.character.dead);
         if (this.currentImage === this.lastDeadIndex && this.img === this.imageCache[this.lastPath]) {
           IntervalHub.stopAllIntervals();
+          refGameOverScreen.classList.remove("d-none");
         }
+        
         return;
       } else if(this.isHurt()){
         this.playAnimation(ImageHub.character.hurt);

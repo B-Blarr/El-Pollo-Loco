@@ -32,6 +32,8 @@
     <script src="./js/game.js" defer></script>
   </head>
   <body>
+
+    <!-- Fullscreen -->
     <div id="fullscreen">
       <div id="start-screen" class="start-screen-overlay">
         <button id="start_btn" onclick="startGame()">Spiel Starten</button>
@@ -47,25 +49,34 @@
             </section>
           </div>
           <article class="explanation">
-            <p>"A" oder "<==" = Nach links. "D" oder "==>" = Nach rechts.</p>
+            <p>"A" oder "<=" = Nach links. "D" oder "=>" = Nach rechts.</p>
             <p></p>
             <p>"Leertaste" = Springen. "F" = Werfen.</p>
           </article>
           <div class="toggle-fullscreen">
-            <button id="fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()"><img src="./assets/icons/fullscreen.png" alt="fullscreen"></button>
-            <button id="window-toggle-button" class="d-none toggle-button" onclick="exitFullscreen()"><img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen"></button>
+            <button id="fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()">
+              <img src="./assets/icons/fullscreen.png" alt="fullscreen" />
+            </button>
+            <button id="window-toggle-button" class="d-none toggle-button" onclick="exitFullscreen()">
+              <img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen" />
+            </button>
           </div>
         </section>
       </div>
 
-      <div id="winning-screen" class="winning-screen-overlay d-none"></div>
+      <!-- Winning Screen -->
+      <div id="winning-screen" class="winning-screen-overlay d-none">
+        <img src="./assets/img/You won, you lost/You Win A.png" alt="winning screen">
+      </div>
 
+
+      <!-- Game Over Screen -->
       <div id="game-over-screen" class="game-over-overlay d-none">
         <img src="assets/img/9_intro_outro_screens/game_over/game over!.png" alt="game-over" />
       </div>
 
+      <!-- Canvas Ingame -->
       <h1>El Pollo Loco</h1>
-
       <canvas id="canvas" width="1440" height="960"></canvas>
       <section class="button-area">
         <div class="sound-area">
@@ -78,13 +89,17 @@
           </section>
         </div>
         <article class="explanation">
-          <p>"A" oder "<==" = Nach links. "D" oder "==>" = Nach rechts.</p>
+          <p>"A" oder "<=" = Nach links. "D" oder "=>" = Nach rechts.</p>
           <p></p>
           <p>"Leertaste" = Springen. "F" = Werfen.</p>
         </article>
         <div class="toggle-fullscreen">
-          <button id="ingame-fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()"><img src="./assets/icons/fullscreen.png" alt="fullscreen"></button>
-          <button id="ingame-window-toggle-button" class="d-none toggle-button" onclick="exitFullscreen()"><img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen"></button>
+          <button id="ingame-fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()">
+            <img src="./assets/icons/fullscreen.png" alt="fullscreen" />
+          </button>
+          <button id="ingame-window-toggle-button" class="d-none toggle-button" onclick="exitFullscreen()">
+            <img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen" />
+          </button>
         </div>
       </section>
     </div>

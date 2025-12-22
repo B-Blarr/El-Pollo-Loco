@@ -2,6 +2,7 @@ class BabyChicken extends MoveableObject {
   y = 750;
   height = 80;
   width = 70;
+  deathSoundPlayed = false;
 
   offset = {
     top: 20,
@@ -29,7 +30,12 @@ class BabyChicken extends MoveableObject {
     }, 1000 / 60);
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
+        if (!this.deathSoundPlayed) {
+          AudioHub.BABY_CHICKEN_DEAD.play();
+          this.deathSoundPlayed = true;
+        }
         this.playAnimation(ImageHub.babyChicken.dead);
+        
         if (this.objectDisappears) {
         }
       } else {

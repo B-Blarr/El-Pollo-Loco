@@ -1,11 +1,20 @@
 class AudioHub {
     // Audiodateien für Piano, Guitar, DRUMS
-    static PIANO = new Audio('./assets/sounds/piano.mp3');
-    static GUITAR = new Audio('./assets/sounds/guitar.mp3');
-    static DRUMS = new Audio('./assets/sounds/drums.mp3');
+    static CHARACTER_RUN = new Audio('audio/sounds/character/characterRun.mp3');
+    static CHARACTER_HIT = new Audio('audio/sounds/character/characterDamage.mp3');
+    static CHARACTER_DEAD = new Audio('audio/sounds/character/characterDead.wav');
+    static CHARACTER_JUMP = new Audio('audio/sounds/character/characterJump.wav');
+    static CHARACTER_SLEEP = new Audio('audio/sounds/character/characterSnoring.mp3');
+    static BOTTLE_COLLECTED = new Audio('audio/sounds/collectibles/bottleCollectSound.wav');
+    static COIN_COLLECTED = new Audio('audio/sounds/collectibles/collectSound.wav');
+    static BABY_CHICKEN_DEAD = new Audio('audio/sounds/chicken/chickenDead.mp3');
+    static CHICKEN_DEAD = new Audio('audio/sounds/chicken/chickenDead2.mp3');
+    static ENDBOSS_START = new Audio('audio/sounds/endboss/endbossApproach.wav');
 
     // Array, das alle definierten Audio-Dateien enthält
-    static allSounds = [AudioHub.PIANO, AudioHub.GUITAR, AudioHub.DRUMS];
+    static allSounds = [AudioHub.CHARACTER_RUN, AudioHub.CHARACTER_HIT, AudioHub.CHARACTER_DEAD, AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP,
+                        AudioHub.BOTTLE_COLLECTED, AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD, AudioHub.ENDBOSS_START,
+    ];
 
     // Spielt eine einzelne Audiodatei ab
     static playOne(sound) {  // instrumentId nur wichtig für die Visualisierung

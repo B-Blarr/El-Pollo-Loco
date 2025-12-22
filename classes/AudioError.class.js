@@ -1,5 +1,5 @@
 class AudioError {
-    static LONG = new Audio('./assets/sounds/binary.mp3');
+    static LONG = new Audio('');
 
     // Spielt eine einzelne Audiodatei ab, - wenn sie bereit ist - 
     static playOne(sound) {

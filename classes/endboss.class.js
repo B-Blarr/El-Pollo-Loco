@@ -4,6 +4,7 @@ class Endboss extends MoveableObject {
   width = 620;
   isDeadAnimationPlaying = false;
   isAttacking = false;
+  alarmSoundPlayed = false;
 
   offset = {
     top: 150,
@@ -27,7 +28,13 @@ class Endboss extends MoveableObject {
 
   animate() {
     IntervalHub.startInterval(() => {
+      // AudioHub.ENDBOSS_START.pause();
       if (this.world && this.world.hadFirstContact && !this.isDead() && !this.isAttacking) {
+        if (!this.alarmSoundPlayed) {
+          AudioHub.ENDBOSS_START.play();
+          this.alarmSoundPlayed = true;
+        }
+        
         this.moveLeft(this.speed); 
         this.getRealFrame();
       }

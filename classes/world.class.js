@@ -102,8 +102,7 @@ class World {
         // Treffer!
         this.character.collectedBottles += 20;
         this.bottleBar.setPercentage(this.character.collectedBottles);
-        // Sound abspielen...
-
+        AudioHub.BOTTLE_COLLECTED.play();
         return false;
       }
       return true;
@@ -128,7 +127,7 @@ class World {
       if (this.character.isColliding(coin)) {
         this.character.collectedCoins += 10;
         this.coinBar.setPercentage(this.character.collectedCoins);
-        // Evtl. Münz-Sound abspielen (pling!)
+        AudioHub.COIN_COLLECTED.play();
         return false;
       } else {
         return true;

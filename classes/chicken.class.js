@@ -2,6 +2,7 @@ class Chicken extends MoveableObject {
   y = 700;
   height = 140;
   width = 120;
+  deathSoundPlayed = false;
 
   offset = {
     top: 20,
@@ -22,19 +23,29 @@ class Chicken extends MoveableObject {
 
   animate() {
     IntervalHub.startInterval(() => {
+      
       if (!this.isDead()) {
+        // AudioHub.CHICKEN_DEAD.pause();
         this.moveLeft();
         this.getRealFrame();
       }
     }, 1000 / 60);
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
+        if (!this.deathSoundPlayed) {
+          AudioHub.CHICKEN_DEAD.play();
+          this.deathSoundPlayed = true;
+        }
         this.playAnimation(ImageHub.chicken.dead);
+        
+        
         if (this.objectDisappears) {
+          
         }
       } else {
         this.playAnimation(ImageHub.chicken.walking);
       }
     }, 150);
+    
   }
 }

@@ -21,6 +21,7 @@ body {
   text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+/* Fullscreen */
 #fullscreen {
   width: 100%;
   height: 100dvh;
@@ -41,7 +42,7 @@ body {
   align-items: center;
 }
 
-.toggle-button {
+/* .toggle-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -54,7 +55,7 @@ body {
 
 .toggle-button:hover img {
   transform: scale(1.1);
-}
+} */
 
 .d-none {
   display: none !important;
@@ -90,11 +91,6 @@ cursor: pointer;
     width: 16%;         
     height: auto;         
 }
-
-/* .sub-menu {
-    display: flex;
-    gap: 20px; 
-} */
 
 .small-btn {
     width: 12%;         
@@ -133,6 +129,7 @@ cursor: pointer;
     box-shadow: 0 0 20px rgba(0,0,0,0.5); 
 }
 
+/* Game Over/ Winning Screen */
 .game-over-overlay,
 .winning-screen-overlay {
   position: fixed;
@@ -190,7 +187,7 @@ cursor: pointer;
   pointer-events: none;
 }
 
-#start_btn {
+/* #start_btn {
   position: absolute;
   top: 10%;
   right: 10%;
@@ -207,14 +204,16 @@ cursor: pointer;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   z-index: 100;
-}
+} */
 
-#start_btn:hover {
+/* #start_btn:hover {
   transform: rotate(0deg) scale(1.1);
   background-color: #a0522d;
   box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.8);
-}
+} */
 
+
+/* Canvas */
 h1 {
   margin-bottom: 12px;
   margin-top: 12px;
@@ -222,6 +221,7 @@ h1 {
   color: #ffeb3b;
   text-shadow: 2px 2px 0px #d35400, 0 0 10px #ffeb3b;
   -webkit-text-stroke: 1px #8b4513;
+  letter-spacing: 6px;
 }
 
 canvas {
@@ -233,7 +233,7 @@ canvas {
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-.button-area {
+/* .button-area {
   position: relative;
   width: 100%;
   padding: 10px 40px;
@@ -246,15 +246,45 @@ canvas {
   border-top: 5px solid #5c3a21;
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
   z-index: 50;
-  flex-shrink: 0;
+  flex-shrink: 0; */
   /* margin-top: auto; */
-}
+/* } */
 
-.button-area:fullscreen{
+/* .button-area:fullscreen{
 margin-top: auto;
+} */
+
+
+/* Button Overlays Startscreen */
+.info-overlay {
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100vw;     
+    height: 100vh;    
+    background-color: rgba(0, 0, 0, 0.75); 
+    z-index: 2000;    
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    backdrop-filter: blur(5px); 
+    cursor: pointer;  
+    transition: opacity 0.3s ease; 
 }
 
-.explanation p {
+.info-overlay img {
+    max-width: 85%;   
+    max-height: 85%;  
+    border-radius: 20px; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.7); 
+    transition: transform 0.2s; 
+}
+
+.info-overlay img:hover {
+    transform: scale(1.03);
+}
+
+/* .explanation p {
   font-size: 42px;
   color: #ffeb3b;
   text-shadow: 2px 2px 0px #d35400, 0 0 10px #ffeb3b;
@@ -262,13 +292,85 @@ margin-top: auto;
   margin-top: 12px;
   margin-bottom: 10px;
   text-align: center;
+} */
+
+
+/* Einstellungen */
+.options-card {
+    background-color: #8b4513;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
+    border: 5px solid #5c3a21; 
+    border-radius: 15px;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    color: #ffd700; 
+    cursor: default;
+    user-select: none; 
+    letter-spacing: 6px;
 }
 
-/* @media only screen and (max-width: 1440px) {
-  canvas {
+.options-card h2 {
+    margin-top: 0;
+    font-size: 32px;
+    text-shadow: 2px 2px 0px #000;
+    border-bottom: 2px dashed #5c3a21;
+    padding-bottom: 15px;
+}
+
+.option-row {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+}
+
+.icon-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* Slider Design */
+input[type=range] {
     width: 100%;
-  }
-} */
+    cursor: pointer;
+    accent-color: #ffd700;
+    margin-top: 5px;
+}
+
+/* Buttons Design */
+.menu-icon-btn, .close-btn {
+    background-color: #5c3a21;
+    color: white;
+    border: 2px solid #3e2716;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    letter-spacing: 3px;
+}
+
+.menu-icon-btn:hover, .close-btn:hover {
+    background-color: #7a4d2b;
+    transform: scale(1.05);
+}
+
+.close-btn {
+    margin-top: 25px;
+    background-color: #a0522d; 
+    width: 100%;
+}
+
+.impressum-text p {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #fff8dc;
+}
 
 @media only screen and (max-height: 960px) {
   canvas {
@@ -281,9 +383,9 @@ margin-top: auto;
     display: none;
     .start-btn { width: 80px; }
     .small-btn { width: 50px; }
-    .menu-container { top: 10px; right: 10px; gap: 8px;
+    .menu-container { top: 10px; right: 10px; gap: 8px;}
   }
-  }
+
   .button-area {
     padding: 10px 20px;
     justify-content: space-between;

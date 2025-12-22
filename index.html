@@ -36,16 +36,15 @@
     <div id="fullscreen">
       <div id="start-screen" class="start-screen-overlay">
         <div class="start-image-wrapper">
-    
-    <div class="menu-container">
-    <img onclick="openOptions()" src="./assets/icons/optionen.png" class="menu-btn small-btn" alt="Optionen">
-    <img onclick="openControls()" src="./assets/icons/steuerung.png" class="menu-btn small-btn" alt="Steuerung">
-    <img onclick="startGame()" src="./assets/icons/startbutton.png" class="menu-btn start-btn" alt="Start">
-</div>
+          <div class="menu-container">
+            <img onclick="openOptions()" src="./assets/icons/optionen.png" class="menu-btn small-btn" alt="Optionen" />
+            <img onclick="openControls()" src="./assets/icons/steuerung.png" class="menu-btn small-btn" alt="Steuerung" />
+            <img onclick="startGame()" src="./assets/icons/startbutton5.png" class="menu-btn start-btn" alt="Start" />
+          </div>
 
-    <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
-</div>
-        <section class="button-area">
+          <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
+        </div>
+        <!-- <section class="button-area">
           <div class="sound-area">
             <div>
               <button onclick="AudioHub.mute()">mute</button>
@@ -68,7 +67,7 @@
               <img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen" />
             </button>
           </div>
-        </section>
+        </section> -->
       </div>
 
       <!-- Winning Screen -->
@@ -81,11 +80,63 @@
         <img src="assets/img/9_intro_outro_screens/game_over/game over!.png" alt="game-over" />
       </div>
 
+      <!-- Steuerung Screen -->
+      <div id="controls-overlay" class="info-overlay d-none" onclick="closeControls()">
+        <img src="assets/img/5_background/control-explanation.png" alt="Steuerung Erklärung" />
+      </div>
+
+      <!-- Options Screen -->
+
+      <div id="controls-overlay" class="info-overlay d-none" onclick="closeControls()">
+        <img src="assets/img/5_background/control-explanation.png" alt="Steuerung Erklärung" />
+      </div>
+
+      <div id="options-overlay" class="info-overlay d-none" onclick="closeOptions()">
+        <div class="options-card" onclick="event.stopPropagation()">
+          <h2>Einstellungen</h2>
+          
+          <div class="option-row">
+            <span>Sound</span>
+            <div class="icon-group">
+                <button class="menu-icon-btn" onclick="AudioHub.mute()">🔇 Aus</button>
+                <button class="menu-icon-btn" onclick="AudioHub.unmute()">🔊 An</button>
+            </div>
+            <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume-slider-menu" min="0" max="1" step="0.01" value="0.2" />
+          </div>
+
+          <div class="option-row">
+             <span>Ansicht</span>
+             <button class="menu-icon-btn" onclick="fullscreen()">⛶ Vollbild</button>
+          </div>
+
+          <div class="option-row">
+            <span>Infos</span>
+            <button class="menu-icon-btn" onclick="openImpressum()">Impressum</button>
+          </div>
+
+          <button class="close-btn" onclick="closeOptions()">Schließen</button>
+        </div>
+      </div>
+
+      <div id="impressum-overlay" class="info-overlay d-none" onclick="closeImpressum()">
+         <div class="options-card" onclick="event.stopPropagation()">
+            <h2>Impressum</h2>
+            <div class="impressum-text">
+                <p><strong>El Pollo Loco</strong></p>
+                <p>Entwickelt von: Benjamin Blarr</p>
+                <p>Lindenweg 2</p>
+                <p>38364 Schöningen</p>
+                <p>E-Mail: b.blarr@gmx.de</p> 
+            </div>
+            <button class="close-btn" onclick="closeImpressum()">Zurück</button>
+         </div>
+      </div>
+
       <!-- Canvas Ingame -->
       <h1>El Pollo Loco</h1>
       <section canvas-section>
         <canvas id="canvas" width="1440" height="960"></canvas>
-        <section class="button-area">
+        <!-- <section class="button-area">
           <div class="sound-area">
             <div>
               <button onclick="AudioHub.mute()">mute</button>
@@ -95,11 +146,7 @@
               <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume" min="0" max="1" step="0.01" value="0.2" />
             </section>
           </div>
-          <article class="explanation">
-            <p>"A" oder "<=" = Nach links. "D" oder "=>" = Nach rechts.</p>
-            <p></p>
-            <p>"Leertaste" = Springen. "F" = Werfen.</p>
-          </article>
+          
           <div class="toggle-fullscreen">
             <button id="ingame-fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()">
               <img src="./assets/icons/fullscreen.png" alt="fullscreen" />
@@ -108,7 +155,7 @@
               <img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen" />
             </button>
           </div>
-        </section>
+        </section> -->
       </section>
     </div>
   </body>

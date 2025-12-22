@@ -299,33 +299,35 @@ margin-top: auto;
 .options-card {
     background-color: #8b4513;
     background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
-    border: 5px solid #5c3a21; 
-    border-radius: 15px;
-    padding: 30px;
-    width: 320px;
+    border: 6px solid #5c3a21; 
+    border-radius: 20px;
+    padding: 40px;
+    width: 600px;
+    max-width: 90%;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     color: #ffd700; 
     cursor: default;
     user-select: none; 
-    letter-spacing: 6px;
+    letter-spacing: 2px;
 }
 
 .options-card h2 {
     margin-top: 0;
-    font-size: 32px;
-    text-shadow: 2px 2px 0px #000;
-    border-bottom: 2px dashed #5c3a21;
-    padding-bottom: 15px;
+    font-size: 56px;
+    text-shadow: 3px 3px 0px #000;
+    border-bottom: 3px dashed #5c3a21;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .option-row {
-    margin: 20px 0;
+    margin: 25px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    font-size: 24px;
+    gap: 15px;
+    font-size: 36px;
 }
 
 .icon-group {
@@ -345,14 +347,14 @@ input[type=range] {
 .menu-icon-btn, .close-btn {
     background-color: #5c3a21;
     color: white;
-    border: 2px solid #3e2716;
-    padding: 8px 15px;
-    border-radius: 8px;
+    border: 3px solid #3e2716;
+    padding: 12px 30px;
+    border-radius: 10px;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
     transition: all 0.1s ease;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .menu-icon-btn:hover, .close-btn:hover {
@@ -367,9 +369,10 @@ input[type=range] {
 }
 
 .impressum-text p {
-    font-size: 18px;
-    margin: 5px 0;
+    font-size: 24px;
+    margin: 8px 0;
     color: #fff8dc;
+    line-height: 1.4;
 }
 
 @media only screen and (max-height: 960px) {
@@ -390,7 +393,18 @@ input[type=range] {
     padding: 10px 20px;
     justify-content: space-between;
   }
+
+  .options-card {
+        width: 95%; /* Fast volle Breite auf Handy */
+        padding: 20px;
+    }
+
+    .options-card h2 { font-size: 42px; }
+    .option-row { font-size: 28px; }
+    .menu-icon-btn, .close-btn { font-size: 20px; padding: 10px 20px; }
+    .impressum-text p { font-size: 18px; }
 }
+
 
 @media (min-aspect-ratio: 16/9) {
     .start-image-wrapper {

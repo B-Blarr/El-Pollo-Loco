@@ -11,9 +11,23 @@ function init() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
 }
+
+function playStartscreenMusic(){
+    let music = AudioHub.BACKGROUND_STARTSCREEN;
+
+    music.volume = 0.2; 
+    music.loop = true;
+    music.play();
+
+    document.removeEventListener('click', playStartscreenMusic);
+    document.removeEventListener('keydown', playStartscreenMusic);
+    document.removeEventListener('touchstart', playStartscreenMusic);
+}
+
+document.addEventListener('click', playStartscreenMusic);
+document.addEventListener('keydown', playStartscreenMusic);
+document.addEventListener('touchstart', playStartscreenMusic);
 // (Welches Bild, Koordinate X, Koordinate Y, Breite, Höhe)
     // ctx.drawImage(character, 20, 20, 50, 150);
 
@@ -49,6 +63,9 @@ function startGame() {
     let startRef = document.getElementById("start-screen");
     startRef.classList.add('fade-out');
     AudioHub.GAME_START.play();
+    AudioHub.BACKGROUND_STARTSCREEN.pause();
+    AudioHub.BACKGROUND_LEVEL.play();
+    AudioHub.BACKGROUND_LEVEL.volume = 0.2;
 }
 
 function updateFullscreenButton() {

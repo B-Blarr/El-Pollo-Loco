@@ -33,7 +33,6 @@ document.addEventListener('touchstart', playStartscreenMusic);
 
 
 function fullscreen() {
-    // toggleButton();
     const fullscreen = document.getElementById('fullscreen');
     enterFullscreen(fullscreen);
 }
@@ -58,14 +57,18 @@ function exitFullscreen() {
 }
 
 function startGame() {
-    // document.getElementById('start_btn').blur();
     init();
     let startRef = document.getElementById("start-screen");
     startRef.classList.add('fade-out');
+    if (AudioHub.muteSound == true) {
+        AudioHub.mute();
+    }
+    else{
     AudioHub.GAME_START.play();
     AudioHub.BACKGROUND_STARTSCREEN.pause();
     AudioHub.BACKGROUND_LEVEL.play();
     AudioHub.BACKGROUND_LEVEL.volume = 0.2;
+    }
 }
 
 function updateFullscreenButton() {

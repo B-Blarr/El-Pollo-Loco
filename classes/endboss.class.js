@@ -5,6 +5,7 @@ class Endboss extends MoveableObject {
   isDeadAnimationPlaying = false;
   isAttacking = false;
   alarmSoundPlayed = false;
+  deadSoundPlayed = false;
 
   offset = {
     top: 150,
@@ -46,11 +47,15 @@ class Endboss extends MoveableObject {
         }
         this.playDeadAnimation(ImageHub.endboss.dead);
         let lastIndex = ImageHub.endboss.dead.length - 1;
-        AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
+        if (!this.deadSoundPlayed) {
+          AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
+        this.deadSoundPlayed = true;
+        }
+        
         if (this.currentImage === lastIndex) {
           IntervalHub.stopAllIntervals();
           refWinningScreen.classList.remove("d-none");
-          AudioHub.stopAll();
+          AudioHub.stopAll(AudioHub.ENDBOSS_DEAD);
         }
       } else if (this.isHurt()) {
         this.playAnimation(ImageHub.endboss.hurt);

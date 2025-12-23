@@ -61,6 +61,7 @@ class World {
         let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
         this.throwableObjects.push(bottle);
         this.lastThrowTime = actualTime;
+        AudioHub.BOTTLE_THROW.play();
       }
     }
   }

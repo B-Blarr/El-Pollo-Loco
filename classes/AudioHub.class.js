@@ -18,6 +18,7 @@ class AudioHub {
     static BACKGROUND_LEVEL = new Audio('audio/sounds/game/background5.mp3');
 
     static muteSound = false;
+    
 
     static allSounds = [AudioHub.CHARACTER_RUN, AudioHub.CHARACTER_HIT, AudioHub.CHARACTER_DEAD, AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP,
                         AudioHub.BOTTLE_COLLECTED, AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD, AudioHub.ENDBOSS_START,
@@ -38,11 +39,14 @@ static playSound(audio) {
     // }
 
     // Stoppt das Abspielen aller Audiodateien
-    static stopAll() {
+    static stopAll(exception = null) {
         AudioHub.allSounds.forEach(sound => {
-            sound.pause();  // Pausiert jedes Audio in der Liste
+            if (sound !== exception) {
+                sound.pause();
+            }
+             
         });
-        document.getElementById('volume').value = 0.2;  // Setzt den Sound-Slider wieder auf 0.2
+        // document.getElementById('volume').value = 0.2;  
     }
 
     static stopOne(sound) {

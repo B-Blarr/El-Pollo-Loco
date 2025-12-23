@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let refWinningScreen = document.getElementById("winning-screen");
 let refGameOverScreen = document.getElementById("game-over-screen");
+AudioHub.BACKGROUND_LEVEL.loop = true;
 
     document.addEventListener('fullscreenchange', updateFullscreenButton);
     document.addEventListener('webkitfullscreenchange', updateFullscreenButton);

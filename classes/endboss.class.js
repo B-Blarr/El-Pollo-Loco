@@ -50,6 +50,7 @@ class Endboss extends MoveableObject {
         if (this.currentImage === lastIndex) {
           IntervalHub.stopAllIntervals();
           refWinningScreen.classList.remove("d-none");
+          AudioHub.stopAll();
         }
       } else if (this.isHurt()) {
         this.playAnimation(ImageHub.endboss.hurt);

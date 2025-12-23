@@ -69,6 +69,7 @@ class Character extends MoveableObject {
         if (this.currentImage === this.lastDeadIndex && this.img === this.imageCache[this.lastPath]) {
           IntervalHub.stopAllIntervals();
           refGameOverScreen.classList.remove("d-none");
+          AudioHub.stopAll(AudioHub.CHARACTER_DEAD);
         }
         
         return;

@@ -48,6 +48,7 @@ function startGame() {
     init();
     let startRef = document.getElementById("start-screen");
     startRef.classList.add('fade-out');
+    AudioHub.GAME_START.play();
 }
 
 function updateFullscreenButton() {

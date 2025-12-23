@@ -85,6 +85,9 @@ class World {
           if (enemy instanceof Endboss) {
             this.healthBarEndboss.setPercentage(enemy.hitPoints / 4);
           }
+           if (!bottle.hasHit) {
+            AudioHub.playSound(AudioHub.BOTTLE_BREAK);
+          }
           bottle.bottleExplodes();
         }
       });
@@ -102,7 +105,7 @@ class World {
         // Treffer!
         this.character.collectedBottles += 20;
         this.bottleBar.setPercentage(this.character.collectedBottles);
-        AudioHub.BOTTLE_COLLECTED.play();
+        AudioHub.playSound(AudioHub.BOTTLE_COLLECTED);
         return false;
       }
       return true;
@@ -127,7 +130,7 @@ class World {
       if (this.character.isColliding(coin)) {
         this.character.collectedCoins += 10;
         this.coinBar.setPercentage(this.character.collectedCoins);
-        AudioHub.COIN_COLLECTED.play();
+        AudioHub.playSound(AudioHub.COIN_COLLECTED);
         return false;
       } else {
         return true;

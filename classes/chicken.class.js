@@ -33,7 +33,7 @@ class Chicken extends MoveableObject {
     IntervalHub.startInterval(() => {
       if (this.isDead()) {
         if (!this.deathSoundPlayed) {
-          AudioHub.CHICKEN_DEAD.play();
+          AudioHub.playSound(AudioHub.CHICKEN_DEAD);
           this.deathSoundPlayed = true;
         }
         this.playAnimation(ImageHub.chicken.dead);

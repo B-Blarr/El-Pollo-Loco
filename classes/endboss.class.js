@@ -28,7 +28,6 @@ class Endboss extends MoveableObject {
 
   animate() {
     IntervalHub.startInterval(() => {
-      // AudioHub.ENDBOSS_START.pause();
       if (this.world && this.world.hadFirstContact && !this.isDead() && !this.isAttacking) {
         if (!this.alarmSoundPlayed) {
           AudioHub.ENDBOSS_START.play();
@@ -47,13 +46,14 @@ class Endboss extends MoveableObject {
         }
         this.playDeadAnimation(ImageHub.endboss.dead);
         let lastIndex = ImageHub.endboss.dead.length - 1;
-
+        AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
         if (this.currentImage === lastIndex) {
           IntervalHub.stopAllIntervals();
           refWinningScreen.classList.remove("d-none");
         }
       } else if (this.isHurt()) {
         this.playAnimation(ImageHub.endboss.hurt);
+        AudioHub.playSound(AudioHub.ENDBOSS_HIT);
       } else if (this.isAttacking) {
         this.playAnimation(ImageHub.endboss.attacking);
       } else if (this.world && this.world.hadFirstContact) {

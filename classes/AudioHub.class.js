@@ -7,14 +7,28 @@ class AudioHub {
     static CHARACTER_SLEEP = new Audio('audio/sounds/character/characterSnoring.mp3');
     static BOTTLE_COLLECTED = new Audio('audio/sounds/collectibles/bottleCollectSound.wav');
     static COIN_COLLECTED = new Audio('audio/sounds/collectibles/collectSound.wav');
-    static BABY_CHICKEN_DEAD = new Audio('audio/sounds/chicken/chickenDead.mp3');
+    static BABY_CHICKEN_DEAD = new Audio('audio/sounds/chicken/babyChickenDied.mp3');
     static CHICKEN_DEAD = new Audio('audio/sounds/chicken/chickenDead2.mp3');
     static ENDBOSS_START = new Audio('audio/sounds/endboss/endbossApproach.wav');
+    static ENDBOSS_DEAD = new Audio('audio/sounds/endboss/endbossDied.mp3');
+    static ENDBOSS_HIT = new Audio('audio/sounds/endboss/endbossHit.mp3');
+    static BOTTLE_BREAK = new Audio('audio/sounds/throwable/bottleBreak.mp3');
+    static GAME_START = new Audio('audio/sounds/game/gameStart.mp3');
+
 
     // Array, das alle definierten Audio-Dateien enthält
     static allSounds = [AudioHub.CHARACTER_RUN, AudioHub.CHARACTER_HIT, AudioHub.CHARACTER_DEAD, AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP,
                         AudioHub.BOTTLE_COLLECTED, AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD, AudioHub.ENDBOSS_START,
+                        AudioHub.ENDBOSS_DEAD, AudioHub.ENDBOSS_HIT, AudioHub.BOTTLE_BREAK, AudioHub.GAME_START,
     ];
+
+
+static playSound(audio) {
+        let clone = audio.cloneNode(); // Erstellt eine Kopie der Audiodatei
+        clone.volume = audio.volume;   // Übernimmt die Lautstärke vom Original
+        clone.play();
+    }
+
 
     // Spielt eine einzelne Audiodatei ab
     static playOne(sound) {  // instrumentId nur wichtig für die Visualisierung

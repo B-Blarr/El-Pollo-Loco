@@ -6,6 +6,7 @@ class Endboss extends MoveableObject {
   isAttacking = false;
   alarmSoundPlayed = false;
   deadSoundPlayed = false;
+  hitSoundPlayed = false;
 
   offset = {
     top: 150,
@@ -56,13 +57,20 @@ class Endboss extends MoveableObject {
           IntervalHub.stopAllIntervals();
           refWinningScreen.classList.remove("d-none");
           AudioHub.stopAll(AudioHub.ENDBOSS_DEAD);
+          AudioHub.WINNING.play();
         }
       } else if (this.isHurt()) {
         this.playAnimation(ImageHub.endboss.hurt);
-        AudioHub.playSound(AudioHub.ENDBOSS_HIT);
+        if (!this.hitSoundPlayed) {
+          AudioHub.ENDBOSS_HIT.play();
+          this.hitSoundPlayed = true;
+        }
+        // AudioHub.playSound(AudioHub.ENDBOSS_HIT);
       } else if (this.isAttacking) {
+        this.hitSoundPlayed = false;
         this.playAnimation(ImageHub.endboss.attacking);
       } else if (this.world && this.world.hadFirstContact) {
+        this.hitSoundPlayed = false;
         this.playAnimation(ImageHub.endboss.walking);
       } else {
         this.playAnimation(ImageHub.endboss.alert);
@@ -74,7 +82,7 @@ class Endboss extends MoveableObject {
         setTimeout(() => {
           this.isAttacking = false;
           this.currentImage = 0;
-          this.speed += 2;
+          this.speed += 3;
         }, 1500); 
       }
     }, 4000); 

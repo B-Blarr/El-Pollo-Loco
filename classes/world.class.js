@@ -13,6 +13,7 @@ class World {
   throwableObjects = [];
   lastThrowTime = 0;
   hadFirstContact = false;
+  ground = 350;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -89,6 +90,10 @@ class World {
            if (!bottle.hasHit) {
             AudioHub.playSound(AudioHub.BOTTLE_BREAK);
           }
+          bottle.bottleExplodes();
+        }
+        if (bottle.hitGround() && !bottle.hasHit) {
+          AudioHub.playSound(AudioHub.BOTTLE_BREAK);
           bottle.bottleExplodes();
         }
       });

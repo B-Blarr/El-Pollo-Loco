@@ -6,6 +6,8 @@ class ThrowableObject extends MoveableObject {
   // x;
   // y;
   hasHit;
+  ground = 700;
+  
 
   offset = {
     top: 25,
@@ -80,5 +82,13 @@ class ThrowableObject extends MoveableObject {
     this.speedY = 0;
     this.speedX = 0;
     return this.hasHit;
+  }
+
+    hitGround(){
+    if (this.y >= this.ground) {  // 
+      return true;
+    }else{
+      return false;
+    }
   }
 }

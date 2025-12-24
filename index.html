@@ -32,6 +32,7 @@
     <script src="./classes/AudioHub.class.js"></script>
     <script src="./classes/AudioError.class.js"></script>
     <script src="./js/game.js" defer></script>
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
   </head>
   <body>
     <!-- Fullscreen -->
@@ -46,30 +47,7 @@
 
           <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
         </div>
-        <!-- <section class="button-area">
-          <div class="sound-area">
-            <div>
-              <button onclick="AudioHub.mute()">mute</button>
-              <button onclick="AudioHub.unmute()">unmute</button>
-            </div>
-            <section class="audio_slider">
-              <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume" min="0" max="1" step="0.01" value="0.2" />
-            </section>
-          </div>
-          <article class="explanation">
-            <p>"A" oder "<=" = Nach links. "D" oder "=>" = Nach rechts.</p>
-            <p></p>
-            <p>"Leertaste" = Springen. "F" = Werfen.</p>
-          </article>
-          <div class="toggle-fullscreen">
-            <button id="fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()">
-              <img src="./assets/icons/fullscreen.png" alt="fullscreen" />
-            </button>
-            <button id="window-toggle-button" class="d-none toggle-button" onclick="exitFullscreen()">
-              <img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen" />
-            </button>
-          </div>
-        </section> -->
+        
       </div>
 
       <!-- Winning Screen -->
@@ -108,7 +86,8 @@
 
           <div class="option-row">
              <span>Ansicht</span>
-             <button class="menu-icon-btn" onclick="fullscreen()">⛶ Vollbild</button>
+             <button id="enter-fullscreen" class="menu-icon-btn" onclick="fullscreen()">⛶ Vollbild</button>
+             <button id="exit-fullscreen" class="menu-icon-btn d-none" onclick="exitFullscreen()">⛶ Fenstermodus</button>
           </div>
 
           <div class="option-row">
@@ -138,26 +117,7 @@
       <h1>El Pollo Loco</h1>
       <section canvas-section>
         <canvas id="canvas" width="1440" height="960"></canvas>
-        <!-- <section class="button-area">
-          <div class="sound-area">
-            <div>
-              <button onclick="AudioHub.mute()">mute</button>
-              <button onclick="AudioHub.unmute()">unmute</button>
-            </div>
-            <section class="audio_slider">
-              <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume" min="0" max="1" step="0.01" value="0.2" />
-            </section>
-          </div>
-          
-          <div class="toggle-fullscreen">
-            <button id="ingame-fullscreen-toggle-button" class="toggle-button" onclick="fullscreen()">
-              <img src="./assets/icons/fullscreen.png" alt="fullscreen" />
-            </button>
-            <button id="ingame-window-toggle-button" class="d-none toggle-button" onclick="exitFullscreen()">
-              <img src="./assets/icons/close-fullscreen.png" alt="close Fullscreen" />
-            </button>
-          </div>
-        </section> -->
+        
       </section>
     </div>
   </body>

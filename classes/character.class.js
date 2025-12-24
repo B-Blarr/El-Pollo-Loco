@@ -70,6 +70,7 @@ class Character extends MoveableObject {
           IntervalHub.stopAllIntervals();
           refGameOverScreen.classList.remove("d-none");
           AudioHub.stopAll(AudioHub.CHARACTER_DEAD);
+          AudioHub.GAME_OVER.play();
         }
         
         return;

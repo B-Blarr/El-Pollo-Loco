@@ -17,6 +17,8 @@ class AudioHub {
     static BACKGROUND_STARTSCREEN = new Audio('audio/sounds/game/backgroundStart.mp3');
     static BACKGROUND_LEVEL = new Audio('audio/sounds/game/background5.mp3');
     static BOTTLE_THROW = new Audio('audio/sounds/throwable/bottleThrow.mp3');
+    static WINNING = new Audio('audio/sounds/game/Winning.mp3');
+    static GAME_OVER = new Audio('audio/sounds/game/gameOver.mp3');
 
     static muteSound = false;
     
@@ -24,7 +26,7 @@ class AudioHub {
     static allSounds = [AudioHub.CHARACTER_RUN, AudioHub.CHARACTER_HIT, AudioHub.CHARACTER_DEAD, AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP,
                         AudioHub.BOTTLE_COLLECTED, AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD, AudioHub.ENDBOSS_START,
                         AudioHub.ENDBOSS_DEAD, AudioHub.ENDBOSS_HIT, AudioHub.BOTTLE_BREAK, AudioHub.GAME_START, AudioHub.BACKGROUND_STARTSCREEN, 
-                        AudioHub.BACKGROUND_LEVEL, AudioHub.BOTTLE_THROW, 
+                        AudioHub.BACKGROUND_LEVEL, AudioHub.BOTTLE_THROW, AudioHub.WINNING, AudioHub.GAME_OVER, 
     ];
 
 static playSound(audio) {

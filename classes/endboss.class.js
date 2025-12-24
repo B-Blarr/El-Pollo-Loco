@@ -35,8 +35,8 @@ class Endboss extends MoveableObject {
           AudioHub.ENDBOSS_START.play();
           this.alarmSoundPlayed = true;
         }
-        
-        this.moveLeft(this.speed); 
+
+        this.moveLeft(this.speed);
         this.getRealFrame();
       }
     }, 1000 / 60);
@@ -50,9 +50,9 @@ class Endboss extends MoveableObject {
         let lastIndex = ImageHub.endboss.dead.length - 1;
         if (!this.deadSoundPlayed) {
           AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
-        this.deadSoundPlayed = true;
+          this.deadSoundPlayed = true;
         }
-        
+
         if (this.currentImage === lastIndex) {
           IntervalHub.stopAllIntervals();
           refWinningScreen.classList.remove("d-none");
@@ -65,7 +65,6 @@ class Endboss extends MoveableObject {
           AudioHub.ENDBOSS_HIT.play();
           this.hitSoundPlayed = true;
         }
-        // AudioHub.playSound(AudioHub.ENDBOSS_HIT);
       } else if (this.isAttacking) {
         this.hitSoundPlayed = false;
         this.playAnimation(ImageHub.endboss.attacking);
@@ -83,8 +82,8 @@ class Endboss extends MoveableObject {
           this.isAttacking = false;
           this.currentImage = 0;
           this.speed += 3;
-        }, 1500); 
+        }, 1500);
       }
-    }, 4000); 
+    }, 4000);
   }
 }

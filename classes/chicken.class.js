@@ -23,9 +23,7 @@ class Chicken extends MoveableObject {
 
   animate() {
     IntervalHub.startInterval(() => {
-      
       if (!this.isDead()) {
-        // AudioHub.CHICKEN_DEAD.pause();
         this.moveLeft();
         this.getRealFrame();
       }
@@ -37,15 +35,12 @@ class Chicken extends MoveableObject {
           this.deathSoundPlayed = true;
         }
         this.playAnimation(ImageHub.chicken.dead);
-        
-        
+
         if (this.objectDisappears) {
-          
         }
       } else {
         this.playAnimation(ImageHub.chicken.walking);
       }
     }, 150);
-    
   }
 }

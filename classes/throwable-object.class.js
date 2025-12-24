@@ -7,7 +7,6 @@ class ThrowableObject extends MoveableObject {
   // y;
   hasHit;
   ground = 700;
-  
 
   offset = {
     top: 25,
@@ -32,18 +31,16 @@ class ThrowableObject extends MoveableObject {
   }
 
   throwRight() {
-    // if (this.character.collectedBottles >= 20) {
-    //   this.character.collectedBottles -= 20;
-      if (this.hasHit == true) {
-        return;
-      } else {
-        if (this.otherDirection == false) {
-          this.speedY = 30;
-          this.applyGravity();
-          IntervalHub.startInterval(() => {
-            if (this.hasHit) return;
-            this.x += 10;
-          }, 25);
+    if (this.hasHit == true) {
+      return;
+    } else {
+      if (this.otherDirection == false) {
+        this.speedY = 30;
+        this.applyGravity();
+        IntervalHub.startInterval(() => {
+          if (this.hasHit) return;
+          this.x += 10;
+        }, 25);
       }
     }
   }
@@ -84,10 +81,11 @@ class ThrowableObject extends MoveableObject {
     return this.hasHit;
   }
 
-    hitGround(){
-    if (this.y >= this.ground) {  // 
+  hitGround() {
+    if (this.y >= this.ground) {
+      //
       return true;
-    }else{
+    } else {
       return false;
     }
   }

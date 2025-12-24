@@ -18,7 +18,6 @@ class Character extends MoveableObject {
     left: 70,
   };
 
-  // wird immer dann als Erstes automatisch ausgeführt wenn irgendwo ein neues Objekt mit new Character() erstellt wird.
   constructor() {
     super().loadImage(ImageHub.character.idle[0]);
     this.loadImages(ImageHub.character.idle);
@@ -34,22 +33,22 @@ class Character extends MoveableObject {
 
   animate() {
     IntervalHub.startInterval(() => {
-      
       if (this.isDead()) return;
       AudioHub.CHARACTER_RUN.pause();
       if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
         this.lastMovement = new Date().getTime();
         this.moveRight();
-      AudioHub.CHARACTER_RUN.play();
+        AudioHub.CHARACTER_RUN.play();
       }
       if ((this.world.keyboard.LEFT || this.world.keyboard.A) && this.x > 100) {
         this.lastMovement = new Date().getTime();
         this.moveLeft();
         this.otherDirection = true;
-      AudioHub.CHARACTER_RUN.play();
+        AudioHub.CHARACTER_RUN.play();
       }
       if (!this.isAboveGround() && this.world.keyboard.SPACE) {
         this.lastMovement = new Date().getTime();
+        AudioHub.playSound(AudioHub.CHARACTER_JUMP);
         this.jump();
       }
       this.getRealFrame();
@@ -72,27 +71,23 @@ class Character extends MoveableObject {
           AudioHub.stopAll(AudioHub.CHARACTER_DEAD);
           AudioHub.GAME_OVER.play();
         }
-        
+
         return;
-      } else if(this.isHurt()){
+      } else if (this.isHurt()) {
         this.playAnimation(ImageHub.character.hurt);
         this.lastMovement = new Date().getTime();
         AudioHub.CHARACTER_HIT.play();
-      }
-      else if (this.isAboveGround()) {
+      } else if (this.isAboveGround()) {
         this.playAnimation(ImageHub.character.jumping);
-        AudioHub.CHARACTER_JUMP.play();
       } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.D || this.world.keyboard.A) {
         this.playAnimation(ImageHub.character.walking);
-      }  
-      else {
-        if (timePassed > 8){ 
-        this.playAnimation(ImageHub.character.sleeping);
-        AudioHub.CHARACTER_SLEEP.play();}
-        else{
-        this.playAnimation(ImageHub.character.idle);
+      } else {
+        if (timePassed > 8) {
+          this.playAnimation(ImageHub.character.sleeping);
+          AudioHub.CHARACTER_SLEEP.play();
+        } else {
+          this.playAnimation(ImageHub.character.idle);
         }
-        
       }
     }, 150);
   }

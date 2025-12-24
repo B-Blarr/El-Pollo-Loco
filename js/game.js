@@ -27,13 +27,14 @@ function playStartscreenMusic() {
   document.removeEventListener("click", playStartscreenMusic);
   document.removeEventListener("keydown", playStartscreenMusic);
   document.removeEventListener("touchstart", playStartscreenMusic);
+  if (AudioHub.BACKGROUND_LEVEL.play()) {
+    AudioHub.BACKGROUND_STARTSCREEN.pause();
+  }
 }
 
 document.addEventListener("click", playStartscreenMusic);
 document.addEventListener("keydown", playStartscreenMusic);
 document.addEventListener("touchstart", playStartscreenMusic);
-// (Welches Bild, Koordinate X, Koordinate Y, Breite, Höhe)
-// ctx.drawImage(character, 20, 20, 50, 150);
 
 function fullscreen() {
   const fullscreen = document.getElementById("fullscreen");

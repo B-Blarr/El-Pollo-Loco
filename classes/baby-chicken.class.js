@@ -35,7 +35,7 @@ class BabyChicken extends MoveableObject {
           this.deathSoundPlayed = true;
         }
         this.playAnimation(ImageHub.babyChicken.dead);
-        
+
         if (this.objectDisappears) {
         }
       } else {

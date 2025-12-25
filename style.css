@@ -138,6 +138,7 @@ body {
   width: 100vw;
   height: 100dvh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -185,6 +186,11 @@ body {
 .fade-out {
   opacity: 0;
   pointer-events: none;
+}
+
+.fade-in{
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Canvas */

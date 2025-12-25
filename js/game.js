@@ -74,6 +74,8 @@ function startGame() {
     AudioHub.BACKGROUND_STARTSCREEN.pause();
     AudioHub.BACKGROUND_LEVEL.play();
     AudioHub.BACKGROUND_LEVEL.volume = 0.2;
+    refWinningScreen.classList.add('d-none');
+    refGameOverScreen.classList.add('d-none');
   }
 }
 
@@ -113,4 +115,12 @@ function openImpressum() {
 function closeImpressum() {
   document.getElementById("impressum-overlay").classList.add("d-none");
   document.getElementById("options-overlay").classList.remove("d-none");
+}
+
+function openStartscreen() {
+  let startRef = document.getElementById("start-screen");
+  startRef.classList.add("fade-in");
+   refWinningScreen.classList.add('d-none');
+    refGameOverScreen.classList.add('d-none');
+    AudioHub.BACKGROUND_STARTSCREEN.play();
 }

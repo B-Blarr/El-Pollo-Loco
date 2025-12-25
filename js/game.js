@@ -8,6 +8,7 @@ const openFullscreen = document.getElementById("enter-fullscreen");
 const leaveFullscreen = document.getElementById("exit-fullscreen");
 const enterBtn = document.getElementById("enter-fullscreen");
 const exitBtn = document.getElementById("exit-fullscreen");
+let gameStarted = false;
 
 document.addEventListener("fullscreenchange", updateFullscreenButton);
 document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
@@ -16,9 +17,14 @@ function init() {
   initLevel();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+
+  AudioHub.BACKGROUND_STARTSCREEN.pause();
 }
 
 function playStartscreenMusic() {
+    if (gameStarted) {
+        return;
+    }
   let music = AudioHub.BACKGROUND_STARTSCREEN;
   music.volume = 0.2;
   music.loop = true;
@@ -27,9 +33,6 @@ function playStartscreenMusic() {
   document.removeEventListener("click", playStartscreenMusic);
   document.removeEventListener("keydown", playStartscreenMusic);
   document.removeEventListener("touchstart", playStartscreenMusic);
-  if (AudioHub.BACKGROUND_LEVEL.play()) {
-    AudioHub.BACKGROUND_STARTSCREEN.pause();
-  }
 }
 
 document.addEventListener("click", playStartscreenMusic);
@@ -66,6 +69,7 @@ function startGame() {
   if (AudioHub.muteSound == true) {
     AudioHub.mute();
   } else {
+    gameStarted = true;
     AudioHub.GAME_START.play();
     AudioHub.BACKGROUND_STARTSCREEN.pause();
     AudioHub.BACKGROUND_LEVEL.play();
@@ -93,7 +97,6 @@ function closeControls() {
 }
 
 /* --- Menü Navigation --- */
-
 function openOptions() {
   document.getElementById("options-overlay").classList.remove("d-none");
 }

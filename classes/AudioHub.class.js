@@ -1,6 +1,6 @@
 class AudioHub {
   static CHARACTER_RUN = new Audio("audio/sounds/character/characterRun.mp3");
-  static CHARACTER_HIT = new Audio("audio/sounds/character/characterDamage.mp3");
+  static CHARACTER_HIT = new Audio("audio/sounds/character/charakterHit5.mp3");
   static CHARACTER_DEAD = new Audio("audio/sounds/character/characterDead.wav");
   static CHARACTER_JUMP = new Audio("audio/sounds/character/jump4.mp3");
   static CHARACTER_SLEEP = new Audio("audio/sounds/character/characterSnoring.mp3");

@@ -183,6 +183,47 @@ body {
   box-sizing: border-box;
 }
 
+#game-over-screen .end-buttons img {
+  filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.6));
+}
+
+.end-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.end-buttons button {
+  background-color: transparent; 
+  border: none; 
+  padding: 0; 
+  cursor: pointer; 
+  transition: transform 0.1s ease; 
+}
+
+.end-buttons img {
+  width: 20vw;
+  max-width: 320px;
+  min-width: 120px;
+  /* width: 320px;  */
+  /* width: auto;  */
+}
+
+
+
+.end-buttons button:hover {
+  transform: scale(1.1);
+}
+
+.overlay-button-images{
+  background: none;
+  border: none;
+}
+
 .fade-out {
   opacity: 0;
   pointer-events: none;

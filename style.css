@@ -189,12 +189,13 @@ body {
 
 .end-buttons{
   display: flex;
-  justify-content: center;
+  /* justify-content: flex-end; */
   gap: 20px;
   position: absolute;
-  top: 10%;
-  width: 100%;
-  z-index: 1000;
+  top: 3%;
+  right: 4%;
+  width: auto;
+  z-index: 10;
 }
 
 .end-buttons button {
@@ -209,8 +210,6 @@ body {
   width: 20vw;
   max-width: 320px;
   min-width: 120px;
-  /* width: 320px;  */
-  /* width: auto;  */
 }
 
 

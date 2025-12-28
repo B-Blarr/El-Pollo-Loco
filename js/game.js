@@ -124,3 +124,15 @@ function openStartscreen() {
     refGameOverScreen.classList.add('d-none');
     AudioHub.BACKGROUND_STARTSCREEN.play();
 }
+
+function toggleMute() {
+  let muteButton = document.getElementById("mute-button");
+
+  if (AudioHub.muteSound) {
+    AudioHub.unmute();
+    muteButton.src = "assets/icons/unmute.png";
+  } else {
+    AudioHub.mute();
+    muteButton.src = "assets/icons/mute.png";
+  }
+}

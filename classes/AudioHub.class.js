@@ -49,13 +49,6 @@ class AudioHub {
     clone.play();
   }
 
-  // static playOne(sound) {
-  //     sound.volume = 0.2;
-  //     sound.currentTime = 0;
-  //     sound.play();
-  // }
-
-  // Stoppt das Abspielen aller Audiodateien
   static stopAll(exception = null) {
     AudioHub.allSounds.forEach((sound) => {
       if (sound !== exception) {

@@ -127,9 +127,11 @@
 
       <!-- Canvas Ingame -->
       <h1>El Pollo Loco</h1>
-      <section canvas-section>
+      <section class="canvas-section">
         <canvas id="canvas" width="1440" height="960"></canvas>
-        
+        <div class="ingame-mute">
+         <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()">
+    </div>
       </section>
     </div>
   </body>

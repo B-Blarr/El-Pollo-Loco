@@ -90,8 +90,8 @@
           <div class="option-row">
             <span>Sound</span>
             <div class="icon-group">
-                <button class="menu-icon-btn" onclick="AudioHub.mute()">🔇 Aus</button>
-                <button class="menu-icon-btn" onclick="AudioHub.unmute()">🔊 An</button>
+                <button class="menu-icon-btn" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png" alt=""> Aus</button>
+                <button class="menu-icon-btn" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png" alt=""> An</button>
             </div>
             <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume-slider-menu" min="0" max="1" step="0.01" value="0.2" />
           </div>

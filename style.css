@@ -187,7 +187,7 @@ body {
   filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.6));
 }
 
-.end-buttons{
+.end-buttons {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
@@ -199,11 +199,11 @@ body {
 }
 
 .end-buttons button {
-  background-color: transparent; 
-  border: none; 
-  padding: 0; 
-  cursor: pointer; 
-  transition: transform 0.1s ease; 
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
 .end-buttons img {
@@ -212,13 +212,11 @@ body {
   min-width: 120px;
 }
 
-
-
 .end-buttons button:hover {
   transform: scale(1.1);
 }
 
-.overlay-button-images{
+.overlay-button-images {
   background: none;
   border: none;
 }
@@ -228,7 +226,7 @@ body {
   pointer-events: none;
 }
 
-.fade-in{
+.fade-in {
   opacity: 1;
   pointer-events: auto;
 }
@@ -254,31 +252,40 @@ canvas {
 }
 
 .canvas-section {
-    position: relative; 
-    width: 100%;
-    max-width: 1440px; 
-    display: flex;
-    justify-content: center;
-    margin: 0 auto; 
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .ingame-mute {
-    position: absolute; 
-    top: 10px;          
-    right: 5px;        
-    z-index: 50;      
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  z-index: 50;
 }
 
 .hud-button {
-    width: 30px;       
-    height: 30px;
-    cursor: pointer;
-    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); 
-    transition: transform 0.1s ease-in-out;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
+  transition: transform 0.1s ease-in-out;
+  filter: invert(1) brightness(2);
 }
 
 .hud-button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.mute-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  filter: invert(1) brightness(2);
+  /* padding-right: 16px; */
 }
 
 /* Button Overlays Startscreen */
@@ -298,7 +305,7 @@ canvas {
   transition: opacity 0.3s ease;
 }
 
-.info-overlay img {
+.info-overlay > img {
   max-width: 85%;
   max-height: 85%;
   border-radius: 20px;
@@ -371,6 +378,11 @@ input[type="range"] {
   cursor: pointer;
   transition: all 0.1s ease;
   letter-spacing: 2px;
+
+  display: flex; /* Aktiviert die "Magie" */
+  align-items: center; /* Zentriert Icon und Text vertikal perfekt */
+  justify-content: center; /* Zentriert den Inhalt horizontal im Button */
+  gap: 24px;
 }
 
 .menu-icon-btn:hover,

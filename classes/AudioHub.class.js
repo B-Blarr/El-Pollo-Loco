@@ -73,6 +73,7 @@ class AudioHub {
       sound.volume = 0;
     });
     AudioHub.muteSound = true;
+    saveToLocalStorage(true);
   }
 
   static unmute() {
@@ -80,5 +81,6 @@ class AudioHub {
       sound.volume = 0.2;
     });
     AudioHub.muteSound = false;
+    saveToLocalStorage(false);
   }
 }

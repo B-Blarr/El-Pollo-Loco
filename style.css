@@ -73,7 +73,7 @@ body {
   z-index: 100;
 }
 
-.menu-btn {
+.menu-button {
   cursor: pointer;
   border-radius: 15px;
   /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);  */
@@ -82,17 +82,17 @@ body {
   height: auto;
 }
 
-.menu-btn:hover {
+.menu-button:hover {
   transform: scale(1.1) rotate(2deg);
   filter: brightness(1.2);
 }
 
-.start-btn {
+.start-button {
   width: 16%;
   height: auto;
 }
 
-.small-btn {
+.small-button {
   width: 16%;
   height: auto;
 }
@@ -366,8 +366,8 @@ input[type="range"] {
 }
 
 /* Buttons Design */
-.menu-icon-btn,
-.close-btn {
+.menu-icon-button,
+.close-button {
   background-color: #5c3a21;
   color: white;
   border: 3px solid #3e2716;
@@ -385,13 +385,13 @@ input[type="range"] {
   gap: 24px;
 }
 
-.menu-icon-btn:hover,
-.close-btn:hover {
+.menu-icon-button:hover,
+.close-button:hover {
   background-color: #7a4d2b;
   transform: scale(1.05);
 }
 
-.close-btn {
+.close-button {
   margin-top: 25px;
   background-color: #a0522d;
   width: 100%;
@@ -413,10 +413,10 @@ input[type="range"] {
 @media only screen and (max-width: 720px) {
   .explanation {
     display: none;
-    .start-btn {
+    .start-button {
       width: 80px;
     }
-    .small-btn {
+    .small-button {
       width: 50px;
     }
     .menu-container {
@@ -442,8 +442,8 @@ input[type="range"] {
   .option-row {
     font-size: 28px;
   }
-  .menu-icon-btn,
-  .close-btn {
+  .menu-icon-button,
+  .close-button {
     font-size: 20px;
     padding: 10px 20px;
   }

@@ -40,9 +40,9 @@
       <div id="start-screen" class="start-screen-overlay">
         <div class="start-image-wrapper">
           <div class="menu-container">
-            <img onclick="openOptions()" src="./assets/icons/optionen.png" class="menu-btn small-btn" alt="Optionen" />
-            <img onclick="openControls()" src="./assets/icons/steuerung.png" class="menu-btn small-btn" alt="Steuerung" />
-            <img onclick="startGame()" src="./assets/icons/startbutton7.png" class="menu-btn start-btn" alt="Start" />
+            <img onclick="openOptions()" src="./assets/icons/optionen.png" class="menu-button small-button" alt="Optionen" />
+            <img onclick="openControls()" src="./assets/icons/steuerung.png" class="menu-button small-button" alt="Steuerung" />
+            <img onclick="startGame()" src="./assets/icons/startbutton7.png" class="menu-button start-button" alt="Start" />
           </div>
 
           <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
@@ -90,24 +90,24 @@
           <div class="option-row">
             <span>Sound</span>
             <div class="icon-group">
-                <button class="menu-icon-btn" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png" alt=""> Aus</button>
-                <button class="menu-icon-btn" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png" alt=""> An</button>
+                <button class="menu-icon-button" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png" alt=""> Aus</button>
+                <button class="menu-icon-button" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png" alt=""> An</button>
             </div>
             <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume-slider-menu" min="0" max="1" step="0.01" value="0.2" />
           </div>
 
           <div class="option-row">
              <span>Ansicht</span>
-             <button id="enter-fullscreen" class="menu-icon-btn" onclick="fullscreen()">⛶ Vollbild</button>
-             <button id="exit-fullscreen" class="menu-icon-btn d-none" onclick="exitFullscreen()">⛶ Fenstermodus</button>
+             <button id="enter-fullscreen" class="menu-icon-button" onclick="fullscreen()">⛶ Vollbild</button>
+             <button id="exit-fullscreen" class="menu-icon-button d-none" onclick="exitFullscreen()">⛶ Fenstermodus</button>
           </div>
 
           <div class="option-row">
             <span>Infos</span>
-            <button class="menu-icon-btn" onclick="openImpressum()">Impressum</button>
+            <button class="menu-icon-button" onclick="openImpressum()">Impressum</button>
           </div>
 
-          <button class="close-btn" onclick="closeOptions()">Schließen</button>
+          <button class="close-button" onclick="closeOptions()">Schließen</button>
         </div>
       </div>
 
@@ -121,7 +121,7 @@
                 <p>38364 Schöningen</p>
                 <p>E-Mail: b.blarr@gmx.de</p> 
             </div>
-            <button class="close-btn" onclick="closeImpressum()">Zurück</button>
+            <button class="close-button" onclick="closeImpressum()">Zurück</button>
          </div>
       </div>
 

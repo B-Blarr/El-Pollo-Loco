@@ -6,9 +6,9 @@ class BabyChicken extends MoveableObject {
 
   offset = {
     top: 20,
-    right: 10,
-    bottom: 30,
-    left: 5,
+    right: 15,
+    bottom: 20,
+    left: 15,
   };
 
   constructor() {

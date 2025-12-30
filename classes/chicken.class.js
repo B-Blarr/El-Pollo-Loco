@@ -8,7 +8,7 @@ class Chicken extends MoveableObject {
     top: 20,
     right: 10,
     bottom: 30,
-    left: 5,
+    left: 10,
   };
 
   constructor() {

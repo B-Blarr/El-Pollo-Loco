@@ -82,11 +82,9 @@
       <div id="controls-overlay" class="info-overlay d-none" onclick="closeControls()">
         <img src="assets/img/5_background/control-explanation.png" alt="Steuerung Erklärung" />
       </div>
-
       <div id="options-overlay" class="info-overlay d-none" onclick="closeOptions()">
         <div class="options-card" onclick="event.stopPropagation()">
           <h2>Einstellungen</h2>
-          
           <div class="option-row">
             <span>Sound</span>
             <div class="icon-group">
@@ -95,13 +93,11 @@
             </div>
             <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume-slider-menu" min="0" max="1" step="0.01" value="0.2" />
           </div>
-
           <div class="option-row">
              <span>Ansicht</span>
              <button id="enter-fullscreen" class="menu-icon-button" onclick="fullscreen()">⛶ Vollbild</button>
              <button id="exit-fullscreen" class="menu-icon-button d-none" onclick="exitFullscreen()">⛶ Fenstermodus</button>
           </div>
-
           <div class="option-row">
             <span>Infos</span>
             <button class="menu-icon-button" onclick="openImpressum()">Impressum</button>

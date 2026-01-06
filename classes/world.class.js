@@ -144,54 +144,98 @@ class World {
     });
   }
 
-  draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.translate(this.camera_x, 0);
-    // Space for fixed Objects
-    this.addObjectsToMap(this.level.backgroundObjects);
-    this.addObjectsToMap(this.level.clouds);
+  // draw() {
+  //   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  //   this.ctx.translate(this.camera_x, 0);
 
-    this.ctx.translate(-this.camera_x, 0);
-    this.addToMap(this.healthBar);
-    this.addToMap(this.bottleBar);
-    this.addToMap(this.coinBar);
-    if (this.character.x > 11350 || this.hadFirstContact == true) {
-      this.hadFirstContact = true;
-      this.addToMap(this.healthBarEndboss);
-    }
-    this.ctx.translate(this.camera_x, 0);
-    try {
-      this.addToMap(this.character);
-      // if (this.character.x > 4000) {
-      // this.ctx.translate(-this.camera_x, 600);
-      // this.addToMap(this.healthBarEndboss);
-      // this.ctx.translate(this.camera_x, 600);
-      // }
-      // this.addToMap(this.healthBarEndboss);
-      this.addObjectsToMap(this.throwableObjects);
-      this.addObjectsToMap(this.level.enemies);
-      this.addObjectsToMap(this.level.bottlesInAir);
-      this.addObjectsToMap(this.level.bottlesOnGround);
-      this.addObjectsToMap(this.level.coins);
-    } catch (error) {
-      console.warn("Error loading image", error);
-      console.log("Could not load image,", this.flipImage.src);
-    }
+  //   this.addObjectsToMap(this.level.backgroundObjects);
+  //   this.addObjectsToMap(this.level.clouds);
 
-    this.ctx.translate(-this.camera_x, 0);
-    // draw() wird immer wieder aufgerufen
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
+  //   this.ctx.translate(-this.camera_x, 0);
+  //   this.addToMap(this.healthBar);
+  //   this.addToMap(this.bottleBar);
+  //   this.addToMap(this.coinBar);
+  //   if (this.character.x > 11350 || this.hadFirstContact == true) {
+  //     this.hadFirstContact = true;
+  //     this.addToMap(this.healthBarEndboss);
+  //   }
+  //   this.ctx.translate(this.camera_x, 0);
+  //   try {
+  //     this.addToMap(this.character);
+
+  //     this.addObjectsToMap(this.throwableObjects);
+  //     this.addObjectsToMap(this.level.enemies);
+  //     this.addObjectsToMap(this.level.bottlesInAir);
+  //     this.addObjectsToMap(this.level.bottlesOnGround);
+  //     this.addObjectsToMap(this.level.coins);
+  //   } catch (error) {
+  //     console.warn("Error loading image", error);
+  //     console.log("Could not load image,", this.flipImage.src);
+  //   }
+
+  //   this.ctx.translate(-this.camera_x, 0);
+
+  //   let self = this;
+  //   requestAnimationFrame(function () {
+  //     self.draw();
+  //   });
+  // }
+
+draw() {
+  this.clearCanvas();
+  this.drawBackground();
+  this.drawFixedObjects();
+  this.drawGameContent();
+  this.scheduleNextFrame();
+}
+
+clearCanvas() {
+  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+}
+
+drawBackground() {
+  this.ctx.translate(this.camera_x, 0);
+  this.addObjectsToMap(this.level.backgroundObjects);
+  this.addObjectsToMap(this.level.clouds);
+  this.ctx.translate(-this.camera_x, 0);
+}
+
+drawFixedObjects() {
+  this.addToMap(this.healthBar);
+  this.addToMap(this.bottleBar);
+  this.addToMap(this.coinBar);
+  this.drawEndbossHealthBar();
+}
+
+drawEndbossHealthBar() {
+  if (this.character.x > 11350 || this.hadFirstContact) {
+    this.hadFirstContact = true;
+    this.addToMap(this.healthBarEndboss);
   }
+}
+
+drawGameContent() {
+  this.ctx.translate(this.camera_x, 0);
+  this.addToMap(this.character);
+  this.addObjectsToMap(this.throwableObjects);
+  this.addObjectsToMap(this.level.enemies);
+  this.addObjectsToMap(this.level.bottlesInAir);
+  this.addObjectsToMap(this.level.bottlesOnGround);
+  this.addObjectsToMap(this.level.coins);
+  this.ctx.translate(-this.camera_x, 0);
+}
+
+scheduleNextFrame() {
+  requestAnimationFrame(() => this.draw());
+}
+
 
   addToMap(moveableObject) {
     if (moveableObject.otherDirection) {
       this.flipImage(moveableObject);
     }
     moveableObject.draw(this.ctx);
-    // moveableObject.drawFrame(this.ctx);
+   
 
     if (moveableObject.otherDirection) {
       this.flipImageBack(moveableObject);

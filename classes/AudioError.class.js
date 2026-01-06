@@ -13,7 +13,6 @@ class AudioError {
         }, 200);
     }
 
-
     // Stoppt das Abspielen einer einzelnen Audiodatei
     static stopOne(sound) {
         sound.pause();  // Pausiert das übergebene Audio

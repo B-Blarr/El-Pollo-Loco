@@ -73,6 +73,7 @@ function startGame() {
   init();
   let startRef = document.getElementById("start-screen");
   startRef.classList.add("fade-out");
+  startRef.classList.remove("fade-in");
   AudioHub.GAME_START.play();
   AudioHub.BACKGROUND_LEVEL.play();
   if (AudioHub.muteSound == true) {
@@ -129,13 +130,13 @@ function closeImpressum() {
 function openStartscreen() {
   let startRef = document.getElementById("start-screen");
   startRef.classList.add("fade-in");
+  startRef.classList.remove("fade-out");
   refWinningScreen.classList.add("d-none");
   refGameOverScreen.classList.add("d-none");
   AudioHub.BACKGROUND_STARTSCREEN.play();
 }
 
 function toggleMute() {
-  
 
   if (AudioHub.muteSound) {
     AudioHub.unmute();

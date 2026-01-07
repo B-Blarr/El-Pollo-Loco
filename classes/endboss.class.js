@@ -28,62 +28,177 @@ class Endboss extends MoveableObject {
     this.animate();
   }
 
-  animate() {
-    IntervalHub.startInterval(() => {
-      if (this.world && this.world.hadFirstContact && !this.isDead() && !this.isAttacking) {
-        if (!this.alarmSoundPlayed) {
-          AudioHub.ENDBOSS_START.play();
-          this.alarmSoundPlayed = true;
-        }
+  // animate() {
+  //   IntervalHub.startInterval(() => {
+  //     if (this.world && this.world.hadFirstContact && !this.isDead() && !this.isAttacking) {
+  //       if (!this.alarmSoundPlayed) {
+  //         AudioHub.ENDBOSS_START.play();
+  //         this.alarmSoundPlayed = true;
+  //       }
 
-        this.moveLeft(this.speed);
-        this.getRealFrame();
-      }
-    }, 1000 / 60);
-    IntervalHub.startInterval(() => {
-      if (this.isDead()) {
-        if (!this.isDeadAnimationPlaying) {
-          this.currentImage = 0;
-          this.isDeadAnimationPlaying = true;
-        }
-        this.playDeadAnimation(ImageHub.endboss.dead);
-        let lastIndex = ImageHub.endboss.dead.length - 1;
-        if (!this.deadSoundPlayed) {
-          AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
-          this.deadSoundPlayed = true;
-        }
+  //       this.moveLeft(this.speed);
+  //       this.getRealFrame();
+  //     }
+  //   }, 1000 / 60);
+  //   IntervalHub.startInterval(() => {
+  //     if (this.isDead()) {
+  //       if (!this.isDeadAnimationPlaying) {
+  //         this.currentImage = 0;
+  //         this.isDeadAnimationPlaying = true;
+  //       }
+  //       this.playDeadAnimation(ImageHub.endboss.dead);
+  //       let lastIndex = ImageHub.endboss.dead.length - 1;
+  //       if (!this.deadSoundPlayed) {
+  //         AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
+  //         this.deadSoundPlayed = true;
+  //       }
 
-        if (this.currentImage === lastIndex) {
-          IntervalHub.stopAllIntervals();
-          refWinningScreen.classList.remove("d-none");
-          AudioHub.stopAll(AudioHub.ENDBOSS_DEAD);
-          AudioHub.WINNING.play();
-        }
-      } else if (this.isHurt()) {
-        this.playAnimation(ImageHub.endboss.hurt);
-        if (!this.hitSoundPlayed) {
-          AudioHub.ENDBOSS_HIT.play();
-          this.hitSoundPlayed = true;
-        }
-      } else if (this.isAttacking) {
-        this.hitSoundPlayed = false;
-        this.playAnimation(ImageHub.endboss.attacking);
-      } else if (this.world && this.world.hadFirstContact) {
-        this.hitSoundPlayed = false;
-        this.playAnimation(ImageHub.endboss.walking);
-      } else {
-        this.playAnimation(ImageHub.endboss.alert);
-      }
-    }, 200);
-    IntervalHub.startInterval(() => {
-      if (this.world && this.world.hadFirstContact && !this.isDead()) {
-        this.isAttacking = true;
-        setTimeout(() => {
-          this.isAttacking = false;
-          this.currentImage = 0;
-          this.speed += 3;
-        }, 1500);
-      }
-    }, 4000);
+  //       if (this.currentImage === lastIndex) {
+  //         IntervalHub.stopAllIntervals();
+  //         refWinningScreen.classList.remove("d-none");
+  //         AudioHub.stopAll(AudioHub.ENDBOSS_DEAD);
+  //         AudioHub.WINNING.play();
+  //       }
+  //     } else if (this.isHurt()) {
+  //       this.playAnimation(ImageHub.endboss.hurt);
+  //       if (!this.hitSoundPlayed) {
+  //         AudioHub.ENDBOSS_HIT.play();
+  //         this.hitSoundPlayed = true;
+  //       }
+  //     } else if (this.isAttacking) {
+  //       this.hitSoundPlayed = false;
+  //       this.playAnimation(ImageHub.endboss.attacking);
+  //     } else if (this.world && this.world.hadFirstContact) {
+  //       this.hitSoundPlayed = false;
+  //       this.playAnimation(ImageHub.endboss.walking);
+  //     } else {
+  //       this.playAnimation(ImageHub.endboss.alert);
+  //     }
+  //   }, 200);
+  //   IntervalHub.startInterval(() => {
+  //     if (this.world && this.world.hadFirstContact && !this.isDead()) {
+  //       this.isAttacking = true;
+  //       setTimeout(() => {
+  //         this.isAttacking = false;
+  //         this.currentImage = 0;
+  //         this.speed += 3;
+  //       }, 1500);
+  //     }
+  //   }, 4000);
+  // }
+
+animate() {
+  this.startMovementInterval();
+  this.startAnimationInterval();
+  this.startAttackLogicInterval();
+}
+
+startMovementInterval() {
+  IntervalHub.startInterval(() => {
+    if (this.canMove()) {
+      this.playAlarmOnce();
+      this.moveLeft(this.speed);
+      this.getRealFrame();
+    }
+  }, 1000 / 60);
+}
+
+startAnimationInterval() {
+  IntervalHub.startInterval(() => {
+    if (this.isDead()) {
+      this.handleDeadAnimation();
+    } else if (this.isHurt()) {
+      this.handleHurtAnimation();
+    } else {
+      this.handleActiveAnimation();
+    }
+  }, 200);
+}
+
+startAttackLogicInterval() {
+  IntervalHub.startInterval(() => {
+    if (this.canStartAttack()) {
+      this.triggerAttack();
+    }
+  }, 4000);
+}
+
+canMove() {
+  return this.world && 
+         this.world.hadFirstContact && 
+         !this.isDead() && 
+         !this.isAttacking;
+}
+
+playAlarmOnce() {
+  if (!this.alarmSoundPlayed) {
+    AudioHub.ENDBOSS_START.play();
+    this.alarmSoundPlayed = true;
   }
+}
+
+handleDeadAnimation() {
+  if (!this.isDeadAnimationPlaying) {
+    this.currentImage = 0;
+    this.isDeadAnimationPlaying = true;
+  }
+  this.playDeadAnimation(ImageHub.endboss.dead);
+  this.playDeadSoundOnce();
+  this.checkWinCondition();
+}
+
+playDeadSoundOnce() {
+  if (!this.deadSoundPlayed) {
+    AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
+    this.deadSoundPlayed = true;
+  }
+}
+
+checkWinCondition() {
+  let lastIndex = ImageHub.endboss.dead.length - 1;
+  if (this.currentImage === lastIndex) {
+    IntervalHub.stopAllIntervals();
+    refWinningScreen.classList.remove("d-none");
+    AudioHub.stopAll(AudioHub.ENDBOSS_DEAD);
+    AudioHub.WINNING.play();
+  }
+}
+
+handleHurtAnimation() {
+  this.playAnimation(ImageHub.endboss.hurt);
+  if (!this.hitSoundPlayed) {
+    AudioHub.ENDBOSS_HIT.play();
+    this.hitSoundPlayed = true;
+  }
+}
+
+handleActiveAnimation() {
+  if (this.isAttacking) {
+    this.hitSoundPlayed = false;
+    this.playAnimation(ImageHub.endboss.attacking);
+  } else if (this.world && this.world.hadFirstContact) {
+    this.hitSoundPlayed = false;
+    this.playAnimation(ImageHub.endboss.walking);
+  } else {
+    this.playAnimation(ImageHub.endboss.alert);
+  }
+}
+
+canStartAttack() {
+  return this.world && this.world.hadFirstContact && !this.isDead();
+}
+
+triggerAttack() {
+  this.isAttacking = true;
+  setTimeout(() => {
+    this.finishAttack();
+  }, 1500);
+}
+
+finishAttack() {
+  this.isAttacking = false;
+  this.currentImage = 0;
+  this.speed += 5; // Boss wird schneller nach jedem Angriff
+}
+
 }

@@ -33,9 +33,9 @@ class World {
   setWorld() {
     this.character.world = this;
     this.level.enemies.forEach((enemy) => {
-        if (enemy instanceof Endboss) {
-            enemy.world = this; 
-        }
+      if (enemy instanceof Endboss) {
+        enemy.world = this;
+      }
     });
   }
 
@@ -87,7 +87,7 @@ class World {
           if (enemy instanceof Endboss) {
             this.healthBarEndboss.setPercentage(enemy.hitPoints / 4);
           }
-           if (!bottle.hasHit) {
+          if (!bottle.hasHit) {
             AudioHub.playSound(AudioHub.BOTTLE_BREAK);
           }
           bottle.bottleExplodes();
@@ -144,98 +144,59 @@ class World {
     });
   }
 
-  // draw() {
-  //   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  //   this.ctx.translate(this.camera_x, 0);
-
-  //   this.addObjectsToMap(this.level.backgroundObjects);
-  //   this.addObjectsToMap(this.level.clouds);
-
-  //   this.ctx.translate(-this.camera_x, 0);
-  //   this.addToMap(this.healthBar);
-  //   this.addToMap(this.bottleBar);
-  //   this.addToMap(this.coinBar);
-  //   if (this.character.x > 11350 || this.hadFirstContact == true) {
-  //     this.hadFirstContact = true;
-  //     this.addToMap(this.healthBarEndboss);
-  //   }
-  //   this.ctx.translate(this.camera_x, 0);
-  //   try {
-  //     this.addToMap(this.character);
-
-  //     this.addObjectsToMap(this.throwableObjects);
-  //     this.addObjectsToMap(this.level.enemies);
-  //     this.addObjectsToMap(this.level.bottlesInAir);
-  //     this.addObjectsToMap(this.level.bottlesOnGround);
-  //     this.addObjectsToMap(this.level.coins);
-  //   } catch (error) {
-  //     console.warn("Error loading image", error);
-  //     console.log("Could not load image,", this.flipImage.src);
-  //   }
-
-  //   this.ctx.translate(-this.camera_x, 0);
-
-  //   let self = this;
-  //   requestAnimationFrame(function () {
-  //     self.draw();
-  //   });
-  // }
-
-draw() {
-  this.clearCanvas();
-  this.drawBackground();
-  this.drawFixedObjects();
-  this.drawGameContent();
-  this.scheduleNextFrame();
-}
-
-clearCanvas() {
-  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-}
-
-drawBackground() {
-  this.ctx.translate(this.camera_x, 0);
-  this.addObjectsToMap(this.level.backgroundObjects);
-  this.addObjectsToMap(this.level.clouds);
-  this.ctx.translate(-this.camera_x, 0);
-}
-
-drawFixedObjects() {
-  this.addToMap(this.healthBar);
-  this.addToMap(this.bottleBar);
-  this.addToMap(this.coinBar);
-  this.drawEndbossHealthBar();
-}
-
-drawEndbossHealthBar() {
-  if (this.character.x > 11350 || this.hadFirstContact) {
-    this.hadFirstContact = true;
-    this.addToMap(this.healthBarEndboss);
+  draw() {
+    this.clearCanvas();
+    this.drawBackground();
+    this.drawFixedObjects();
+    this.drawGameContent();
+    this.scheduleNextFrame();
   }
-}
 
-drawGameContent() {
-  this.ctx.translate(this.camera_x, 0);
-  this.addToMap(this.character);
-  this.addObjectsToMap(this.throwableObjects);
-  this.addObjectsToMap(this.level.enemies);
-  this.addObjectsToMap(this.level.bottlesInAir);
-  this.addObjectsToMap(this.level.bottlesOnGround);
-  this.addObjectsToMap(this.level.coins);
-  this.ctx.translate(-this.camera_x, 0);
-}
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
 
-scheduleNextFrame() {
-  requestAnimationFrame(() => this.draw());
-}
+  drawBackground() {
+    this.ctx.translate(this.camera_x, 0);
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.clouds);
+    this.ctx.translate(-this.camera_x, 0);
+  }
 
+  drawFixedObjects() {
+    this.addToMap(this.healthBar);
+    this.addToMap(this.bottleBar);
+    this.addToMap(this.coinBar);
+    this.drawEndbossHealthBar();
+  }
+
+  drawEndbossHealthBar() {
+    if (this.character.x > 11350 || this.hadFirstContact) {
+      this.hadFirstContact = true;
+      this.addToMap(this.healthBarEndboss);
+    }
+  }
+
+  drawGameContent() {
+    this.ctx.translate(this.camera_x, 0);
+    this.addToMap(this.character);
+    this.addObjectsToMap(this.throwableObjects);
+    this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.bottlesInAir);
+    this.addObjectsToMap(this.level.bottlesOnGround);
+    this.addObjectsToMap(this.level.coins);
+    this.ctx.translate(-this.camera_x, 0);
+  }
+
+  scheduleNextFrame() {
+    requestAnimationFrame(() => this.draw());
+  }
 
   addToMap(moveableObject) {
     if (moveableObject.otherDirection) {
       this.flipImage(moveableObject);
     }
     moveableObject.draw(this.ctx);
-   
 
     if (moveableObject.otherDirection) {
       this.flipImageBack(moveableObject);

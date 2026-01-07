@@ -132,8 +132,13 @@ canMove() {
 
 playAlarmOnce() {
   if (!this.alarmSoundPlayed) {
+    AudioHub.BACKGROUND_LEVEL.volume = 0;
+    AudioHub.ENDBOSS_START.volume = 1;
     AudioHub.ENDBOSS_START.play();
     this.alarmSoundPlayed = true;
+    setTimeout(() => {
+        AudioHub.BACKGROUND_LEVEL.volume = 0.2; 
+    }, 3000);
   }
 }
 

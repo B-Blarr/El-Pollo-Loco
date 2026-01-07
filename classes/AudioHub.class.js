@@ -43,6 +43,36 @@ class AudioHub {
     AudioHub.GAME_OVER,
   ];
 
+  static musicSounds = [
+    AudioHub.BACKGROUND_LEVEL,
+    AudioHub.BACKGROUND_STARTSCREEN,
+    AudioHub.WINNING,
+    AudioHub.GAME_OVER,
+    AudioHub.GAME_START
+  ];
+
+  static sfxSounds = [
+    AudioHub.CHARACTER_RUN, AudioHub.CHARACTER_HIT, AudioHub.CHARACTER_DEAD,
+    AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP, AudioHub.BOTTLE_COLLECTED,
+    AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD,
+    AudioHub.ENDBOSS_START, AudioHub.ENDBOSS_DEAD, AudioHub.ENDBOSS_HIT,
+    AudioHub.BOTTLE_BREAK, AudioHub.BOTTLE_THROW
+  ];
+
+  static changeMusicVolume() {
+    let volume = document.getElementById("music-volume").value;
+    AudioHub.musicSounds.forEach((sound) => {
+      sound.volume = volume;
+    });
+  }
+
+  static changeSfxVolume() {
+    let volume = document.getElementById("sfx-volume").value;
+    AudioHub.sfxSounds.forEach((sound) => {
+      sound.volume = volume;
+    });
+  }
+
   static playSound(audio) {
     let clone = audio.cloneNode();
     clone.volume = audio.volume;
@@ -73,14 +103,32 @@ class AudioHub {
       sound.volume = 0;
     });
     AudioHub.muteSound = true;
-    saveToLocalStorage(true);
+    AudioHub.saveMuteState();
+  }
+
+  static saveMuteState() {
+    localStorage.setItem("soundMuted", AudioHub.muteSound);
+  }
+
+static loadMuteState() {
+    let savedSound = localStorage.getItem("soundMuted");
+    if (savedSound === "true") {
+      AudioHub.muteSound = true;
+    
+      AudioHub.allSounds.forEach(s => s.volume = 0);
+    } else {
+      AudioHub.muteSound = false;
+ 
+      AudioHub.changeMusicVolume();
+      AudioHub.changeSfxVolume();
+    }
   }
 
   static unmute() {
-    AudioHub.allSounds.forEach((sound) => {
-      sound.volume = 0.2;
-    });
+  AudioHub.changeMusicVolume();
+    AudioHub.changeSfxVolume();
+    
     AudioHub.muteSound = false;
-    saveToLocalStorage(false);
-  }
+    AudioHub.saveMuteState();
+}
 }

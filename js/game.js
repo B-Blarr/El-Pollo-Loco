@@ -11,6 +11,7 @@ const exitButton = document.getElementById("exit-fullscreen");
 let gameStarted = false;
 let isMuted;
 let muteButton = document.getElementById("mute-button");
+AudioHub.loadMuteState();
 
 document.addEventListener("fullscreenchange", updateFullscreenButton);
 document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
@@ -24,18 +25,14 @@ function init() {
 }
 
 function playStartscreenMusic() {
-  getFromLocalStorage();
   if (gameStarted) {
     return;
   }
   let music = AudioHub.BACKGROUND_STARTSCREEN;
-  if (AudioHub.muteSound == true) {
-    AudioHub.mute();
-    music.play();
-  } else {
-    music.volume = 0.2;
-    music.loop = true;
-    music.play();
+  music.loop = true;
+  music.play();
+  if (!AudioHub.muteSound) {
+    AudioHub.changeMusicVolume();
   }
   document.removeEventListener("click", playStartscreenMusic);
   document.removeEventListener("keydown", playStartscreenMusic);
@@ -76,17 +73,17 @@ function startGame() {
   startRef.classList.remove("fade-in");
   AudioHub.GAME_START.play();
   AudioHub.BACKGROUND_LEVEL.play();
-  if (AudioHub.muteSound == true) {
-    AudioHub.mute();
+
+  if (AudioHub.muteSound) {
     muteButton.src = "assets/icons/mute.png";
   } else {
-    gameStarted = true;
-    // AudioHub.BACKGROUND_STARTSCREEN.pause();
-    AudioHub.BACKGROUND_LEVEL.volume = 0.2;
+    AudioHub.changeMusicVolume();
+    AudioHub.changeSfxVolume();
     muteButton.src = "assets/icons/unmute.png";
-    refWinningScreen.classList.add("d-none");
-    refGameOverScreen.classList.add("d-none");
   }
+  gameStarted = true;
+  refWinningScreen.classList.add("d-none");
+  refGameOverScreen.classList.add("d-none");
 }
 
 function updateFullscreenButton() {
@@ -137,7 +134,6 @@ function openStartscreen() {
 }
 
 function toggleMute() {
-
   if (AudioHub.muteSound) {
     AudioHub.unmute();
     muteButton.src = "assets/icons/unmute.png";
@@ -147,19 +143,3 @@ function toggleMute() {
   }
 }
 
-function saveToLocalStorage(mutedOrUnmuted) {
-  localStorage.setItem("soundMuted", mutedOrUnmuted);
-}
-
-function getFromLocalStorage() {
-  let savedSound = localStorage.getItem("soundMuted");
-  let muteButton = document.getElementById("mute-button");
-  if (savedSound === "true") {
-    AudioHub.muteSound = true;
-    muteButton.src = "assets/icons/unmute.png";
-    
-  } else {
-    AudioHub.muteSound = false;
-    muteButton.src = "assets/icons/mute.png";
-  }
-}

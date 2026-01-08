@@ -245,9 +245,12 @@ canvas {
 
 .ingame-mute {
   position: absolute;
-  top: 10px;
+  top: 25px;
   right: 5px;
   z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .hud-button {

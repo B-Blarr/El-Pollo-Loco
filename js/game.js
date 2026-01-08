@@ -143,3 +143,20 @@ function toggleMute() {
   }
 }
 
+function togglePause() {
+
+  IntervalHub.isGamePaused = !IntervalHub.isGamePaused;
+  let pauseBtn = document.getElementById('pause-btn');
+  if (IntervalHub.isGamePaused) {
+    pauseBtn.src = 'assets/icons/play.png'; // Icon zu "Play" ändern
+    AudioHub.BACKGROUND_LEVEL.pause();
+    AudioHub.stopAll(); 
+  } else {
+    pauseBtn.src = 'assets/icons/pause.png'; // Icon zu "Pause" ändern
+    if (!AudioHub.muteSound) {
+      AudioHub.BACKGROUND_LEVEL.play();
+    }
+  }
+}
+
+

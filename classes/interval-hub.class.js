@@ -1,10 +1,14 @@
 class IntervalHub {
   static allIntervals = [];
+  static isGamePaused = false;
 
-  // Startet ein neues Intervall und
-  // fügt es dem Array allIntervals hinzu
   static startInterval(func, timer) {
-    const newInterval = setInterval(func, timer);
+    const wrapperFunction = () => {
+      if (!IntervalHub.isGamePaused) {
+        func();
+      }
+    };
+    const newInterval = setInterval(wrapperFunction, timer);
     IntervalHub.allIntervals.push(newInterval);
   }
 

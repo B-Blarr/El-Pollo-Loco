@@ -66,14 +66,48 @@ function exitFullscreen() {
   }
 }
 
+// function startGame() {
+//   init();
+//   let startRef = document.getElementById("start-screen");
+//   startRef.classList.add("fade-out");
+//   startRef.classList.remove("fade-in");
+//   AudioHub.GAME_START.play();
+//   AudioHub.BACKGROUND_LEVEL.play();
+
+//   if (AudioHub.muteSound) {
+//     muteButton.src = "assets/icons/mute.png";
+//   } else {
+//     AudioHub.changeMusicVolume();
+//     AudioHub.changeSfxVolume();
+//     muteButton.src = "assets/icons/unmute.png";
+//   }
+//   gameStarted = true;
+//   refWinningScreen.classList.add("d-none");
+//   refGameOverScreen.classList.add("d-none");
+// }
+
 function startGame() {
   init();
+  updateGameScreens();
+  playStartSounds();
+  syncAudioAndButtons();
+  gameStarted = true;
+}
+
+function updateGameScreens() {
   let startRef = document.getElementById("start-screen");
   startRef.classList.add("fade-out");
   startRef.classList.remove("fade-in");
+  refWinningScreen.classList.add("d-none");
+  refGameOverScreen.classList.add("d-none");
+}
+
+function playStartSounds() {
   AudioHub.GAME_START.play();
   AudioHub.BACKGROUND_LEVEL.play();
+}
 
+function syncAudioAndButtons() {
   if (AudioHub.muteSound) {
     muteButton.src = "assets/icons/mute.png";
   } else {
@@ -81,9 +115,6 @@ function startGame() {
     AudioHub.changeSfxVolume();
     muteButton.src = "assets/icons/unmute.png";
   }
-  gameStarted = true;
-  refWinningScreen.classList.add("d-none");
-  refGameOverScreen.classList.add("d-none");
 }
 
 function updateFullscreenButton() {
@@ -137,6 +168,9 @@ function toggleMute() {
   if (AudioHub.muteSound) {
     AudioHub.unmute();
     muteButton.src = "assets/icons/unmute.png";
+    if (gameStarted && !IntervalHub.isGamePaused) {
+      AudioHub.BACKGROUND_LEVEL.play();
+    }
   } else {
     AudioHub.mute();
     muteButton.src = "assets/icons/mute.png";
@@ -144,7 +178,6 @@ function toggleMute() {
 }
 
 function togglePause() {
-
   IntervalHub.isGamePaused = !IntervalHub.isGamePaused;
   let pauseBtn = document.getElementById('pause-btn');
   if (IntervalHub.isGamePaused) {

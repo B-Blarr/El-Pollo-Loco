@@ -35,6 +35,10 @@
     <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
   </head>
   <body>
+    <div id="rotate-device" class="d-none">
+    <div class="phone"></div>
+    <span>Bitte drehe dein Gerät ins Querformat</span>
+</div>
     <!-- Fullscreen -->
     <div id="fullscreen">
       <div id="start-screen" class="start-screen-overlay">
@@ -152,6 +156,26 @@
       <h1>El Pollo Loco</h1>
       <section class="canvas-section">
         <canvas id="canvas" width="1440" height="960"></canvas>
+        <div id="mobile-buttons" class="d-none">
+        
+        <div class="btn-group-left">
+            <button id="btnLeft" class="touch-btn">
+                <img src="assets/icons/arrow-left.png" alt="Links">
+            </button>
+            <button id="btnRight" class="touch-btn">
+                <img src="assets/icons/arrow-right.png" alt="Rechts">
+            </button>
+        </div>
+
+        <div class="btn-group-right">
+            <button id="btnJump" class="touch-btn">
+                <img src="assets/icons/arrow-up.png" alt="Springen">
+            </button>
+            <button id="btnThrow" class="touch-btn">
+                <img src="assets/icons/bottle.png" alt="Werfen">
+            </button>
+        </div>
+    </div>
         <div class="ingame-mute">
          <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()">
          <img id="pause-btn" class="hud-button" src="assets/icons/pause.png" onclick="togglePause()">

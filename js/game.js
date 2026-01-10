@@ -22,6 +22,7 @@ function init() {
   world = new World(canvas, keyboard);
 
   AudioHub.BACKGROUND_STARTSCREEN.pause();
+  startTouchControls();
 }
 
 function playStartscreenMusic() {
@@ -191,5 +192,28 @@ function togglePause() {
     }
   }
 }
+
+  function addTouchLogic(buttonId, key) {
+    let button = document.getElementById(buttonId);
+
+    button.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard[key] = true;
+    });
+
+    button.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard[key] = false;
+    });
+}
+
+function startTouchControls() {
+    addTouchLogic('btnLeft', 'LEFT');
+    addTouchLogic('btnRight', 'RIGHT');
+    addTouchLogic('btnJump', 'SPACE');
+    addTouchLogic('btnThrow', 'F');
+}
+
+
 
 

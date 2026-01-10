@@ -13,7 +13,7 @@ class CollectableObject extends MoveableObject {
   constructor() {
     super();
     this.loadImage("./assets/img/6_salsa_bottle/salsa_bottle.png");
-    this.x = 480 + Math.random() * 3500;
+    this.x = 480 + Math.random() * 16000;
     this.y = 500 - Math.random() * 250;
     this.width = 180;
     this.height = 180;

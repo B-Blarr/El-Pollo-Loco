@@ -7,7 +7,7 @@ class Endboss extends MoveableObject {
   alarmSoundPlayed = false;
   deadSoundPlayed = false;
   hitSoundPlayed = false;
-  moveDirection = 'left'; // 'left', 'right', 'stand'
+  moveDirection = 'stand'; 
   speed = 0;
 
   offset = {
@@ -19,7 +19,7 @@ class Endboss extends MoveableObject {
 
   constructor() {
     super().loadImage("./assets/img/4_enemie_boss_chicken/2_alert/G5.png");
-    this.x = 12300;
+    this.x = 17300;
     this.loadImages(ImageHub.endboss.walking);
     this.loadImages(ImageHub.endboss.alert);
     this.loadImages(ImageHub.endboss.dead);
@@ -91,7 +91,7 @@ startMovementInterval() {
         if (this.moveDirection === 'left') {
             this.moveLeft();
             this.otherDirection = false;
-        } else if (this.moveDirection === 'right' && this.x < 12400) {
+        } else if (this.moveDirection === 'right' && this.x < 17900) {
             this.moveRight();
             this.otherDirection = true; 
         } 
@@ -216,41 +216,13 @@ checkWinCondition() {
   }
 }
 
-// handleHurtAnimation() {
-//   this.playAnimation(ImageHub.endboss.hurt);
-//   if (!this.hitSoundPlayed) {
-//     AudioHub.ENDBOSS_HIT.play();
-//     this.hitSoundPlayed = true;
-//   }
-// }
-
-// handleHurtAnimation() {
-//     this.playAnimation(ImageHub.endboss.hurt);
-//     this.moveDirection = 'stand'; 
-//     if (!this.hitSoundPlayed) {
-//       AudioHub.ENDBOSS_HIT.play();
-//       this.hitSoundPlayed = true;
-//     }
-//   }
-
-// handleHurtAnimation() {
-//     this.playAnimation(ImageHub.endboss.hurt);
-//     this.moveDirection = 'left'; 
-//     this.speed = 15; 
-//     this.isAttacking = true;
-//     if (!this.hitSoundPlayed) {
-//       AudioHub.ENDBOSS_HIT.play();
-//       this.hitSoundPlayed = true;
-//     }
-//   }
-
 handleHurtAnimation() {
     this.playAnimation(ImageHub.endboss.hurt);
     if (!this.hitSoundPlayed) {
       AudioHub.ENDBOSS_HIT.play();
       this.hitSoundPlayed = true;
       let flightChance = Math.random() < 0.5;
-      let canFleeRight = this.x < 12400; 
+      let canFleeRight = this.x < 17900; 
       if (flightChance && canFleeRight) {
          this.moveDirection = 'right';
          this.speed = 10; 
@@ -265,13 +237,17 @@ handleHurtAnimation() {
 
 handleActiveAnimation() {
     this.hitSoundPlayed = false; 
+    if (this.world && !this.world.hadFirstContact) {
+        this.playAnimation(ImageHub.endboss.alert);
+        return;
+    }
     if (this.moveDirection === 'stand') {
         this.playAnimation(ImageHub.endboss.alert);
     } 
     else {
         this.playAnimation(ImageHub.endboss.walking);
     }
-}
+  }
 
 canStartAttack() {
   return this.world && this.world.hadFirstContact && !this.isDead();

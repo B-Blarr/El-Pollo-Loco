@@ -12,7 +12,7 @@ offset = {
 constructor(){
 super().loadImage("./assets/img/8_coin/coin_1.png");
 this.loadImages(ImageHub.icon.coin);
-    this.x = 480 + Math.random() * 3500;
+    this.x = 480 + Math.random() * 16000;
     this.y = 500 - Math.random() * 250;
     this.width = 180;
     this.height = 180;

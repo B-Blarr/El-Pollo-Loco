@@ -67,26 +67,6 @@ function exitFullscreen() {
   }
 }
 
-// function startGame() {
-//   init();
-//   let startRef = document.getElementById("start-screen");
-//   startRef.classList.add("fade-out");
-//   startRef.classList.remove("fade-in");
-//   AudioHub.GAME_START.play();
-//   AudioHub.BACKGROUND_LEVEL.play();
-
-//   if (AudioHub.muteSound) {
-//     muteButton.src = "assets/icons/mute.png";
-//   } else {
-//     AudioHub.changeMusicVolume();
-//     AudioHub.changeSfxVolume();
-//     muteButton.src = "assets/icons/unmute.png";
-//   }
-//   gameStarted = true;
-//   refWinningScreen.classList.add("d-none");
-//   refGameOverScreen.classList.add("d-none");
-// }
-
 function startGame() {
   init();
   updateGameScreens();

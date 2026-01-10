@@ -5,7 +5,7 @@ backgroundObjects;
 bottlesInAir;
 bottlesOnGround;
 coins;
-level_end_x = 11580;
+level_end_x = 18000;
 
     constructor(enemies, clouds, backgroundObjects, bottlesInAir, bottleOnGround, coins){
         this.enemies = enemies;

@@ -22,12 +22,12 @@ function createBackgrounds(order) {
 
 function initLevel() {
 level1 = new Level(
-  [...Array.from({ length: 9 }, () => new Chicken()), new Endboss(), ...Array.from({ length: 12 }, () => new BabyChicken())],
-  [new Cloud(), new Cloud(), new Cloud()],
+  [...Array.from({ length: 25 }, () => new Chicken()), new Endboss(), ...Array.from({ length: 30 }, () => new BabyChicken())],
+  [new Cloud(), new Cloud(), new Cloud(), new Cloud(), new Cloud()],
 
-  createBackgrounds([0, 1, 0, 1, 0, 1, 0, 1, 0]),
-  Array.from({ length: 3 }, () => new BottleInAir()),
-  Array.from({ length: 9 }, () => new BottleOnGround()),
-  Array.from({ length: 10 }, () => new Coin())
+  createBackgrounds([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]),
+  Array.from({ length: 0 }, () => new BottleInAir()),
+  Array.from({ length: 15 }, () => new BottleOnGround()),
+  Array.from({ length: 20 }, () => new Coin())
 );
 }

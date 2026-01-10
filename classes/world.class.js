@@ -118,19 +118,6 @@ class World {
     });
   }
 
-  // checkCollectableBottleCollisions() {
-  //   this.level.bottlesInAir = this.level.bottlesInAir.filter((bottle) => {
-  //     if (this.character.isColliding(bottle) || this.character.isColliding(bottle)) {
-  //       this.character.collectedBottles += 20;
-  //       this.bottleBar.setPercentage(this.character.collectedBottles);
-  //       Evtl. Flaschen-Sound abspielen
-  //       return false;
-  //     } else {
-  //       return true;
-  //     }
-  //   });
-  // }
-
   checkCoinCollisions() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
@@ -171,7 +158,7 @@ class World {
   }
 
   drawEndbossHealthBar() {
-    if (this.character.x > 11350 || this.hadFirstContact) {
+    if (this.character.x > 16300 || this.hadFirstContact) {
       this.hadFirstContact = true;
       this.addToMap(this.healthBarEndboss);
     }

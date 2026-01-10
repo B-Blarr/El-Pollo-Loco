@@ -33,39 +33,13 @@ class Endboss extends MoveableObject {
 animate() {
   this.startMovementInterval();
   this.startAnimationInterval();
-  // this.startAttackLogicInterval();
   this.startBattleLogic();
 }
 
-// startMovementInterval() {
-//   IntervalHub.startInterval(() => {
-//     if (this.canMove()) {
-//       this.playAlarmOnce();
-//       this.moveLeft(this.speed);
-//       this.getRealFrame();
-//     }
-//   }, 1000 / 60);
-// }
-
-// startAnimationInterval() {
-//   IntervalHub.startInterval(() => {
-//     if (this.isDead()) {
-//       this.handleDeadAnimation();
-//     } else if (this.isHurt()) {
-//       this.handleHurtAnimation();
-//     } else {
-//       this.handleActiveAnimation();
-//     }
-//   }, 200);
-// }
-
 startAnimationInterval() {
-    // Wir nutzen eine Variable für die Geschwindigkeit
     let animationSpeed = 200; 
 
     IntervalHub.startInterval(() => {
-        // Wenn wütend, spielen wir die Bilder schneller ab (z.B. 100ms statt 200ms)
-        // Das lässt ihn hektischer wirken.
         if (this.hitPoints < 200) {
             animationSpeed = 100;
         } else {
@@ -80,8 +54,6 @@ startAnimationInterval() {
             this.handleActiveAnimation();
         }
     }, animationSpeed); // Achtung: IntervalHub unterstützt variable Zeiten oft nicht direkt im laufenden Interval. 
-    // Falls deine IntervalHub-Klasse feste Zeiten braucht, lass diesen Schritt weg 
-    // und bleib bei der Logik in Schritt 1. Das reicht für den Anfang!
 }
 
 startMovementInterval() {
@@ -100,36 +72,14 @@ startMovementInterval() {
     }, 1000 / 60);
   }
 
-  // startBattleLogic() {
-  //   IntervalHub.startInterval(() => {
-  //       if (this.canStartAttack()) {
-  //           let action = Math.random(); 
-  //           if (action < 0.5) {
-
-  //               this.moveDirection = 'left';
-  //               this.speed = 8 + Math.random() * 5; 
-  //               this.isAttacking = true;
-  //           } 
-  //           else if (action < 0.8) {
-  //               this.moveDirection = 'right';
-  //               this.speed = 4; 
-  //               this.isAttacking = false;
-  //           } 
-  //           else {
-  //               this.moveDirection = 'stand';
-  //               this.speed = 0;
-  //               this.isAttacking = false;
-  //           }
-  //       }
-  //   }, 1500); 
-  // }
-
   startBattleLogic() {
     IntervalHub.startInterval(() => {
         if (this.canStartAttack()) {
-            // 1. Prüfen: Ist der Boss wütend? (Unter 50% Leben)
             let isEnraged = this.hitPoints < 200; 
             let action = Math.random(); 
+            if (Math.random() < 0.6) {
+                this.throwMinion(); 
+            }
             if (isEnraged) {
                 if (action < 0.7) {
                     this.moveDirection = 'left';
@@ -159,7 +109,7 @@ startMovementInterval() {
                 }
             }
         }
-    }, 1500); 
+    }, 1000); 
   }
 
 startAttackLogicInterval() {
@@ -174,7 +124,6 @@ canMove() {
   return this.world && 
          this.world.hadFirstContact && 
          !this.isDead();
-        //  !this.isAttacking;
 }
 
 playAlarmOnce() {
@@ -263,7 +212,7 @@ triggerAttack() {
 finishAttack() {
   this.isAttacking = false;
   this.currentImage = 0;
-  this.speed += 5; // Boss wird schneller nach jedem Angriff
+  this.speed += 5; 
 }
 
   draw(ctx) {
@@ -272,6 +221,19 @@ finishAttack() {
     }
     super.draw(ctx);
     ctx.filter = 'none';
+  }
+
+  throwMinion() {
+    let minion = new BabyChicken();
+    minion.x = this.x - 50; 
+    minion.y = 350 + Math.random() * 450; 
+    minion.speed = 10 + Math.random() * 5;
+    minion.applyGravity = function() {
+    };
+
+    if (this.world && this.world.level) {
+        this.world.level.enemies.push(minion);
+    }
   }
 
 }

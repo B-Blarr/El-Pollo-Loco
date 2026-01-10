@@ -56,7 +56,7 @@ class World {
       let actualTime = new Date().getTime();
       if (actualTime - this.lastThrowTime > 200 && this.character.collectedBottles >= 20) {
         // let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
-        this.character.collectedBottles -= 20;
+        this.character.collectedBottles -= 10;
         this.bottleBar.setPercentage(this.character.collectedBottles);
 
         let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
@@ -108,11 +108,14 @@ class World {
   checkCollisionsForList(list) {
     return list.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
-        // Treffer!
-        this.character.collectedBottles += 20;
-        this.bottleBar.setPercentage(this.character.collectedBottles);
-        AudioHub.playSound(AudioHub.BOTTLE_COLLECTED);
-        return false;
+        if (this.character.collectedBottles < 100) {
+            this.character.collectedBottles += 10;
+            this.bottleBar.setPercentage(this.character.collectedBottles);
+            AudioHub.playSound(AudioHub.BOTTLE_COLLECTED);
+            return false; 
+        } else {
+            return true; 
+        }
       }
       return true;
     });
@@ -121,7 +124,7 @@ class World {
   checkCoinCollisions() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
-        this.character.collectedCoins += 10;
+        this.character.collectedCoins += 5;
         this.coinBar.setPercentage(this.character.collectedCoins);
         AudioHub.playSound(AudioHub.COIN_COLLECTED);
         return false;

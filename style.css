@@ -686,3 +686,19 @@ input[type="range"] {
         right: 10px;
     }
 }
+
+@media only screen and (max-width: 920px) and (orientation: landscape) and (max-height: 400px) {
+    
+    .touch-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .touch-btn img {
+        width: 50%;
+    }
+
+    .btn-group-left, .btn-group-right {
+        gap: 10px; 
+    }
+}

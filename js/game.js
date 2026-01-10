@@ -162,7 +162,9 @@ function openStartscreen() {
   startRef.classList.remove("fade-out");
   refWinningScreen.classList.add("d-none");
   refGameOverScreen.classList.add("d-none");
+  AudioHub.BACKGROUND_STARTSCREEN.loop = true;
   AudioHub.BACKGROUND_STARTSCREEN.play();
+  gameStarted = false;
 }
 
 function toggleMute() {

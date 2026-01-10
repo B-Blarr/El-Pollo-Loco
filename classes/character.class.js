@@ -2,7 +2,7 @@ class Character extends MoveableObject {
   height = 520;
   width = 250;
   y = 326;
-  speed = 25;
+  speed = 15;
   world;
   isDying = false;
   lastDeadIndex = ImageHub.character.dead.length - 1;

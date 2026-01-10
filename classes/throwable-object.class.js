@@ -20,6 +20,7 @@ class ThrowableObject extends MoveableObject {
     this.loadImages(ImageHub.bottle.bottleRotation);
     this.loadImages(ImageHub.bottle.bottleSplash);
     this.animate();
+    // this.acceleration = 1.5;
     this.x = x;
     this.y = y + 130;
     this.width = 180;
@@ -35,11 +36,11 @@ class ThrowableObject extends MoveableObject {
       return;
     } else {
       if (this.otherDirection == false) {
-        this.speedY = 30;
+        this.speedY = 20;
         this.applyGravity();
         IntervalHub.startInterval(() => {
           if (this.hasHit) return;
-          this.x += 10;
+          this.x += 20;
         }, 25);
       }
     }
@@ -50,11 +51,11 @@ class ThrowableObject extends MoveableObject {
       return;
     } else {
       if (this.otherDirection == true) {
-        this.speedY = 30;
+        this.speedY = 20;
         this.applyGravity();
         IntervalHub.startInterval(() => {
           if (this.hasHit) return;
-          this.x -= 10;
+          this.x -= 20;
         }, 25);
       }
     }

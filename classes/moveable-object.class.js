@@ -93,7 +93,7 @@ if (!this.isColliding(moveableObject)) {
   }
 
   hit() {
-    this.hitPoints -= 5;
+    this.hitPoints -= 20;
     if (this.hitPoints < 0) {
       this.hitPoints = 0;
     } else {

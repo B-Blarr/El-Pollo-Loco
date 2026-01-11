@@ -192,7 +192,7 @@ checkThrowObjects() {
       this.flipImage(moveableObject);
     }
     moveableObject.draw(this.ctx);
-    moveableObject.drawFrame(this.ctx);
+    // moveableObject.drawFrame(this.ctx);
 
     if (moveableObject.otherDirection) {
       this.flipImageBack(moveableObject);

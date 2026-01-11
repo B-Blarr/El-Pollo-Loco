@@ -12,10 +12,10 @@ class Character extends MoveableObject {
   lastMovement = new Date().getTime();
 
   offset = {
-    top: 245,
-    right: 100,
+    top: 240,
+    right: 85,
     bottom: 30,
-    left: 90,
+    left: 60,
   };
 
   constructor() {

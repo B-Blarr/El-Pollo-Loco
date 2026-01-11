@@ -82,10 +82,10 @@
       </div>
 
       <!-- Options Screen -->
-
+<!-- 
       <div id="controls-overlay" class="info-overlay d-none" onclick="closeControls()">
         <img src="assets/img/5_background/control-explanation.png" alt="Steuerung Erklärung" />
-      </div>
+      </div> -->
       <div id="options-overlay" class="info-overlay d-none" onclick="closeOptions()">
         <div class="options-card" onclick="event.stopPropagation()">
           <h2>Einstellungen</h2>
@@ -108,7 +108,7 @@
 </div>
 
 <div class="option-row">
-  <span>Effekte</span>
+  <span>Soundeffekte</span>
   <input 
     type="range" 
     id="sfx-volume" 
@@ -118,7 +118,7 @@
 </div>
 
 <div class="option-row">
-    <span>Stumm</span>
+    <span>Lautstärke</span>
     <div class="icon-group">
         <button class="menu-icon-button" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png"> Aus</button>
         <button class="menu-icon-button" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png"> An</button>
@@ -138,15 +138,43 @@
         </div>
       </div>
 
-      <div id="impressum-overlay" class="info-overlay d-none" onclick="closeImpressum()">
+<div id="impressum-overlay" class="info-overlay d-none" onclick="closeImpressum()">
          <div class="options-card" onclick="event.stopPropagation()">
             <h2>Impressum</h2>
+            
             <div class="impressum-text">
+                
+                <h3>Angaben gemäß § 5 DDG</h3>
                 <p><strong>El Pollo Loco</strong></p>
                 <p>Entwickelt von: Benjamin Blarr</p>
-                <p>Lindenweg 2</p>
-                <p>38364 Schöningen</p>
+                <p>Lindenweg 2<br>38364 Schöningen</p>
+
+                <h3>Kontakt</h3>
                 <p>E-Mail: b.blarr@gmx.de</p> 
+
+                <h3>Haftungsausschluss (Disclaimer)</h3>
+                <p><strong>Haftung für Inhalte</strong><br>
+                Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+                
+                <p><strong>Urheberrecht</strong><br>
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.</p>
+
+                <h3>Datenschutz</h3>
+                <p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Es werden keine Tracking-Cookies verwendet oder Nutzerdaten gespeichert.</p>
+
+                <h3>Grafiken & Quellen</h3>
+                <p>
+                    <strong>Spiel-Assets (Charakter & Welt):</strong><br>
+                    Bereitgestellt durch Developer Akademie.
+                </p>
+                <p>
+                    <strong>Icons & UI:</strong><br>
+                    Flaticon.com & Pixabay.
+                </p>
+                <p>
+                    <strong>KI-Generierung:</strong><br>
+                    Zusätzliche Grafiken, UI-Elemente und Soundeffekte wurden mittels KI selbst erstellt.
+                </p>
             </div>
             <button class="close-button" onclick="closeImpressum()">Zurück</button>
          </div>
@@ -177,6 +205,7 @@
         </div>
     </div>
         <div class="ingame-mute">
+          <img src="assets/icons/home.png" class="hud-button" onclick="returnToHome()" alt="Home">
          <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()">
          <img id="pause-btn" class="hud-button" src="assets/icons/pause.png" onclick="togglePause()">
     </div>

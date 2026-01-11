@@ -164,11 +164,11 @@ function togglePause() {
   IntervalHub.isGamePaused = !IntervalHub.isGamePaused;
   let pauseBtn = document.getElementById('pause-btn');
   if (IntervalHub.isGamePaused) {
-    pauseBtn.src = 'assets/icons/play.png'; // Icon zu "Play" ändern
+    pauseBtn.src = 'assets/icons/play.png'; 
     AudioHub.BACKGROUND_LEVEL.pause();
     AudioHub.stopAll(); 
   } else {
-    pauseBtn.src = 'assets/icons/pause.png'; // Icon zu "Pause" ändern
+    pauseBtn.src = 'assets/icons/pause.png'; 
     if (!AudioHub.muteSound) {
       AudioHub.BACKGROUND_LEVEL.play();
     }
@@ -196,6 +196,10 @@ function startTouchControls() {
     addTouchLogic('btnThrow', 'F');
 }
 
-
+function returnToHome() {
+    IntervalHub.stopAllIntervals(); 
+    AudioHub.stopAll();
+    openStartscreen(); 
+}
 
 

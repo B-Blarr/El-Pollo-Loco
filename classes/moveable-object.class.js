@@ -87,7 +87,7 @@ if (!this.isColliding(moveableObject)) {
         return false;
     }
     let characterFeet = this.rY + this.rHeight;
-    let enemyHead = moveableObject.rY + (moveableObject.rHeight * 0.25);
+    let enemyHead = moveableObject.rY + (moveableObject.rHeight * 0.5);
     let fallingTolerance = -this.speedY;
     return (characterFeet < enemyHead + fallingTolerance);
   }

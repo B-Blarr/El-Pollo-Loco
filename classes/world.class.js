@@ -51,14 +51,16 @@ class World {
     }, 1000 / 60);
   }
 
-  checkThrowObjects() {
+checkThrowObjects() {
     if (this.keyboard.F) {
       let actualTime = new Date().getTime();
-      if (actualTime - this.lastThrowTime > 200 && this.character.collectedBottles >= 20) {
-        // let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
+      let timePassed = actualTime - this.lastThrowTime; 
+      
+      let hasCooldownPassed = timePassed > 1200; 
+      let hasEnoughBottles = this.character.collectedBottles >= 10;
+      if (hasCooldownPassed && hasEnoughBottles) {
         this.character.collectedBottles -= 10;
         this.bottleBar.setPercentage(this.character.collectedBottles);
-
         let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
         this.throwableObjects.push(bottle);
         this.lastThrowTime = actualTime;
@@ -66,12 +68,15 @@ class World {
       }
     }
   }
+
   checkCollisions() {
+    let hasJumped = false;
     this.level.enemies.forEach((enemy) => {
       if (this.character.isJumpingOn(enemy)) {
         enemy.hit();
         this.character.jump();
-      } else if (this.character.isColliding(enemy) && !this.character.isHurt() && !enemy.isDead()) {
+        hasJumped = true;
+      } else if (!hasJumped && this.character.isColliding(enemy) && !this.character.isHurt() && !enemy.isDead()) {
         this.character.hit();
         this.healthBar.setPercentage(this.character.hitPoints);
       }
@@ -187,6 +192,7 @@ class World {
       this.flipImage(moveableObject);
     }
     moveableObject.draw(this.ctx);
+    moveableObject.drawFrame(this.ctx);
 
     if (moveableObject.otherDirection) {
       this.flipImageBack(moveableObject);

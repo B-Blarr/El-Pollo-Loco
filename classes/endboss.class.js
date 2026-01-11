@@ -53,7 +53,7 @@ startAnimationInterval() {
         } else {
             this.handleActiveAnimation();
         }
-    }, animationSpeed); // Achtung: IntervalHub unterstützt variable Zeiten oft nicht direkt im laufenden Interval. 
+    }, animationSpeed);
 }
 
 startMovementInterval() {
@@ -72,44 +72,94 @@ startMovementInterval() {
     }, 1000 / 60);
   }
 
-  startBattleLogic() {
+  // startBattleLogic() {
+  //   IntervalHub.startInterval(() => {
+  //       if (this.canStartAttack()) {
+  //           let isEnraged = this.hitPoints < 200; 
+  //           let action = Math.random(); 
+  //           if (Math.random() < 0.6) {
+  //               this.throwMinion(); 
+  //           }
+  //           if (isEnraged) {
+  //               if (action < 0.7) {
+  //                   this.moveDirection = 'left';
+  //                   this.speed = 10 + Math.random() * 5; 
+  //                   this.isAttacking = true;
+  //               } else {
+  //                   this.moveDirection = 'right';
+  //                   this.speed = 9; 
+  //                   this.isAttacking = false;
+  //               }
+  //           } 
+  //           else {
+  //               if (action < 0.5) {
+  //                   this.moveDirection = 'left';
+  //                   this.speed = 8 + Math.random() * 5; 
+  //                   this.isAttacking = true;
+  //               } 
+  //               else if (action < 0.8) {
+  //                   this.moveDirection = 'right';
+  //                   this.speed = 4; 
+  //                   this.isAttacking = false;
+  //               } 
+  //               else {
+  //                   this.moveDirection = 'stand';
+  //                   this.speed = 0;
+  //                   this.isAttacking = false;
+  //               }
+  //           }
+  //       }
+  //   }, 1000); 
+  // }
+
+startBattleLogic() {
     IntervalHub.startInterval(() => {
-        if (this.canStartAttack()) {
-            let isEnraged = this.hitPoints < 200; 
-            let action = Math.random(); 
-            if (Math.random() < 0.6) {
-                this.throwMinion(); 
-            }
-            if (isEnraged) {
-                if (action < 0.7) {
-                    this.moveDirection = 'left';
-                    this.speed = 10 + Math.random() * 5; 
-                    this.isAttacking = true;
-                } else {
-                    this.moveDirection = 'right';
-                    this.speed = 9; 
-                    this.isAttacking = false;
-                }
-            } 
-            else {
-                if (action < 0.5) {
-                    this.moveDirection = 'left';
-                    this.speed = 8 + Math.random() * 5; 
-                    this.isAttacking = true;
-                } 
-                else if (action < 0.8) {
-                    this.moveDirection = 'right';
-                    this.speed = 4; 
-                    this.isAttacking = false;
-                } 
-                else {
-                    this.moveDirection = 'stand';
-                    this.speed = 0;
-                    this.isAttacking = false;
-                }
-            }
-        }
-    }, 1000); 
+      if (this.canStartAttack()) {
+        this.checkThrowAttack();
+        this.decideNextMove();
+      }
+    }, 1000);
+  }
+
+  checkThrowAttack() {
+    if (Math.random() < 0.6) {
+      this.throwMinion();
+    }
+  }
+
+  decideNextMove() {
+    let isEnraged = this.hitPoints < 200;
+    if (isEnraged) {
+      this.makeAngryMove();
+    } else {
+      this.makeCalmMove();
+    }
+  }
+
+  makeAngryMove() {
+    let action = Math.random();
+    if (action < 0.7) {
+      this.setMovement('left', 10 + Math.random() * 5, true);
+    } else {
+      this.setMovement('right', 9, false);
+    }
+  }
+
+  makeCalmMove() {
+    let action = Math.random();
+    if (action < 0.5) {
+      this.setMovement('left', 8 + Math.random() * 5, true);
+    } else if (action < 0.8) {
+      this.setMovement('right', 4, false);
+    } else {
+      this.setMovement('stand', 0, false);
+    }
+  }
+
+  setMovement(direction, speed, isAttacking) {
+    this.moveDirection = direction;
+    this.speed = speed;
+    this.isAttacking = isAttacking;
   }
 
 startAttackLogicInterval() {

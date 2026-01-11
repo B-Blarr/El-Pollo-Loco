@@ -9,6 +9,7 @@ class Endboss extends MoveableObject {
   hitSoundPlayed = false;
   moveDirection = 'stand'; 
   speed = 0;
+  enrageThreshold = 60;
 
   offset = {
     top: 150,
@@ -26,7 +27,7 @@ class Endboss extends MoveableObject {
     this.loadImages(ImageHub.endboss.hurt);
     this.loadImages(ImageHub.endboss.attacking);
     this.speed = 5;
-    this.hitPoints = 400;
+    this.hitPoints = 100;
     this.animate();
   }
 
@@ -40,7 +41,7 @@ startAnimationInterval() {
     let animationSpeed = 200; 
 
     IntervalHub.startInterval(() => {
-        if (this.hitPoints < 200) {
+        if (this.hitPoints < this.enrageThreshold) {
             animationSpeed = 100;
         } else {
             animationSpeed = 200;
@@ -72,46 +73,6 @@ startMovementInterval() {
     }, 1000 / 60);
   }
 
-  // startBattleLogic() {
-  //   IntervalHub.startInterval(() => {
-  //       if (this.canStartAttack()) {
-  //           let isEnraged = this.hitPoints < 200; 
-  //           let action = Math.random(); 
-  //           if (Math.random() < 0.6) {
-  //               this.throwMinion(); 
-  //           }
-  //           if (isEnraged) {
-  //               if (action < 0.7) {
-  //                   this.moveDirection = 'left';
-  //                   this.speed = 10 + Math.random() * 5; 
-  //                   this.isAttacking = true;
-  //               } else {
-  //                   this.moveDirection = 'right';
-  //                   this.speed = 9; 
-  //                   this.isAttacking = false;
-  //               }
-  //           } 
-  //           else {
-  //               if (action < 0.5) {
-  //                   this.moveDirection = 'left';
-  //                   this.speed = 8 + Math.random() * 5; 
-  //                   this.isAttacking = true;
-  //               } 
-  //               else if (action < 0.8) {
-  //                   this.moveDirection = 'right';
-  //                   this.speed = 4; 
-  //                   this.isAttacking = false;
-  //               } 
-  //               else {
-  //                   this.moveDirection = 'stand';
-  //                   this.speed = 0;
-  //                   this.isAttacking = false;
-  //               }
-  //           }
-  //       }
-  //   }, 1000); 
-  // }
-
 startBattleLogic() {
     IntervalHub.startInterval(() => {
       if (this.canStartAttack()) {
@@ -128,7 +89,7 @@ startBattleLogic() {
   }
 
   decideNextMove() {
-    let isEnraged = this.hitPoints < 200;
+    let isEnraged = this.hitPoints < this.enrageThreshold;
     if (isEnraged) {
       this.makeAngryMove();
     } else {
@@ -266,7 +227,7 @@ finishAttack() {
 }
 
   draw(ctx) {
-    if (this.hitPoints < 200) {
+    if (this.hitPoints < this.enrageThreshold) {
         ctx.filter = 'sepia(1) hue-rotate(-50deg) saturate(5)'; 
     }
     super.draw(ctx);

@@ -83,25 +83,25 @@ checkThrowObjects() {
     });
   }
 
-  checkThrownBottleCollisions() {
+checkThrownBottleCollisions() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
-        if (bottle.isColliding(enemy)) {
+        if (bottle.isColliding(enemy) && !bottle.hasHit) {
           enemy.hit();
-
           if (enemy instanceof Endboss) {
-            this.healthBarEndboss.setPercentage(enemy.hitPoints / 4);
+            this.healthBarEndboss.setPercentage(enemy.hitPoints); 
           }
           if (!bottle.hasHit) {
             AudioHub.playSound(AudioHub.BOTTLE_BREAK);
           }
           bottle.bottleExplodes();
         }
-        if (bottle.hitGround() && !bottle.hasHit) {
+      });
+      if (bottle.hitGround() && !bottle.hasHit) {
           AudioHub.playSound(AudioHub.BOTTLE_BREAK);
           bottle.bottleExplodes();
-        }
-      });
+      }
+
     });
   }
 
@@ -129,10 +129,19 @@ checkThrowObjects() {
   checkCoinCollisions() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
-        this.character.collectedCoins += 5;
+        this.character.collectedCoins += 20; 
         this.coinBar.setPercentage(this.character.collectedCoins);
         AudioHub.playSound(AudioHub.COIN_COLLECTED);
-        return false;
+        if (this.character.collectedCoins >= 100) {
+            this.character.collectedCoins = 0;
+            this.coinBar.setPercentage(0);
+            this.character.hitPoints += 20;
+            if (this.character.hitPoints > 100) {
+                this.character.hitPoints = 100;
+            }
+            this.healthBar.setPercentage(this.character.hitPoints);
+        }
+        return false; 
       } else {
         return true;
       }

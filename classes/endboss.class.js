@@ -35,6 +35,7 @@ animate() {
   this.startMovementInterval();
   this.startAnimationInterval();
   this.startBattleLogic();
+  
 }
 
 startAnimationInterval() {
@@ -85,6 +86,7 @@ startBattleLogic() {
   checkThrowAttack() {
     if (Math.random() < 0.6) {
       this.throwMinion();
+      AudioHub.ENDBOSS_SHOOT.play();
     }
   }
 
@@ -142,6 +144,8 @@ playAlarmOnce() {
     AudioHub.BACKGROUND_LEVEL.volume = 0;
     AudioHub.ENDBOSS_START.volume = 1;
     AudioHub.ENDBOSS_START.play();
+    AudioHub.BACKGROUND_LEVEL.pause();
+    AudioHub.BACKGROUND_ENDBOSS.play();
     this.alarmSoundPlayed = true;
     setTimeout(() => {
         AudioHub.BACKGROUND_LEVEL.volume = 0.2; 
@@ -161,6 +165,7 @@ handleDeadAnimation() {
 
 playDeadSoundOnce() {
   if (!this.deadSoundPlayed) {
+    AudioHub.BACKGROUND_ENDBOSS.pause();
     AudioHub.playSound(AudioHub.ENDBOSS_DEAD);
     this.deadSoundPlayed = true;
   }
@@ -237,7 +242,7 @@ finishAttack() {
   throwMinion() {
     let minion = new BabyChicken();
     minion.x = this.x - 50; 
-    minion.y = 350 + Math.random() * 450; 
+    minion.y = 500 + Math.random() * 300; 
     minion.speed = 10 + Math.random() * 5;
     minion.applyGravity = function() {
     };

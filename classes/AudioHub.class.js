@@ -18,6 +18,8 @@ class AudioHub {
   static BOTTLE_THROW = new Audio("audio/sounds/throwable/bottleThrow.mp3");
   static WINNING = new Audio("audio/sounds/game/Winning.mp3");
   static GAME_OVER = new Audio("audio/sounds/game/gameOver.mp3");
+  static ENDBOSS_SHOOT = new Audio("audio/sounds/endboss/babyChickenThrow.mp3");
+  static BACKGROUND_ENDBOSS = new Audio("audio/sounds/game/endboss_music.mp3");
 
   static muteSound = false;
 
@@ -41,6 +43,8 @@ class AudioHub {
     AudioHub.BOTTLE_THROW,
     AudioHub.WINNING,
     AudioHub.GAME_OVER,
+    AudioHub.ENDBOSS_SHOOT,
+    AudioHub.BACKGROUND_ENDBOSS,
   ];
 
   static musicSounds = [
@@ -48,7 +52,8 @@ class AudioHub {
     AudioHub.BACKGROUND_STARTSCREEN,
     AudioHub.WINNING,
     AudioHub.GAME_OVER,
-    AudioHub.GAME_START
+    AudioHub.GAME_START,
+    AudioHub.BACKGROUND_ENDBOSS,
   ];
 
   static sfxSounds = [
@@ -56,7 +61,7 @@ class AudioHub {
     AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP, AudioHub.BOTTLE_COLLECTED,
     AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD,
     AudioHub.ENDBOSS_START, AudioHub.ENDBOSS_DEAD, AudioHub.ENDBOSS_HIT,
-    AudioHub.BOTTLE_BREAK, AudioHub.BOTTLE_THROW
+    AudioHub.BOTTLE_BREAK, AudioHub.BOTTLE_THROW, AudioHub.ENDBOSS_SHOOT
   ];
 
   static changeMusicVolume() {

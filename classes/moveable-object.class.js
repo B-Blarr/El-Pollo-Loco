@@ -63,7 +63,7 @@ class MoveableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 20;
+    this.speedY = 22;
   }
 
   getRealFrame() {
@@ -83,7 +83,7 @@ class MoveableObject extends DrawableObject {
   }
 
   isJumpingOn(moveableObject){
-if (!this.isColliding(moveableObject)) {
+if (!this.isColliding(moveableObject) || moveableObject instanceof Endboss) {
         return false;
     }
     let characterFeet = this.rY + this.rHeight;

@@ -202,4 +202,8 @@ function returnToHome() {
     openStartscreen(); 
 }
 
-
+function toggleTouchControls() {
+    let mobileButtons = document.getElementById('mobile-buttons');
+    mobileButtons.classList.toggle('d-none');
+    document.activeElement.blur(); 
+}

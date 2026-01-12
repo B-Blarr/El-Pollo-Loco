@@ -35,7 +35,7 @@
     <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
   </head>
   <body>
-    <div id="rotate-device" class="d-none">
+    <div id="rotate-device">
     <div class="phone"></div>
     <span>Bitte drehe dein Gerät ins Querformat</span>
 </div>
@@ -60,7 +60,7 @@
           <button onclick="openStartscreen()"><img class="overlay-button-images" src="./assets/icons/start-menu-button.png" alt="startscreen"></button>
           <button onclick="startGame()"><img class="overlay-button-images" src="./assets/icons/restart-button.png" alt="restart"></button>
           <!-- <button class="d-none">Nächstes Level</button>  -->
-          <button><img class="overlay-button-images" src="./assets/icons/next-level-button.png" alt="next-level"></button> 
+          <!-- <button><img class="overlay-button-images" src="./assets/icons/next-level-button.png" alt="next-level"></button>  -->
         </div>
         <img src="./assets/img/You won, you lost/You Win A.png" alt="winning screen" />
       </div>
@@ -70,8 +70,6 @@
         <div class="end-buttons">
           <button onclick="openStartscreen()"><img src="./assets/icons/start-menu-button.png" alt="startscreen"></button>
           <button onclick="startGame()"><img src="./assets/icons/restart-button.png" alt="restart"></button>
-          <!-- <button class="d-none">Nächstes Level</button>  -->
-          <!-- <button><img src="./assets/icons/next-level-button.png" alt="next-level"></button>  -->
         </div>
         <img src="assets/img/9_intro_outro_screens/game_over/game over!.png" alt="game-over" />
       </div>
@@ -82,21 +80,9 @@
       </div>
 
       <!-- Options Screen -->
-<!-- 
-      <div id="controls-overlay" class="info-overlay d-none" onclick="closeControls()">
-        <img src="assets/img/5_background/control-explanation.png" alt="Steuerung Erklärung" />
-      </div> -->
       <div id="options-overlay" class="info-overlay d-none" onclick="closeOptions()">
         <div class="options-card" onclick="event.stopPropagation()">
           <h2>Einstellungen</h2>
-          <!-- <div class="option-row">
-            <span>Sound</span>
-            <div class="icon-group">
-                <button class="menu-icon-button" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png" alt=""> Aus</button>
-                <button class="menu-icon-button" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png" alt=""> An</button>
-            </div>
-            <input type="range" oninput="AudioHub.objSetVolume(AudioHub.allSounds)" id="volume-slider-menu" min="0" max="1" step="0.01" value="0.2" />
-          </div> -->
           <div class="option-row">
   <span>Musik</span>
   <input 
@@ -164,16 +150,16 @@
 
                 <h3>Grafiken & Quellen</h3>
                 <p>
-                    <strong>Spiel-Assets (Charakter & Welt):</strong><br>
+                    <strong>Spiel-Assets (Charakter, Gegner, Welt & ein paar Soundeffekte):</strong><br>
                     Bereitgestellt durch Developer Akademie.
                 </p>
                 <p>
                     <strong>Icons & UI:</strong><br>
-                    Flaticon.com & Pixabay.
+                    Flaticon.com & Pixabay.com.
                 </p>
                 <p>
                     <strong>KI-Generierung:</strong><br>
-                    Zusätzliche Grafiken, UI-Elemente und Soundeffekte wurden mittels KI selbst erstellt.
+                    Buttons auf der Startseite wurden mit Hilfe von ChatGPT erstellt. Sämtliche Musik und der Großteil der Soundeffekte wurden mit elevenlabs.io erstellt.
                 </p>
             </div>
             <button class="close-button" onclick="closeImpressum()">Zurück</button>
@@ -206,6 +192,8 @@
     </div>
         <div class="ingame-mute">
           <img src="assets/icons/home.png" class="hud-button" onclick="returnToHome()" alt="Home">
+          <img src="assets/icons/touch-toggle.png" class="hud-button" onclick="toggleTouchControls()" alt="Toggle_Touch_Buttons">
+
          <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()">
          <img id="pause-btn" class="hud-button" src="assets/icons/pause.png" onclick="togglePause()">
     </div>

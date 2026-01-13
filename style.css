@@ -134,6 +134,7 @@ body {
   width: 100%;
   height: 100%;
   background-size: cover;
+  transform: scale(1.2);
   background-position: center;
   filter: blur(15px) brightness(0.8);
   z-index: -1;
@@ -227,10 +228,10 @@ canvas {
 
 .canvas-section {
   position: relative;
-  width: auto; 
+  width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 180px); 
-  aspect-ratio: 1440 / 960; 
+  max-height: calc(100vh - 180px);
+  aspect-ratio: 1440 / 960;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -308,12 +309,12 @@ canvas {
 
 .options-card h2 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #ffd700;                 
-  text-shadow: 3px 3px 0px #000;  
-  text-transform: uppercase;      
-  font-weight: 900;               
-  letter-spacing: 3px;            
-  font-size: 48px;             
+  color: #ffd700;
+  text-shadow: 3px 3px 0px #000;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: 48px;
   margin-top: 0;
   border-bottom: 3px dashed #5c3a21;
   padding-bottom: 20px;
@@ -331,8 +332,8 @@ canvas {
 .option-row span {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 32px; 
-  color: #ffd700; 
+  font-size: 32px;
+  color: #ffd700;
   text-shadow: 2px 2px 0px #000;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -364,9 +365,9 @@ input[type="range"] {
   cursor: pointer;
   transition: all 0.1s ease;
   letter-spacing: 2px;
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 24px;
 }
 
@@ -377,18 +378,18 @@ input[type="range"] {
 }
 
 .menu-icon-button {
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 20px;
-    padding: 10px 25px; 
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 20px;
+  padding: 10px 25px;
 }
 
 .menu-icon-button img {
-    filter: invert(1); 
-    width: 25px; 
-    height: 25px;
-    object-fit: contain;
+  filter: invert(1);
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
 }
 
 .close-button {
@@ -398,40 +399,40 @@ input[type="range"] {
 }
 
 .impressum-text {
-max-height: 50vh; 
-  overflow-y: auto; 
+  max-height: 50vh;
+  overflow-y: auto;
   overflow-x: hidden;
-  font-family: Arial, Helvetica, sans-serif; 
-  line-height: 1.6; 
-  text-align: left; 
-  padding-right: 15px; 
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  text-align: left;
+  padding-right: 15px;
   margin-bottom: 20px;
-  border-top: 2px dashed #5c3a21; 
-  border-bottom: 2px dashed #5c3a21; 
+  border-top: 2px dashed #5c3a21;
+  border-bottom: 2px dashed #5c3a21;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .impressum-text p {
-    font-size: 18px; 
-    margin: 12px 0; 
-    color: #fff8dc;
-    text-shadow: none;
+  font-size: 18px;
+  margin: 12px 0;
+  color: #fff8dc;
+  text-shadow: none;
 }
 
 .impressum-text h3 {
-    font-family: Arial, Helvetica, sans-serif; 
-    
-    font-weight: bold; 
-    font-size: 22px; 
-    color: #ffd700;  
-    text-shadow: 2px 2px 0px #000; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    margin-top: 25px;
-    margin-bottom: 8px;
-    padding-bottom: 4px;
-    display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-weight: bold;
+  font-size: 22px;
+  color: #ffd700;
+  text-shadow: 2px 2px 0px #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 25px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  display: inline-block;
 }
 
 .impressum-text::-webkit-scrollbar {
@@ -439,72 +440,73 @@ max-height: 50vh;
 }
 
 .impressum-text::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2); 
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin: 10px 0;
 }
 
 .impressum-text::-webkit-scrollbar-thumb {
-  background-color: #d35400; 
+  background-color: #d35400;
   border-radius: 10px;
-  border: 2px solid #5c3a21; 
+  border: 2px solid #5c3a21;
 }
 
 .impressum-text::-webkit-scrollbar-thumb:hover {
-  background-color: #ffd700; 
+  background-color: #ffd700;
 }
 
 /* --- MOBILE CONTROLS --- */
 .mobile-buttons-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 60;
-    display: none;
-    justify-content: space-between;
-    align-items: flex-end; 
-    padding: 10px 20px 15px 25px; 
-    box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 60;
+  display: none;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 20px 15px 25px;
+  box-sizing: border-box;
 }
 
-.btn-group-left, .btn-group-right {
-    display: flex;
-    gap: 20px; 
-    pointer-events: all; 
+.btn-group-left,
+.btn-group-right {
+  display: flex;
+  gap: 20px;
+  pointer-events: all;
 }
 
 .touch-btn {
-    width: 64px;
-    height: 64px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    user-select: none; 
-    -webkit-user-select: none;
-    touch-action: manipulation; 
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-touch-callout: none; 
-    -webkit-tap-highlight-color: transparent;
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .touch-btn:active {
-    background-color: rgba(255, 255, 255, 0.6);
-    transform: scale(0.95);
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(0.95);
 }
 
 .touch-btn img {
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
-    filter: invert(1); 
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  filter: invert(1);
 }
 
 #rotate-device {
@@ -513,8 +515,8 @@ max-height: 50vh;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #5c3a21; 
-  z-index: 9999; 
+  background-color: #5c3a21;
+  z-index: 9999;
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -526,45 +528,42 @@ max-height: 50vh;
 }
 
 .phone {
-    height: 100px;
-    width: 50px;
-    border: 3px solid white;
-    border-radius: 10px; 
-    animation: rotate-phone-animation 2s infinite ease-in-out alternate; 
+  height: 100px;
+  width: 50px;
+  border: 3px solid white;
+  border-radius: 10px;
+  animation: rotate-phone-animation 2s infinite ease-in-out alternate;
 }
 
 .mute-button {
-    width: 25px; 
-    height: 25px; 
-    object-fit: contain; 
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
 }
 
 @keyframes rotate-phone-animation {
-    0% {
-        transform: rotate(0deg);
-    }
-    30% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(-90deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
 }
 
 .rotate-text {
-    font-size: 24px;
-    color: white;
-    font-family: "zabras", sans-serif; 
+  font-size: 24px;
+  color: white;
+  font-family: "zabras", sans-serif;
 }
-
-
 
 @media only screen and (max-width: 1440px) {
   canvas {
     width: 100%;
   }
 }
-
 
 /* @media only screen and (max-height: 960px) {
   canvas {
@@ -577,20 +576,20 @@ max-height: 50vh;
     display: none;
   }
 
-    .start-button {
-      width: 80px;
-    }
+  .start-button {
+    width: 80px;
+  }
 
-    .small-button {
-      width: 50px;
-    }
+  .small-button {
+    width: 50px;
+  }
 
-    .menu-container {
-      top: 10px;
-      right: 10px;
-      gap: 8px;
-    }
-  
+  .menu-container {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+  }
+
   .button-area {
     padding: 10px 20px;
     justify-content: space-between;
@@ -628,161 +627,157 @@ max-height: 50vh;
 }
 
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
- 
-    #rotate-device {
-        display: flex;
-    }
-    
- 
-    #fullscreen {
-        display: none;
-    }
+  #rotate-device {
+    display: flex;
+  }
+
+  #fullscreen {
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 1370px){
-    
-    h1 {
-        display: none;
-    }
+@media only screen and (max-width: 1370px) {
+  h1 {
+    display: none;
+  }
 
-    .canvas-section {
-        max-height: 100vh;
-        margin: 0 auto;
-    }
+  .canvas-section {
+    max-height: 100vh;
+    margin: 0 auto;
+  }
 
-    canvas {
-        height: 100%; 
-        max-height: 100vh;
-        border-width: 5px; 
-    }
+  canvas {
+    height: 100%;
+    max-height: 100vh;
+    border-width: 5px;
+  }
 
-    .ingame-mute {
-        top: 10px;
-        right: 10px;
-    }
+  .ingame-mute {
+    top: 10px;
+    right: 10px;
+  }
 
-    .info-overlay > img {
-        max-height: 95vh; 
-        width: auto;
-    }
+  .info-overlay > img {
+    max-height: 95vh;
+    width: auto;
+  }
 
-    .options-card {
-        width: 80%;
-        padding: 10px 20px; 
-        max-height: 90vh; 
-        overflow-y: auto; 
-    }
+  .options-card {
+    width: 80%;
+    padding: 10px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 
-    .options-card h2 {
-        font-size: 28px; 
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-    }
+  .options-card h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
 
-    .option-row {
-        font-size: 16px; 
-        margin: 5px 0;
-        gap: 5px;
-    }
+  .option-row {
+    font-size: 16px;
+    margin: 5px 0;
+    gap: 5px;
+  }
 
-    .menu-icon-button,
-    .close-button {
-        font-size: 16px;
-        padding: 5px 15px;
-        gap: 10px;
-    }
+  .menu-icon-button,
+  .close-button {
+    font-size: 16px;
+    padding: 5px 15px;
+    gap: 10px;
+  }
 
-    .close-button {
-        margin-top: 10px;
-    }
-    
-    .mute-button {
-        width: 16px;
-        height: 16px;
-    }
+  .close-button {
+    margin-top: 10px;
+  }
+
+  .mute-button {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media only screen and (max-width: 920px) and (orientation: landscape) and (max-height: 480px) {
-    
-    .options-card {
-        display: flex;
-        flex-direction: row; 
-        flex-wrap: wrap;     
-        justify-content: center; 
-        gap: 5px; 
-        width: 90%;
-        padding: 10px;
-        overflow-y: hidden;
-    }
+  .options-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    width: 90%;
+    padding: 10px;
+    overflow-y: hidden;
+  }
 
-    .options-card h2 {
-        width: 100%; 
-        font-size: 22px;
-        margin-bottom: 5px;
-        padding-bottom: 2px;
-        border-bottom: 1px dashed #5c3a21;
-    }
+  .options-card h2 {
+    width: 100%;
+    font-size: 22px;
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+    border-bottom: 1px dashed #5c3a21;
+  }
 
-    .option-row {
-        width: 48%; 
-        margin: 2px 0; 
-        font-size: 14px;
-        display: flex;
-        flex-direction: column; 
-        align-items: center;
-    }
+  .option-row {
+    width: 48%;
+    margin: 2px 0;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    input[type="range"] {
-        margin-top: 0;
-        height: 10px;
-    }
+  input[type="range"] {
+    margin-top: 0;
+    height: 10px;
+  }
 
-    .menu-icon-button {
-        padding: 4px 10px;
-        font-size: 14px;
-    }
+  .menu-icon-button {
+    padding: 4px 10px;
+    font-size: 14px;
+  }
 
-    .option-row:nth-last-of-type(2) {
-        display: none;
-    }
+  .option-row:nth-last-of-type(2) {
+    display: none;
+  }
 
-    .close-button {
-        width: 100%;
-        margin-top: 5px;
-        padding: 5px;
-        font-size: 16px;
-    }
+  .close-button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 16px;
+  }
 
-    .mobile-buttons-container {
-        display: flex;
-    }
+  .mobile-buttons-container {
+    display: flex;
+  }
 
-    .ingame-mute {
-        top: 10px;
-        right: 10px;
-    }
+  .ingame-mute {
+    top: 10px;
+    right: 10px;
+  }
 }
 
 @media only screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 480px) {
-    
-    .touch-btn {
-        width: 48px;
-        height: 48px;
-    }
+  .touch-btn {
+    width: 48px;
+    height: 48px;
+  }
 
-    .touch-btn img {
-        width: 60%;
-    }
+  .touch-btn img {
+    width: 60%;
+  }
 
-    .btn-group-left, .btn-group-right {
-        gap: 12px; 
-    }
+  .btn-group-left,
+  .btn-group-right {
+    gap: 12px;
+  }
 }
 
 @media (pointer: coarse) and (orientation: landscape) {
-    .mobile-buttons-container {
-        display: flex;
-    }
+  .mobile-buttons-container {
+    display: flex;
+  }
 }
 
 .d-none {

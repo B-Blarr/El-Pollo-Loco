@@ -177,23 +177,18 @@ class ImageHub {
       "./assets/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png",
       "./assets/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png",
       "./assets/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png",
-      "./assets/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png"
-    ]
-
+      "./assets/img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png",
+    ],
   };
 
   static icon = {
-    coin: ["./assets/img/8_coin/coin_1.png", 
-          "./assets/img/8_coin/coin_2.png"],
+    coin: ["./assets/img/8_coin/coin_1.png", "./assets/img/8_coin/coin_2.png"],
 
     health: ["./assets/img/7_statusbars/3_icons/icon_health.png"],
 
     bottle: ["./assets/img/6_salsa_bottle/salsa_bottle.png"],
 
-    bottleOnGround: [
-        "./assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", 
-        "./assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png"
-    ],
+    bottleOnGround: ["./assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", "./assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png"],
   };
 
   static bottle = {

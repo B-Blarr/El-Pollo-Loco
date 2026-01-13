@@ -1,15 +1,4 @@
 class CollectableObject extends MoveableObject {
-
-
-
-
-  // offset = {
-  //   top: 25,
-  //   right: 25,
-  //   bottom: 25,
-  //   left: 25,
-  // };
-
   constructor() {
     super();
     this.loadImage("./assets/img/6_salsa_bottle/salsa_bottle.png");
@@ -17,7 +6,6 @@ class CollectableObject extends MoveableObject {
     this.y = 500 - Math.random() * 350;
     this.width = 180;
     this.height = 180;
-this.getRealFrame();
-}
+    this.getRealFrame();
   }
-
+}

@@ -1,10 +1,4 @@
 class ThrowableObject extends MoveableObject {
-  // speedY = 30;
-  // speedX = 20;
-  // width = 180;
-  // height = 180;
-  // x;
-  // y;
   hasHit;
   ground = 700;
 
@@ -16,11 +10,11 @@ class ThrowableObject extends MoveableObject {
   };
 
   constructor(x, y, otherDirection) {
-    super().loadImage(ImageHub.icon.bottle);
+    super();
+    this.loadImage(ImageHub.icon.bottle);
     this.loadImages(ImageHub.bottle.bottleRotation);
     this.loadImages(ImageHub.bottle.bottleSplash);
     this.animate();
-    // this.acceleration = 1.5;
     this.x = x;
     this.y = y + 130;
     this.width = 180;
@@ -84,7 +78,6 @@ class ThrowableObject extends MoveableObject {
 
   hitGround() {
     if (this.y >= this.ground) {
-      //
       return true;
     } else {
       return false;

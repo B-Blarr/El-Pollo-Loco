@@ -10,8 +10,8 @@ class Cloud extends MoveableObject {
   }
 
   animate() {
-      IntervalHub.startInterval(() => {
+    IntervalHub.startInterval(() => {
       this.moveLeft(this.speed);
     }, 1000 / 60);
-}
+  }
 }

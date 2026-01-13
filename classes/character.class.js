@@ -19,7 +19,8 @@ class Character extends MoveableObject {
   };
 
   constructor() {
-    super().loadImage(ImageHub.character.idle[0]);
+    super();
+    this.loadImage(ImageHub.character.idle[0]);
     this.loadImages(ImageHub.character.idle);
     this.loadImages(ImageHub.character.walking);
     this.loadImages(ImageHub.character.jumping);
@@ -39,7 +40,9 @@ animate() {
 startMovementInterval() {
   IntervalHub.startInterval(() => {
     if (this.isDead()) return;
+    if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
     AudioHub.CHARACTER_RUN.pause();
+}
     this.checkMoveRight();
     this.checkMoveLeft();
     this.checkJump();
@@ -106,7 +109,7 @@ canMoveLeft() {
 canJump() {
   return !this.isAboveGround() && this.world.keyboard.SPACE;
 }
-// Animation
+
 handleDeathAnimation() {
   if (!this.isDying) {
     this.isDying = true;
@@ -155,5 +158,4 @@ handleIdleState() {
     this.playAnimation(ImageHub.character.idle);
   }
 }
-
 }

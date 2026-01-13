@@ -14,7 +14,6 @@ class BottleOnGround extends CollectableObject {
       this.loadImage("./assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png");
     }
 
-    // this.x = 480 + Math.random() * 9500;
     this.y = 700;
     this.getRealFrame();
   }

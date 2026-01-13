@@ -57,11 +57,21 @@ class AudioHub {
   ];
 
   static sfxSounds = [
-    AudioHub.CHARACTER_RUN, AudioHub.CHARACTER_HIT, AudioHub.CHARACTER_DEAD,
-    AudioHub.CHARACTER_JUMP, AudioHub.CHARACTER_SLEEP, AudioHub.BOTTLE_COLLECTED,
-    AudioHub.COIN_COLLECTED, AudioHub.BABY_CHICKEN_DEAD, AudioHub.CHICKEN_DEAD,
-    AudioHub.ENDBOSS_START, AudioHub.ENDBOSS_DEAD, AudioHub.ENDBOSS_HIT,
-    AudioHub.BOTTLE_BREAK, AudioHub.BOTTLE_THROW, AudioHub.ENDBOSS_SHOOT
+    AudioHub.CHARACTER_RUN,
+    AudioHub.CHARACTER_HIT,
+    AudioHub.CHARACTER_DEAD,
+    AudioHub.CHARACTER_JUMP,
+    AudioHub.CHARACTER_SLEEP,
+    AudioHub.BOTTLE_COLLECTED,
+    AudioHub.COIN_COLLECTED,
+    AudioHub.BABY_CHICKEN_DEAD,
+    AudioHub.CHICKEN_DEAD,
+    AudioHub.ENDBOSS_START,
+    AudioHub.ENDBOSS_DEAD,
+    AudioHub.ENDBOSS_HIT,
+    AudioHub.BOTTLE_BREAK,
+    AudioHub.BOTTLE_THROW,
+    AudioHub.ENDBOSS_SHOOT,
   ];
 
   static changeMusicVolume() {
@@ -94,17 +104,6 @@ class AudioHub {
     });
   }
 
-  static stopOne(sound) {
-    sound.pause();
-  }
-
-  static objSetVolume(volumeSlider) {
-    let volumeValue = document.getElementById("volume-slider-menu").value;
-    volumeSlider.forEach((sound) => {
-      sound.volume = volumeValue;
-    });
-  }
-
   static mute() {
     AudioHub.allSounds.forEach((sound) => {
       sound.volume = 0;
@@ -117,33 +116,33 @@ class AudioHub {
     localStorage.setItem("soundMuted", AudioHub.muteSound);
   }
 
-static loadMuteState() {
-  let savedMusicVol = localStorage.getItem("musicVolume");
-  let savedSfxVol = localStorage.getItem("sfxVolume");
-  if (savedMusicVol !== null) {
+  static loadMuteState() {
+    let savedMusicVol = localStorage.getItem("musicVolume");
+    let savedSfxVol = localStorage.getItem("sfxVolume");
+    if (savedMusicVol !== null) {
       let musicSlider = document.getElementById("music-volume");
       if (musicSlider) musicSlider.value = savedMusicVol;
-  }
-  if (savedSfxVol !== null) {
+    }
+    if (savedSfxVol !== null) {
       let sfxSlider = document.getElementById("sfx-volume");
       if (sfxSlider) sfxSlider.value = savedSfxVol;
+    }
+    let savedSound = localStorage.getItem("soundMuted");
+    if (savedSound === "true") {
+      AudioHub.muteSound = true;
+      AudioHub.allSounds.forEach((s) => (s.volume = 0));
+    } else {
+      AudioHub.muteSound = false;
+      AudioHub.changeMusicVolume();
+      AudioHub.changeSfxVolume();
+    }
   }
-  let savedSound = localStorage.getItem("soundMuted");
-  if (savedSound === "true") {
-    AudioHub.muteSound = true;
-    AudioHub.allSounds.forEach(s => s.volume = 0);
-  } else {
-    AudioHub.muteSound = false;
-    AudioHub.changeMusicVolume();
-    AudioHub.changeSfxVolume();
-  }
-}
 
   static unmute() {
-  AudioHub.changeMusicVolume();
+    AudioHub.changeMusicVolume();
     AudioHub.changeSfxVolume();
-    
+
     AudioHub.muteSound = false;
     AudioHub.saveMuteState();
-}
+  }
 }

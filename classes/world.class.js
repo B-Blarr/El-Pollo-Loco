@@ -13,7 +13,6 @@ class World {
   throwableObjects = [];
   lastThrowTime = 0;
   hadFirstContact = false;
-  ground = 350;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -51,12 +50,12 @@ class World {
     }, 1000 / 60);
   }
 
-checkThrowObjects() {
+  checkThrowObjects() {
     if (this.keyboard.F) {
       let actualTime = new Date().getTime();
-      let timePassed = actualTime - this.lastThrowTime; 
-      
-      let hasCooldownPassed = timePassed > 1200; 
+      let timePassed = actualTime - this.lastThrowTime;
+
+      let hasCooldownPassed = timePassed > 1200;
       let hasEnoughBottles = this.character.collectedBottles >= 10;
       if (hasCooldownPassed && hasEnoughBottles) {
         this.character.collectedBottles -= 10;
@@ -83,13 +82,13 @@ checkThrowObjects() {
     });
   }
 
-checkThrownBottleCollisions() {
+  checkThrownBottleCollisions() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy) && !bottle.hasHit) {
           enemy.hit();
           if (enemy instanceof Endboss) {
-            this.healthBarEndboss.setPercentage(enemy.hitPoints); 
+            this.healthBarEndboss.setPercentage(enemy.hitPoints);
           }
           if (!bottle.hasHit) {
             AudioHub.playSound(AudioHub.BOTTLE_BREAK);
@@ -98,10 +97,9 @@ checkThrownBottleCollisions() {
         }
       });
       if (bottle.hitGround() && !bottle.hasHit) {
-          AudioHub.playSound(AudioHub.BOTTLE_BREAK);
-          bottle.bottleExplodes();
+        AudioHub.playSound(AudioHub.BOTTLE_BREAK);
+        bottle.bottleExplodes();
       }
-
     });
   }
 
@@ -114,12 +112,12 @@ checkThrownBottleCollisions() {
     return list.filter((bottle) => {
       if (this.character.isColliding(bottle)) {
         if (this.character.collectedBottles < 100) {
-            this.character.collectedBottles += 10;
-            this.bottleBar.setPercentage(this.character.collectedBottles);
-            AudioHub.playSound(AudioHub.BOTTLE_COLLECTED);
-            return false; 
+          this.character.collectedBottles += 10;
+          this.bottleBar.setPercentage(this.character.collectedBottles);
+          AudioHub.playSound(AudioHub.BOTTLE_COLLECTED);
+          return false;
         } else {
-            return true; 
+          return true;
         }
       }
       return true;
@@ -129,19 +127,19 @@ checkThrownBottleCollisions() {
   checkCoinCollisions() {
     this.level.coins = this.level.coins.filter((coin) => {
       if (this.character.isColliding(coin)) {
-        this.character.collectedCoins += 20; 
+        this.character.collectedCoins += 20;
         this.coinBar.setPercentage(this.character.collectedCoins);
         AudioHub.playSound(AudioHub.COIN_COLLECTED);
         if (this.character.collectedCoins >= 100) {
-            this.character.collectedCoins = 0;
-            this.coinBar.setPercentage(0);
-            this.character.hitPoints += 20;
-            if (this.character.hitPoints > 100) {
-                this.character.hitPoints = 100;
-            }
-            this.healthBar.setPercentage(this.character.hitPoints);
+          this.character.collectedCoins = 0;
+          this.coinBar.setPercentage(0);
+          this.character.hitPoints += 20;
+          if (this.character.hitPoints > 100) {
+            this.character.hitPoints = 100;
+          }
+          this.healthBar.setPercentage(this.character.hitPoints);
         }
-        return false; 
+        return false;
       } else {
         return true;
       }

@@ -29,16 +29,16 @@
     <script src="./classes/keyboard.class.js" defer></script>
     <script src="./classes/level.class.js" defer></script>
     <script src="./levels/level1.js" defer></script>
-    <script src="./classes/AudioHub.class.js"></script>
-    <script src="./classes/AudioError.class.js"></script>
+    <script src="./classes/AudioHub.class.js" defer></script>
+    <script src="./classes/AudioError.class.js" defer></script>
     <script src="./js/game.js" defer></script>
-    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon" />
   </head>
   <body>
     <div id="rotate-device">
-    <div class="phone"></div>
-    <span>Bitte drehe dein Gerät ins Querformat</span>
-</div>
+      <div class="phone"></div>
+      <span>Bitte drehe dein Gerät ins Querformat</span>
+    </div>
     <!-- Fullscreen -->
     <div id="fullscreen">
       <div id="start-screen" class="start-screen-overlay">
@@ -51,14 +51,15 @@
 
           <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
         </div>
-        
       </div>
 
       <!-- Winning Screen -->
       <div id="winning-screen" class="winning-screen-overlay d-none">
         <div class="end-buttons">
-          <button onclick="openStartscreen()"><img class="overlay-button-images" src="./assets/icons/start-menu-button.png" alt="startscreen"></button>
-          <button onclick="startGame()"><img class="overlay-button-images" src="./assets/icons/restart-button.png" alt="restart"></button>
+          <button onclick="openStartscreen()">
+            <img class="overlay-button-images" src="./assets/icons/start-menu-button.png" alt="startscreen" />
+          </button>
+          <button onclick="startGame()"><img class="overlay-button-images" src="./assets/icons/restart-button.png" alt="restart" /></button>
           <!-- <button class="d-none">Nächstes Level</button>  -->
           <!-- <button><img class="overlay-button-images" src="./assets/icons/next-level-button.png" alt="next-level"></button>  -->
         </div>
@@ -68,8 +69,8 @@
       <!-- Game Over Screen -->
       <div id="game-over-screen" class="game-over-overlay d-none">
         <div class="end-buttons">
-          <button onclick="openStartscreen()"><img src="./assets/icons/start-menu-button.png" alt="startscreen"></button>
-          <button onclick="startGame()"><img src="./assets/icons/restart-button.png" alt="restart"></button>
+          <button onclick="openStartscreen()"><img src="./assets/icons/start-menu-button.png" alt="startscreen" /></button>
+          <button onclick="startGame()"><img src="./assets/icons/restart-button.png" alt="restart" /></button>
         </div>
         <img src="assets/img/9_intro_outro_screens/game_over/game over!.png" alt="game-over" />
       </div>
@@ -84,36 +85,26 @@
         <div class="options-card" onclick="event.stopPropagation()">
           <h2>Einstellungen</h2>
           <div class="option-row">
-  <span>Musik</span>
-  <input 
-    type="range" 
-    id="music-volume" 
-    oninput="AudioHub.changeMusicVolume()" 
-    min="0" max="1" step="0.01" value="0.2" 
-  />
-</div>
+            <span>Musik</span>
+            <input type="range" id="music-volume" oninput="AudioHub.changeMusicVolume()" min="0" max="1" step="0.01" value="0.2" />
+          </div>
 
-<div class="option-row">
-  <span>Soundeffekte</span>
-  <input 
-    type="range" 
-    id="sfx-volume" 
-    oninput="AudioHub.changeSfxVolume()" 
-    min="0" max="1" step="0.01" value="0.2" 
-  />
-</div>
-
-<div class="option-row">
-    <span>Lautstärke</span>
-    <div class="icon-group">
-        <button class="menu-icon-button" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png"> Aus</button>
-        <button class="menu-icon-button" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png"> An</button>
-    </div>
-</div>
           <div class="option-row">
-             <span>Ansicht</span>
-             <button id="enter-fullscreen" class="menu-icon-button" onclick="fullscreen()">⛶ Vollbild</button>
-             <button id="exit-fullscreen" class="menu-icon-button d-none" onclick="exitFullscreen()">⛶ Fenstermodus</button>
+            <span>Soundeffekte</span>
+            <input type="range" id="sfx-volume" oninput="AudioHub.changeSfxVolume()" min="0" max="1" step="0.01" value="0.2" />
+          </div>
+
+          <div class="option-row">
+            <span>Lautstärke</span>
+            <div class="icon-group">
+              <button class="menu-icon-button" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png" /> Aus</button>
+              <button class="menu-icon-button" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png" /> An</button>
+            </div>
+          </div>
+          <div class="option-row">
+            <span>Ansicht</span>
+            <button id="enter-fullscreen" class="menu-icon-button" onclick="fullscreen()"><img src="assets/icons/fullscreen.png" alt="Fullscreen" /> Vollbild</button>
+            <button id="exit-fullscreen" class="menu-icon-button d-none" onclick="exitFullscreen()"><img src="assets/icons/fullscreen.png" alt="Fullscreen" /> Fenstermodus</button>
           </div>
           <div class="option-row">
             <span>Infos</span>
@@ -124,46 +115,54 @@
         </div>
       </div>
 
-<div id="impressum-overlay" class="info-overlay d-none" onclick="closeImpressum()">
-         <div class="options-card" onclick="event.stopPropagation()">
-            <h2>Impressum</h2>
-            
-            <div class="impressum-text">
-                
-                <h3>Angaben gemäß § 5 DDG</h3>
-                <p><strong>El Pollo Loco</strong></p>
-                <p>Entwickelt von: Benjamin Blarr</p>
-                <p>Lindenweg 2<br>38364 Schöningen</p>
+      <div id="impressum-overlay" class="info-overlay d-none" onclick="closeImpressum()">
+        <div class="options-card" onclick="event.stopPropagation()">
+          <h2>Impressum</h2>
 
-                <h3>Kontakt</h3>
-                <p>E-Mail: b.blarr@gmx.de</p> 
+          <div class="impressum-text">
+            <h3>Angaben gemäß § 5 DDG</h3>
+            <p><strong>El Pollo Loco</strong></p>
+            <p>Entwickelt von: Benjamin Blarr</p>
+            <p>Lindenweg 2<br />38364 Schöningen</p>
 
-                <h3>Haftungsausschluss (Disclaimer)</h3>
-                <p><strong>Haftung für Inhalte</strong><br>
-                Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
-                
-                <p><strong>Urheberrecht</strong><br>
-                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.</p>
+            <h3>Kontakt</h3>
+            <p>E-Mail: b.blarr@gmx.de</p>
 
-                <h3>Datenschutz</h3>
-                <p>Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Es werden keine Tracking-Cookies verwendet oder Nutzerdaten gespeichert.</p>
+            <h3>Haftungsausschluss (Disclaimer)</h3>
+            <p>
+              <strong>Haftung für Inhalte</strong><br />
+              Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir
+              sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
+            </p>
 
-                <h3>Grafiken & Quellen</h3>
-                <p>
-                    <strong>Spiel-Assets (Charakter, Gegner, Welt & ein paar Soundeffekte):</strong><br>
-                    Bereitgestellt durch Developer Akademie.
-                </p>
-                <p>
-                    <strong>Icons & UI:</strong><br>
-                    Flaticon.com & Pixabay.com.
-                </p>
-                <p>
-                    <strong>KI-Generierung:</strong><br>
-                    Buttons auf der Startseite wurden mit Hilfe von ChatGPT erstellt. Sämtliche Musik und der Großteil der Soundeffekte wurden mit elevenlabs.io erstellt.
-                </p>
-            </div>
-            <button class="close-button" onclick="closeImpressum()">Zurück</button>
-         </div>
+            <p>
+              <strong>Urheberrecht</strong><br />
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+            </p>
+
+            <h3>Datenschutz</h3>
+            <p>
+              Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Es werden keine Tracking-Cookies verwendet
+              oder Nutzerdaten gespeichert.
+            </p>
+
+            <h3>Grafiken & Quellen</h3>
+            <p>
+              <strong>Spiel-Assets (Charakter, Gegner, Welt & ein paar Soundeffekte):</strong><br />
+              Bereitgestellt durch Developer Akademie.
+            </p>
+            <p>
+              <strong>Icons & UI:</strong><br />
+              Flaticon.com & Pixabay.com.
+            </p>
+            <p>
+              <strong>KI-Generierung:</strong><br />
+              Buttons auf der Startseite wurden mit Hilfe von ChatGPT erstellt. Sämtliche Musik und der Großteil der Soundeffekte wurden mit
+              elevenlabs.io erstellt.
+            </p>
+          </div>
+          <button class="close-button" onclick="closeImpressum()">Zurück</button>
+        </div>
       </div>
 
       <!-- Canvas Ingame -->
@@ -171,32 +170,30 @@
       <section class="canvas-section">
         <canvas id="canvas" width="1440" height="960"></canvas>
         <div id="mobile-buttons" class="mobile-buttons-container">
-        
-        <div class="btn-group-left">
+          <div class="btn-group-left">
             <button id="btnLeft" class="touch-btn">
-                <img src="assets/icons/arrow-left.png" alt="Links">
+              <img src="assets/icons/arrow-left.png" alt="Links" />
             </button>
             <button id="btnRight" class="touch-btn">
-                <img src="assets/icons/arrow-right.png" alt="Rechts">
+              <img src="assets/icons/arrow-right.png" alt="Rechts" />
             </button>
-        </div>
-
-        <div class="btn-group-right">
+          </div>
+          <div class="btn-group-right">
             <button id="btnJump" class="touch-btn">
-                <img src="assets/icons/arrow-up.png" alt="Springen">
+              <img src="assets/icons/arrow-up.png" alt="Springen" />
             </button>
             <button id="btnThrow" class="touch-btn">
-                <img src="assets/icons/bottle.png" alt="Werfen">
+              <img src="assets/icons/bottle.png" alt="Werfen" />
             </button>
+          </div>
         </div>
-    </div>
         <div class="ingame-mute">
-          <img src="assets/icons/home.png" class="hud-button" onclick="returnToHome()" alt="Home">
-          <img src="assets/icons/touch-toggle.png" class="hud-button" onclick="toggleTouchControls()" alt="Toggle_Touch_Buttons">
-
-         <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()">
-         <img id="pause-btn" class="hud-button" src="assets/icons/pause.png" onclick="togglePause()">
-    </div>
+          <img src="assets/icons/home.png" class="hud-button" onclick="returnToHome()" alt="Home" />
+          <img src="assets/icons/touch-toggle.png" class="hud-button" onclick="toggleTouchControls()" alt="Toggle_Touch_Buttons" />
+          <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()" />
+          <img id="pause-btn" class="hud-button" src="assets/icons/pause.png" onclick="togglePause()" />
+          <img src="assets/icons/fullscreen.png" class="hud-button" onclick="toggleFullscreen()" alt="Fullscreen" />
+        </div>
       </section>
     </div>
   </body>

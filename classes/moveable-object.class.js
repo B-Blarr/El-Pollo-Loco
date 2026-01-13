@@ -10,6 +10,7 @@ class MoveableObject extends DrawableObject {
   hitPoints = 100;
   lastHit = 0;
   timeOfDeath;
+  hasHit = false;
 
   offset = {
     top: 0,
@@ -31,10 +32,9 @@ class MoveableObject extends DrawableObject {
   isAboveGround() {
     if (this instanceof ThrowableObject) {
       return true;
-    }else{
-
-    return this.y < 326;
-  }
+    } else {
+      return this.y < 326;
+    }
   }
 
   playAnimation(images) {
@@ -82,14 +82,14 @@ class MoveableObject extends DrawableObject {
     );
   }
 
-  isJumpingOn(moveableObject){
-if (!this.isColliding(moveableObject) || moveableObject instanceof Endboss) {
-        return false;
+  isJumpingOn(moveableObject) {
+    if (!this.isColliding(moveableObject) || moveableObject instanceof Endboss) {
+      return false;
     }
     let characterFeet = this.rY + this.rHeight;
-    let enemyHead = moveableObject.rY + (moveableObject.rHeight * 0.5);
+    let enemyHead = moveableObject.rY + moveableObject.rHeight * 0.5;
     let fallingTolerance = -this.speedY;
-    return (characterFeet < enemyHead + fallingTolerance);
+    return characterFeet < enemyHead + fallingTolerance;
   }
 
   hit() {
@@ -111,14 +111,12 @@ if (!this.isColliding(moveableObject) || moveableObject instanceof Endboss) {
     return this.hitPoints == 0;
   }
 
-  objectDisappears(timer){
-  if (!this.isDead()) return false;
-        if (!this.timeOfDeath) {
-            this.timeOfDeath = new Date().getTime();
-        }
-        let timepassed = new Date().getTime() - this.timeOfDeath;
-        return timepassed > timer;
+  objectDisappears(timer) {
+    if (!this.isDead()) return false;
+    if (!this.timeOfDeath) {
+      this.timeOfDeath = new Date().getTime();
+    }
+    let timepassed = new Date().getTime() - this.timeOfDeath;
+    return timepassed > timer;
   }
-  
-  
 }

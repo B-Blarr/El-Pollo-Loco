@@ -4,8 +4,6 @@ let keyboard = new Keyboard();
 let refWinningScreen = document.getElementById("winning-screen");
 let refGameOverScreen = document.getElementById("game-over-screen");
 AudioHub.BACKGROUND_LEVEL.loop = true;
-const openFullscreen = document.getElementById("enter-fullscreen");
-const leaveFullscreen = document.getElementById("exit-fullscreen");
 const enterButton = document.getElementById("enter-fullscreen");
 const exitButton = document.getElementById("exit-fullscreen");
 let gameStarted = false;
@@ -15,15 +13,11 @@ AudioHub.loadMuteState();
 
 document.addEventListener("fullscreenchange", updateFullscreenButton);
 document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
-// window.addEventListener("contextmenu", (e) => {
-//     e.preventDefault();
-//   });
 
 function init() {
   initLevel();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
-
   AudioHub.BACKGROUND_STARTSCREEN.pause();
   startTouchControls();
 }
@@ -165,53 +159,63 @@ function toggleMute() {
 
 function togglePause() {
   IntervalHub.isGamePaused = !IntervalHub.isGamePaused;
-  let pauseBtn = document.getElementById('pause-btn');
+  let pauseBtn = document.getElementById("pause-btn");
   if (IntervalHub.isGamePaused) {
-    pauseBtn.src = 'assets/icons/play.png'; 
+    pauseBtn.src = "assets/icons/play.png";
     AudioHub.BACKGROUND_LEVEL.pause();
-    AudioHub.stopAll(); 
+    AudioHub.stopAll();
   } else {
-    pauseBtn.src = 'assets/icons/pause.png'; 
+    pauseBtn.src = "assets/icons/pause.png";
     if (!AudioHub.muteSound) {
       AudioHub.BACKGROUND_LEVEL.play();
     }
   }
 }
 
-  function addTouchLogic(buttonId, key) {
-    let button = document.getElementById(buttonId);
-
-    button.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        keyboard[key] = true;
-    });
-
-    button.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        keyboard[key] = false;
-    });
+function addTouchLogic(buttonId, key) {
+  let button = document.getElementById(buttonId);
+  button.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard[key] = true;
+  });
+  button.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard[key] = false;
+  });
 }
 
 function startTouchControls() {
-    addTouchLogic('btnLeft', 'LEFT');
-    addTouchLogic('btnRight', 'RIGHT');
-    addTouchLogic('btnJump', 'SPACE');
-    addTouchLogic('btnThrow', 'F');
+  addTouchLogic("btnLeft", "LEFT");
+  addTouchLogic("btnRight", "RIGHT");
+  addTouchLogic("btnJump", "SPACE");
+  addTouchLogic("btnThrow", "F");
+  document.getElementById("mobile-buttons").addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
 }
 
 function returnToHome() {
-    IntervalHub.stopAllIntervals(); 
-    AudioHub.stopAll();
-    openStartscreen(); 
+  IntervalHub.stopAllIntervals();
+  AudioHub.stopAll();
+  openStartscreen();
 }
 
 function toggleTouchControls() {
-    let mobileButtons = document.getElementById('mobile-buttons');
-    if (window.getComputedStyle(mobileButtons).display === 'none') {
-        mobileButtons.style.display = 'flex';
-        mobileButtons.classList.remove('d-none');
-    } else {
-        mobileButtons.style.display = 'none';
-        mobileButtons.classList.add('d-none');
-    }
+  let mobileButtons = document.getElementById("mobile-buttons");
+  if (window.getComputedStyle(mobileButtons).display === "none") {
+    mobileButtons.style.display = "flex";
+    mobileButtons.classList.remove("d-none");
+  } else {
+    mobileButtons.style.display = "none";
+    mobileButtons.classList.add("d-none");
+  }
+}
+
+function toggleFullscreen() {
+  let fullscreenContainer = document.getElementById("fullscreen");
+  if (!document.fullscreenElement) {
+    enterFullscreen(fullscreenContainer);
+  } else {
+    exitFullscreen();
+  }
 }

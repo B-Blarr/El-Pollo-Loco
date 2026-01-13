@@ -12,7 +12,6 @@ class IntervalHub {
     IntervalHub.allIntervals.push(newInterval);
   }
 
-  //Stoppt alle registrierten Intervalle und leert die Registry.
   static stopAllIntervals() {
     IntervalHub.allIntervals.forEach(clearInterval);
     IntervalHub.allIntervals = [];

@@ -15,6 +15,9 @@ AudioHub.loadMuteState();
 
 document.addEventListener("fullscreenchange", updateFullscreenButton);
 document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+// window.addEventListener("contextmenu", (e) => {
+//     e.preventDefault();
+//   });
 
 function init() {
   initLevel();
@@ -204,6 +207,11 @@ function returnToHome() {
 
 function toggleTouchControls() {
     let mobileButtons = document.getElementById('mobile-buttons');
-    mobileButtons.classList.toggle('d-none');
-    document.activeElement.blur(); 
+    if (window.getComputedStyle(mobileButtons).display === 'none') {
+        mobileButtons.style.display = 'flex';
+        mobileButtons.classList.remove('d-none');
+    } else {
+        mobileButtons.style.display = 'none';
+        mobileButtons.classList.add('d-none');
+    }
 }

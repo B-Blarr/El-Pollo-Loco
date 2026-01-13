@@ -42,10 +42,6 @@ body {
   align-items: center;
 }
 
-.d-none {
-  display: none !important;
-}
-
 .menu-container {
   position: absolute;
   top: 3%;
@@ -149,11 +145,6 @@ body {
 
 #winning-screen::before {
   background-image: url("./assets/img/You won, you lost/You Win A.png");
-}
-
-.game-over-overlay,
-.winning-screen-overlay {
-  justify-content: center;
 }
 
 .game-over-overlay img,
@@ -386,12 +377,18 @@ input[type="range"] {
 }
 
 .menu-icon-button {
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 20px;
     padding: 10px 25px; 
+}
+
+.menu-icon-button img {
+    filter: invert(1); 
+    width: 25px; 
+    height: 25px;
+    object-fit: contain;
 }
 
 .close-button {
@@ -458,7 +455,7 @@ max-height: 50vh;
 }
 
 /* --- MOBILE CONTROLS --- */
-#mobile-buttons {
+.mobile-buttons-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -466,7 +463,7 @@ max-height: 50vh;
     height: 100%;
     pointer-events: none;
     z-index: 60;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: flex-end; 
     padding: 10px 20px 15px 25px; 
@@ -536,6 +533,12 @@ max-height: 50vh;
     animation: rotate-phone-animation 2s infinite ease-in-out alternate; 
 }
 
+.mute-button {
+    width: 25px; 
+    height: 25px; 
+    object-fit: contain; 
+}
+
 @keyframes rotate-phone-animation {
     0% {
         transform: rotate(0deg);
@@ -554,6 +557,8 @@ max-height: 50vh;
     font-family: "zabras", sans-serif; 
 }
 
+
+
 @media only screen and (max-width: 1440px) {
   canvas {
     width: 100%;
@@ -561,28 +566,31 @@ max-height: 50vh;
 }
 
 
-@media only screen and (max-height: 960px) {
+/* @media only screen and (max-height: 960px) {
   canvas {
     height: 100dvh;
   }
-}
+} */
 
 @media only screen and (max-width: 720px) {
   .explanation {
     display: none;
+  }
+
     .start-button {
       width: 80px;
     }
+
     .small-button {
       width: 50px;
     }
+
     .menu-container {
       top: 10px;
       right: 10px;
       gap: 8px;
     }
-  }
-
+  
   .button-area {
     padding: 10px 20px;
     justify-content: space-between;
@@ -596,14 +604,17 @@ max-height: 50vh;
   .options-card h2 {
     font-size: 42px;
   }
+
   .option-row {
     font-size: 28px;
   }
+
   .menu-icon-button,
   .close-button {
     font-size: 20px;
     padding: 10px 20px;
   }
+
   .impressum-text p {
     font-size: 18px;
   }
@@ -742,7 +753,7 @@ max-height: 50vh;
         font-size: 16px;
     }
 
-    #mobile-buttons {
+    .mobile-buttons-container {
         display: flex;
     }
 
@@ -766,4 +777,14 @@ max-height: 50vh;
     .btn-group-left, .btn-group-right {
         gap: 12px; 
     }
+}
+
+@media (pointer: coarse) and (orientation: landscape) {
+    .mobile-buttons-container {
+        display: flex;
+    }
+}
+
+.d-none {
+  display: none;
 }

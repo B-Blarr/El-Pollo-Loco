@@ -20,6 +20,18 @@ function init() {
   world = new World(canvas, keyboard);
   AudioHub.BACKGROUND_STARTSCREEN.pause();
   startTouchControls();
+  hideAddressBar();
+  if (window.innerWidth <= 920) {
+    fullscreen(); 
+  }
+}
+
+function hideAddressBar() {
+  window.scrollTo(0, 1);
+  
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
 }
 
 function playStartscreenMusic() {

@@ -194,6 +194,9 @@ function addTouchLogic(buttonId, key) {
     e.preventDefault();
     keyboard[key] = false;
   });
+  button.addEventListener("mousedown", () => { keyboard[key] = true; });
+  button.addEventListener("mouseup", () => { keyboard[key] = false; });
+  button.addEventListener("mouseleave", () => { keyboard[key] = false; });
 }
 
 function startTouchControls() {

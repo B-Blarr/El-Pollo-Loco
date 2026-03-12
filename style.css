@@ -811,6 +811,29 @@ input[type="range"] {
   }
 }
 
+.impressum-link {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 8px;
+  opacity: 0.65;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+  transition: opacity 0.2s ease;
+}
+
+.impressum-link:hover {
+  opacity: 1;
+}
+
 .d-none {
   display: none;
 }

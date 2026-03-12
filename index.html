@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
@@ -50,6 +50,7 @@
           </div>
 
           <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
+          <button class="impressum-link" onclick="openImpressum()">Impressum</button>
         </div>
       </div>
 
@@ -103,8 +104,12 @@
           </div>
           <div class="option-row">
             <span>Ansicht</span>
-            <button id="enter-fullscreen" class="menu-icon-button" onclick="fullscreen()"><img src="assets/icons/fullscreen.png" alt="Fullscreen" /> Vollbild</button>
-            <button id="exit-fullscreen" class="menu-icon-button d-none" onclick="exitFullscreen()"><img src="assets/icons/fullscreen.png" alt="Fullscreen" /> Fenstermodus</button>
+            <button id="enter-fullscreen" class="menu-icon-button" onclick="fullscreen()">
+              <img src="assets/icons/fullscreen.png" alt="Fullscreen" /> Vollbild
+            </button>
+            <button id="exit-fullscreen" class="menu-icon-button d-none" onclick="exitFullscreen()">
+              <img src="assets/icons/fullscreen.png" alt="Fullscreen" /> Fenstermodus
+            </button>
           </div>
           <div class="option-row">
             <span>Infos</span>
@@ -122,8 +127,11 @@
           <div class="impressum-text">
             <h3>Angaben gemäß § 5 DDG</h3>
             <p><strong>El Pollo Loco</strong></p>
-            <p>Entwickelt von: Benjamin Blarr</p>
-            <p>Lindenweg 2<br />38364 Schöningen</p>
+            <p>Entwickelt von:</p>
+            <p>
+              Benjamin Blarr<br />
+              Lindenweg 2<br />38364 Schöningen
+            </p>
 
             <h3>Kontakt</h3>
             <p>E-Mail: b.blarr@gmx.de</p>

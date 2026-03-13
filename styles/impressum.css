@@ -1,0 +1,56 @@
+.impressum-text {
+  max-height: 50dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  text-align: left;
+  padding-right: 15px;
+  margin-bottom: 20px;
+  border-top: 2px dashed #5c3a21;
+  border-bottom: 2px dashed #5c3a21;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.impressum-text p {
+  font-size: 18px;
+  margin: 12px 0;
+  color: #fff8dc;
+  text-shadow: none;
+}
+
+.impressum-text h3 {
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-weight: bold;
+  font-size: 22px;
+  color: #ffd700;
+  text-shadow: 2px 2px 0px #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 25px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+.impressum-text::-webkit-scrollbar {
+  width: 12px;
+}
+
+.impressum-text::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.impressum-text::-webkit-scrollbar-thumb {
+  background-color: #d35400;
+  border-radius: 10px;
+  border: 2px solid #5c3a21;
+}
+
+.impressum-text::-webkit-scrollbar-thumb:hover {
+  background-color: #ffd700;
+}

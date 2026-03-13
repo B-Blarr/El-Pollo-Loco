@@ -1,0 +1,402 @@
+@font-face {
+  font-family: "zabras";
+  src: url("../fonts/zabars.ttf");
+}
+
+body {
+  height: 100dvh;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "zabras", Arial, Helvetica, sans-serif;
+  font-size: 56px;
+  letter-spacing: 3px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Fullscreen */
+#fullscreen {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#fullscreen:fullscreen {
+  background-image: url(../assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-container {
+  position: absolute;
+  top: 3%;
+  right: 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2%;
+  z-index: 100;
+}
+
+.menu-button {
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  height: auto;
+}
+
+.menu-button:hover {
+  transform: scale(1.1) rotate(2deg);
+  filter: brightness(1.2);
+}
+
+.start-button {
+  width: 16%;
+  height: auto;
+}
+
+.small-button {
+  width: 16%;
+  height: auto;
+}
+.start-screen-overlay {
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-image: url(../assets/img/5_background/desert06.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.start-image-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-image-wrapper .start-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Game Over/ Winning Screen */
+.game-over-overlay,
+.winning-screen-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-color: black;
+  overflow: hidden;
+}
+
+.game-over-overlay::before,
+.winning-screen-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  transform: scale(1.2);
+  background-position: center;
+  filter: blur(15px) brightness(0.8);
+  z-index: -1;
+}
+
+#game-over-screen::before {
+  background-image: url("../assets/img/9_intro_outro_screens/game_over/game over!.png");
+}
+
+#winning-screen::before {
+  background-image: url("../assets/img/You won, you lost/You Win A.png");
+}
+
+.game-over-overlay img,
+.winning-screen-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8));
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#game-over-screen .end-buttons img {
+  filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.6));
+}
+
+.end-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  position: absolute;
+  top: 3%;
+  width: auto;
+  z-index: 10;
+}
+
+.end-buttons button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.end-buttons img {
+  width: 20dvw;
+  max-width: 320px;
+  min-width: 120px;
+}
+
+.end-buttons button:hover {
+  transform: scale(1.1);
+}
+
+.overlay-button-images {
+  background: none;
+  border: none;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-in {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Canvas */
+h1 {
+  margin-bottom: 12px;
+  margin-top: 12px;
+  text-align: center;
+  color: #ffeb3b;
+  text-shadow: 2px 2px 0px #d35400, 0 0 10px #ffeb3b;
+  -webkit-text-stroke: 1px #8b4513;
+  letter-spacing: 6px;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: black;
+  border: 20px ridge #8b4513;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+  display: block;
+  box-sizing: border-box;
+}
+
+.canvas-section {
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 180px);
+  aspect-ratio: 1440 / 960;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.ingame-mute {
+  position: absolute;
+  top: 25px;
+  right: 5px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 24px;
+}
+
+.hud-button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding-top: 2px;
+  filter: invert(1) brightness(2) drop-shadow(2px 2px 2px black);
+  transition: transform 0.1s ease-in-out;
+}
+
+.hud-button:hover {
+  transform: scale(1.1);
+}
+
+/* Button Overlays Startscreen */
+.info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.info-overlay > img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+  transition: transform 0.2s;
+}
+
+.info-overlay img:hover {
+  transform: scale(1.03);
+}
+
+/* Options */
+.options-card {
+  background-color: #8b4513;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 20px);
+  border: 6px solid #5c3a21;
+  border-radius: 20px;
+  padding: 40px;
+  width: 600px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  cursor: default;
+  user-select: none;
+  letter-spacing: 2px;
+}
+
+.options-card h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffd700;
+  text-shadow: 3px 3px 0px #000;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: 48px;
+  margin-top: 0;
+  border-bottom: 3px dashed #5c3a21;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.option-row {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.option-row span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+  color: #ffd700;
+  text-shadow: 2px 2px 0px #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.icon-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Slider Design */
+input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+  accent-color: #ffd700;
+  margin-top: 5px;
+}
+
+/* Buttons Design */
+.menu-icon-button,
+.close-button {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #5c3a21;
+  color: white;
+  border: 3px solid #3e2716;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.menu-icon-button:hover,
+.close-button:hover {
+  background-color: #7a4d2b;
+  transform: scale(1.05);
+}
+
+.menu-icon-button {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 20px;
+  padding: 10px 25px;
+}
+
+.menu-icon-button img {
+  filter: invert(1);
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.close-button {
+  margin-top: 25px;
+  background-color: #a0522d;
+  width: 100%;
+}
+
+

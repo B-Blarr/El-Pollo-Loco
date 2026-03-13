@@ -30,5 +30,6 @@ class IntervalHub {
   static stopAllIntervals() {
     IntervalHub.allIntervals.forEach(clearInterval);
     IntervalHub.allIntervals = [];
+    IntervalHub.isGamePaused = false;
   }
 }

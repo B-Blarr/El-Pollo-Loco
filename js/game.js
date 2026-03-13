@@ -114,6 +114,7 @@ function exitFullscreen() {
  */
 function startGame() {
   gameStarted = true;
+  document.getElementById("pause-btn").src = "assets/icons/pause.png";
   init();
   updateGameScreens();
   playStartSounds();

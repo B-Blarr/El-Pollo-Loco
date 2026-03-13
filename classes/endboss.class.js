@@ -205,14 +205,13 @@ class Endboss extends MoveableObject {
   playAlarmOnce() {
     if (!this.alarmSoundPlayed && !AudioHub.muteSound) {
       AudioHub.BACKGROUND_LEVEL.volume = 0;
+      AudioHub.BACKGROUND_LEVEL.pause();
       AudioHub.ENDBOSS_START.volume = 1;
       AudioHub.ENDBOSS_START.play();
-      AudioHub.BACKGROUND_LEVEL.pause();
-      AudioHub.BACKGROUND_ENDBOSS.play();
+      AudioHub.ENDBOSS_START.addEventListener("ended", () => {
+        AudioHub.BACKGROUND_ENDBOSS.play();
+      }, { once: true });
       this.alarmSoundPlayed = true;
-      setTimeout(() => {
-        AudioHub.BACKGROUND_LEVEL.volume = 0.2;
-      }, 3000);
     }
   }
 

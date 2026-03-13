@@ -9,6 +9,7 @@ let refWinningScreen = document.getElementById("winning-screen");
 /** @type {HTMLElement} Reference to the game-over-screen overlay element. */
 let refGameOverScreen = document.getElementById("game-over-screen");
 AudioHub.BACKGROUND_LEVEL.loop = true;
+AudioHub.BACKGROUND_ENDBOSS.loop = true;
 /** @type {HTMLElement} Button that enters fullscreen mode. */
 const enterButton = document.getElementById("enter-fullscreen");
 /** @type {HTMLElement} Button that exits fullscreen mode. */

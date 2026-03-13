@@ -51,7 +51,6 @@ class DrawableObject {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
-  // Blauer Rahmen!
   /**
    * Draws a blue debug frame around the object's bounding box and hit box.
    * Only renders for Character, Chicken, Endboss, ThrowableObject, CollectableObject, and BabyChicken.

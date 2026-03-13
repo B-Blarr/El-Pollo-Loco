@@ -4,7 +4,7 @@
  */
 class AudioError {
   /** @type {HTMLAudioElement} Placeholder audio element (unused). */
-  static LONG = new Audio('');
+  static LONG = new Audio("");
 
   /**
    * Repeatedly checks every 200 ms until the audio is ready (readyState === 4),

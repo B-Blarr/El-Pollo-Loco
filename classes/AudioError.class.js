@@ -1,20 +1,33 @@
+/**
+ * Utility class for playing audio with readiness checks.
+ * Polls the audio element until it is fully loaded before playing.
+ */
 class AudioError {
-    static LONG = new Audio('');
+  /** @type {HTMLAudioElement} Placeholder audio element (unused). */
+  static LONG = new Audio('');
 
-    static playOne(sound) {
-        setInterval(() => {  // Wiederholt die Überprüfung alle 200ms
-            if (sound.readyState == 4) {  // Überprüft, ob die Audiodatei vollständig geladen ist, wenn man die if abfrage rausnehmen würde, würde es bei start & drücken auf den stopp Knopf einen Fehler werfen. (am besten low-tier throttling nutzen!)
-                console.log("Sound ready"); 
-                sound.volume = 0.5; 
-                sound.play();  // Spielt das übergebene Sound-Objekt ab
-            } else {
-                console.log("Sound not ready"); 
-            }
-        }, 200);
-    }
+  /**
+   * Repeatedly checks every 200 ms until the audio is ready (readyState === 4),
+   * then sets its volume to 0.5 and plays it.
+   * @param {HTMLAudioElement} sound - The audio element to play.
+   */
+  static playOne(sound) {
+    setInterval(() => {
+      if (sound.readyState == 4) {
+        console.log("Sound ready");
+        sound.volume = 0.5;
+        sound.play();
+      } else {
+        console.log("Sound not ready");
+      }
+    }, 200);
+  }
 
-    // Stoppt das Abspielen einer einzelnen Audiodatei
-    static stopOne(sound) {
-        sound.pause();  // Pausiert das übergebene Audio
-    }
+  /**
+   * Pauses the given audio element.
+   * @param {HTMLAudioElement} sound - The audio element to stop.
+   */
+  static stopOne(sound) {
+    sound.pause();
+  }
 }

@@ -1,4 +1,11 @@
+/**
+ * Base class for all collectables (bottles and coins).
+ * Places the object at a random position within the level on creation.
+ */
 class CollectableObject extends MoveableObject {
+  /**
+   * Creates a collectable at a random position and computes its hit frame.
+   */
   constructor() {
     super();
     this.loadImage("./assets/img/6_salsa_bottle/salsa_bottle.png");

@@ -1,4 +1,13 @@
+/**
+ * Central repository of all image path arrays used by the game.
+ * All properties are static; no instance of this class needs to be created.
+ */
 class ImageHub {
+  /**
+   * Background layer image paths organised by tile variant.
+   * Each variant is a four-element array: [air, third layer, second layer, first layer].
+   * @type {{first: string[], second: string[]}}
+   */
   static backgroundObjects = {
     first: [
       "./assets/img/5_background/layers/air.png",
@@ -15,6 +24,10 @@ class ImageHub {
     ],
   };
 
+  /**
+   * Character (Pepe) animation frame paths grouped by state.
+   * @type {{walking: string[], sleeping: string[], idle: string[], jumping: string[], hurt: string[], dead: string[]}}
+   */
   static character = {
     walking: [
       "./assets/img/2_character_pepe/2_walk/W-21.png",
@@ -80,6 +93,10 @@ class ImageHub {
     ],
   };
 
+  /**
+   * Regular chicken animation frame paths grouped by state.
+   * @type {{walking: string[], dead: string[]}}
+   */
   static chicken = {
     walking: [
       "./assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
@@ -90,6 +107,10 @@ class ImageHub {
     dead: ["./assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png"],
   };
 
+  /**
+   * Baby chicken animation frame paths grouped by state.
+   * @type {{walking: string[], dead: string[]}}
+   */
   static babyChicken = {
     walking: [
       "./assets/img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
@@ -100,6 +121,10 @@ class ImageHub {
     dead: ["./assets/img/3_enemies_chicken/chicken_small/2_dead/dead.png"],
   };
 
+  /**
+   * Endboss animation frame paths grouped by state.
+   * @type {{walking: string[], alert: string[], attacking: string[], hurt: string[], dead: string[]}}
+   */
   static endboss = {
     walking: [
       "./assets/img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -143,6 +168,11 @@ class ImageHub {
     ],
   };
 
+  /**
+   * Status bar image paths grouped by bar type.
+   * Each array contains six images ordered from full (index 0) to empty (index 5).
+   * @type {{healthBar: string[], healthBarEndboss: string[], bottleBar: string[], coinBar: string[]}}
+   */
   static statusBar = {
     healthBar: [
       "./assets/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
@@ -181,6 +211,10 @@ class ImageHub {
     ],
   };
 
+  /**
+   * Single-image icon paths used as still images throughout the UI.
+   * @type {{coin: string[], health: string[], bottle: string[], bottleOnGround: string[]}}
+   */
   static icon = {
     coin: ["./assets/img/8_coin/coin_1.png", "./assets/img/8_coin/coin_2.png"],
 
@@ -191,6 +225,10 @@ class ImageHub {
     bottleOnGround: ["./assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", "./assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png"],
   };
 
+  /**
+   * Thrown bottle animation frame paths grouped by animation phase.
+   * @type {{bottleRotation: string[], bottleSplash: string[]}}
+   */
   static bottle = {
     bottleRotation: [
       "./assets/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",

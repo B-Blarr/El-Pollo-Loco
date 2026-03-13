@@ -1,5 +1,11 @@
 let level1;
 
+/**
+ * Builds an array of layered BackgroundObjects for a given sequence of background IDs.
+ * Each index in the order array produces 4 stacked image layers at the corresponding x position.
+ * @param {number[]} order - Array of background variant IDs (0-based) defining the tile sequence.
+ * @returns {BackgroundObject[]} Flat array of background objects ready to be added to a level.
+ */
 function createBackgrounds(order) {
   let backgrounds = [];
   const imageWidth = 1440;
@@ -19,6 +25,10 @@ function createBackgrounds(order) {
   return backgrounds;
 }
 
+/**
+ * Initialises the global {@link level1} with all enemies, clouds, backgrounds,
+ * collectables, and coins for the first (and only) level.
+ */
 function initLevel() {
   level1 = new Level(
     [...Array.from({ length: 25 }, () => new Chicken()), new Endboss(), ...Array.from({ length: 30 }, () => new BabyChicken())],

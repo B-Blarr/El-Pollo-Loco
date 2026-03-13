@@ -1,7 +1,17 @@
+/**
+ * A salsa bottle thrown by the character.
+ * Travels left or right with gravity applied, then explodes on impact or on hitting the ground.
+ */
 class ThrowableObject extends MoveableObject {
+  /** @type {boolean} Whether the bottle has already hit something or the ground. */
   hasHit;
+  /** @type {number} The y-coordinate threshold that counts as the ground. */
   ground = 700;
 
+  /**
+   * Pixel offsets that define the collision hit box relative to the sprite.
+   * @type {{top: number, right: number, bottom: number, left: number}}
+   */
   offset = {
     top: 25,
     right: 25,
@@ -9,6 +19,13 @@ class ThrowableObject extends MoveableObject {
     left: 25,
   };
 
+  /**
+   * Creates a throwable bottle at the given position.
+   * Starts rotation animation, applies initial velocity, and launches in the correct direction.
+   * @param {number} x - Starting horizontal position.
+   * @param {number} y - Starting vertical position (offset of 130 is added internally).
+   * @param {boolean} otherDirection - True if the bottle should be thrown to the left.
+   */
   constructor(x, y, otherDirection) {
     super();
     this.loadImage(ImageHub.icon.bottle);
@@ -25,6 +42,9 @@ class ThrowableObject extends MoveableObject {
     this.throwLeft();
   }
 
+  /**
+   * Starts a rightward throw with gravity when the bottle was not thrown in the opposite direction.
+   */
   throwRight() {
     if (this.hasHit == true) {
       return;
@@ -40,6 +60,9 @@ class ThrowableObject extends MoveableObject {
     }
   }
 
+  /**
+   * Starts a leftward throw with gravity when the bottle was thrown in the opposite direction.
+   */
   throwLeft() {
     if (this.hasHit == true) {
       return;
@@ -55,6 +78,10 @@ class ThrowableObject extends MoveableObject {
     }
   }
 
+  /**
+   * Starts the hit-box update loop and the animation loop.
+   * Switches from rotation to splash animation once the bottle has hit.
+   */
   animate() {
     IntervalHub.startInterval(() => {
       this.getRealFrame();
@@ -68,6 +95,10 @@ class ThrowableObject extends MoveableObject {
     }, 150);
   }
 
+  /**
+   * Triggers the bottle explosion: marks it as hit, zeroes hit points and velocity.
+   * @returns {boolean} Always returns true to indicate the bottle has hit.
+   */
   bottleExplodes() {
     this.hasHit = true;
     this.hitPoints = 0;
@@ -76,6 +107,10 @@ class ThrowableObject extends MoveableObject {
     return this.hasHit;
   }
 
+  /**
+   * Checks whether the bottle has reached or passed the ground level.
+   * @returns {boolean} True if the bottle's y position is at or below {@link ground}.
+   */
   hitGround() {
     if (this.y >= this.ground) {
       return true;

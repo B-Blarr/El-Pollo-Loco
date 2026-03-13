@@ -1,6 +1,14 @@
+/**
+ * Base class for all HUD status bars.
+ * Manages a percentage value and maps it to one of six status bar images.
+ */
 class StatusBar extends DrawableObject {
+  /** @type {number} Current fill percentage of the status bar (0–100). */
   percentage = 100;
 
+  /**
+   * Creates a status bar, loads the health bar images, and sets the initial display to 100%.
+   */
   constructor() {
     super();
     this.loadImages(ImageHub.statusBar.healthBar);
@@ -11,6 +19,10 @@ class StatusBar extends DrawableObject {
     this.setPercentage(100);
   }
 
+  /**
+   * Maps the current percentage to an image index (0 = full, 5 = empty).
+   * @returns {number} An index between 0 and 5 corresponding to the fill level.
+   */
   resolveImageIndex() {
     if (this.percentage == 100) {
       return 0;

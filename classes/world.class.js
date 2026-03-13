@@ -182,8 +182,8 @@ class World {
   drawGameContent() {
     this.ctx.translate(this.camera_x, 0);
     this.addToMap(this.character);
-    this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.bottlesInAir);
     this.addObjectsToMap(this.level.bottlesOnGround);
     this.addObjectsToMap(this.level.coins);

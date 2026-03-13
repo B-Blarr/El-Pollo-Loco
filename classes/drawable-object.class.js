@@ -3,6 +3,7 @@ class DrawableObject {
   y = 570;
   height = 300;
   width = 150;
+  zIndex = 1;
   img;
   imageCache = {};
   currentImage = 0;

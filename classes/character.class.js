@@ -89,7 +89,7 @@ checkJump() {
 
 updateCameraPosition() {
   this.getRealFrame();
-  this.world.camera_x = -this.x + 95;
+  this.world.camera_x = Math.min(0, -this.x + 95);
 }
 
 resetSleepTimer() {

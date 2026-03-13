@@ -77,11 +77,11 @@ function exitFullscreen() {
 }
 
 function startGame() {
+  gameStarted = true;
   init();
   updateGameScreens();
   playStartSounds();
   syncAudioAndButtons();
-  gameStarted = true;
 }
 
 function updateGameScreens() {

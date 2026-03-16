@@ -182,7 +182,6 @@ function closeControls() {
   document.getElementById("controls-overlay").classList.add("d-none");
 }
 
-/* --- Menü Navigation --- */
 /**
  * Shows the options overlay.
  */

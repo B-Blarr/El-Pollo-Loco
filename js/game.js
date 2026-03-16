@@ -274,11 +274,11 @@ function addTouchLogic(buttonId, key) {
   button.addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard[key] = true;
-  });
+  }, { passive: false });
   button.addEventListener("touchend", (e) => {
     e.preventDefault();
     keyboard[key] = false;
-  });
+  }, { passive: false });
   button.addEventListener("mousedown", () => { keyboard[key] = true; });
   button.addEventListener("mouseup", () => { keyboard[key] = false; });
   button.addEventListener("mouseleave", () => { keyboard[key] = false; });

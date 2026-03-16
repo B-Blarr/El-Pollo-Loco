@@ -63,13 +63,14 @@ function playStartscreenMusic() {
   }
   let music = AudioHub.BACKGROUND_STARTSCREEN;
   music.loop = true;
-  music.play();
-  if (!AudioHub.muteSound) {
-    AudioHub.changeMusicVolume();
-  }
-  document.removeEventListener("click", playStartscreenMusic);
-  document.removeEventListener("keydown", playStartscreenMusic);
-  document.removeEventListener("touchstart", playStartscreenMusic);
+  music.play().then(() => {
+    if (!AudioHub.muteSound) {
+      AudioHub.changeMusicVolume();
+    }
+    document.removeEventListener("click", playStartscreenMusic);
+    document.removeEventListener("keydown", playStartscreenMusic);
+    document.removeEventListener("touchstart", playStartscreenMusic);
+  }).catch(() => {});
 }
 
 document.addEventListener("click", playStartscreenMusic);
@@ -272,11 +273,11 @@ function togglePause() {
 function addTouchLogic(buttonId, key) {
   let button = document.getElementById(buttonId);
   button.addEventListener("touchstart", (e) => {
-    e.preventDefault();
+    if (e.cancelable) e.preventDefault();
     keyboard[key] = true;
   }, { passive: false });
   button.addEventListener("touchend", (e) => {
-    e.preventDefault();
+    if (e.cancelable) e.preventDefault();
     keyboard[key] = false;
   }, { passive: false });
   button.addEventListener("mousedown", () => { keyboard[key] = true; });

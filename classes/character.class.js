@@ -149,7 +149,7 @@ class Character extends MoveableObject {
    * @returns {boolean} True if the right key is held and the level end has not been reached.
    */
   canMoveRight() {
-    return (this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x;
+    return (this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < (this.world.level.level_end_x - 650);
   }
 
   /**

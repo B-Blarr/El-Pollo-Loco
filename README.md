@@ -4,6 +4,8 @@ A browser-based jump and run game built with vanilla JavaScript using object-ori
 
 👉 **[Play the game](https://benjaminblarr.dev/el-pollo-loco/)**
 
+![El Pollo Loco Preview](assets/preview.png)
+
 ## 🎮 About
 El Pollo Loco is a challenging side-scrolling game where you face off against enemies – including a boss that shoots baby chickens. The game is designed with a deliberately high difficulty level that keeps players on their toes.
 

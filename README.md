@@ -2,7 +2,7 @@
 
 A browser-based jump and run game built with vanilla JavaScript using object-oriented programming principles.
 
-👉 **[Play the game](https://benjaminblarr.dev/el-pollo-loco/)**
+👉 **[Play the game](https://benjaminblarr.de/el-pollo-loco/)**
 
 ![El Pollo Loco Preview](assets/preview.png)
 

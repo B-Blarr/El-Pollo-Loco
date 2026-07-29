@@ -5,6 +5,8 @@ object-oriented structure. No framework, no game engine.
 
 👉 **[Play the game](https://benjaminblarr.de/el-pollo-loco/)**
 
+![El Pollo Loco Preview](assets/preview.png)
+
 ## About
 
 Pepe collects coins and bottles of tabasco salsa and uses them against the

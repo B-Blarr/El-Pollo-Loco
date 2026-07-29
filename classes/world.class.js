@@ -31,6 +31,8 @@ class World {
   lastThrowTime = 0;
   /** @type {boolean} Whether the character has entered the endboss zone at least once. */
   hadFirstContact = false;
+  /** @type {boolean} When true, the render loop stops requesting new frames. */
+  isStopped = false;
 
   /**
    * Creates the game world, sets up the canvas context, starts the game loop and rendering.
@@ -270,7 +272,18 @@ class World {
    * Requests the next animation frame to keep the render loop running.
    */
   scheduleNextFrame() {
+    if (this.isStopped) {
+      return;
+    }
     requestAnimationFrame(() => this.draw());
+  }
+
+  /**
+   * Stops this world's render loop, so no further frames are requested.
+   * Needed because requestAnimationFrame is not managed by IntervalHub.
+   */
+  stop() {
+    this.isStopped = true;
   }
 
   /**

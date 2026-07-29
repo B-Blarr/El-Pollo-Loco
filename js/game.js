@@ -31,6 +31,10 @@ document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
  * and automatically enters fullscreen on narrow screens.
  */
 function init() {
+  if (world) {
+    world.stop();
+  }
+  IntervalHub.stopAllIntervals();
   initLevel();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
@@ -302,6 +306,9 @@ function startTouchControls() {
  * Stops all intervals and audio, then returns to the start screen.
  */
 function returnToHome() {
+  if (world) {
+    world.stop();
+  }
   IntervalHub.stopAllIntervals();
   AudioHub.stopAll();
   openStartscreen();

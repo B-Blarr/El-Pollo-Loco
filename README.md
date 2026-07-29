@@ -1,21 +1,43 @@
-# 🐔 El Pollo Loco
+# El Pollo Loco
 
-A browser-based jump and run game built with vanilla JavaScript using object-oriented programming principles.
+A side-scrolling jump and run game, written in plain JavaScript with an
+object-oriented structure. No framework, no game engine.
 
 👉 **[Play the game](https://benjaminblarr.de/el-pollo-loco/)**
 
-![El Pollo Loco Preview](assets/preview.png)
+## About
 
-## 🎮 About
-El Pollo Loco is a challenging side-scrolling game where you face off against enemies – including a boss that shoots baby chickens. The game is designed with a deliberately high difficulty level that keeps players on their toes.
+Pepe collects coins and bottles of tabasco salsa and uses them against the
+chicken boss.
 
-## ✨ Features
-- Object-oriented architecture with vanilla JavaScript – no frameworks
-- Custom sound effects, all created from scratch
-- Dynamic boss fight mechanics
-- Challenging gameplay with precise collision detection
+The part worth looking at is the structure behind it. Every moving thing, the
+character, the enemies, the bottles, the clouds, inherits from one base class
+that knows its position, its size and how to draw itself. On top of that runs a
+single loop that clears the canvas many times per second and redraws
+everything, applying gravity, animation states and collision checks on every
+pass.
 
-## 🛠️ Technologies
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+Graphics and interface elements are the assets that came with the project. The
+audio is not: the original sound effects were weak, so I generated my own set
+with ElevenLabs and kept only what still worked.
+
+## Features
+
+- Object-oriented architecture, every entity extends a shared base class
+- Collision detection for enemies, bottles and collectibles
+- Boss fight with its own state handling
+- Health and bottle bars, start and end screens
+- Own sound design and background music
+- Keyboard controls
+
+## Built with
+
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo" />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" height="40" alt="css3 logo" />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo" />
+</p>
+
+Rendering through the Canvas API.

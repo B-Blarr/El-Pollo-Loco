@@ -40,7 +40,7 @@ class World {
    * @param {Keyboard} keyboard - The keyboard input handler instance.
    */
   constructor(canvas, keyboard) {
-    this.ctx = canvas.getContext("2d");
+    this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.setWorld();
@@ -99,7 +99,11 @@ class World {
       if (hasCooldownPassed && hasEnoughBottles) {
         this.character.collectedBottles -= 10;
         this.bottleBar.setPercentage(this.character.collectedBottles);
-        let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 80, this.character.otherDirection);
+        let bottle = new ThrowableObject(
+          this.character.x + 50,
+          this.character.y + 80,
+          this.character.otherDirection,
+        );
         this.throwableObjects.push(bottle);
         this.lastThrowTime = actualTime;
         AudioHub.BOTTLE_THROW.play();
@@ -118,7 +122,12 @@ class World {
         enemy.hit();
         this.character.jump();
         hasJumped = true;
-      } else if (!hasJumped && this.character.isColliding(enemy) && !this.character.isHurt() && !enemy.isDead()) {
+      } else if (
+        !hasJumped &&
+        this.character.isColliding(enemy) &&
+        !this.character.isHurt() &&
+        !enemy.isDead()
+      ) {
         this.character.hit();
         this.healthBar.setPercentage(this.character.hitPoints);
       }

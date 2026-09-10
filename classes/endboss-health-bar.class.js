@@ -2,7 +2,7 @@
  * HUD status bar that displays the endboss's current health.
  * Shown only after the character first enters the endboss zone.
  */
-class EndbossHealthBar extends StatusBar{
+class EndbossHealthBar extends StatusBar {
   /** @type {number} Current endboss health percentage (0–100). */
   percentage = 100;
 

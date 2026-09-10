@@ -20,9 +20,9 @@ class BottleOnGround extends CollectableObject {
   constructor() {
     super();
     if (Math.random() < 0.5) {
-      this.loadImage("./assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png");
+      this.loadImage('./assets/img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
     } else {
-      this.loadImage("./assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png");
+      this.loadImage('./assets/img/6_salsa_bottle/2_salsa_bottle_on_ground.png');
     }
 
     this.y = 700;

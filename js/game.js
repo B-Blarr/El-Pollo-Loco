@@ -5,25 +5,25 @@ let world;
 /** @type {Keyboard} Global keyboard input handler shared across the codebase. */
 let keyboard = new Keyboard();
 /** @type {HTMLElement} Reference to the winning-screen overlay element. */
-let refWinningScreen = document.getElementById("winning-screen");
+let refWinningScreen = document.getElementById('winning-screen');
 /** @type {HTMLElement} Reference to the game-over-screen overlay element. */
-let refGameOverScreen = document.getElementById("game-over-screen");
+let refGameOverScreen = document.getElementById('game-over-screen');
 AudioHub.BACKGROUND_LEVEL.loop = true;
 AudioHub.BACKGROUND_ENDBOSS.loop = true;
 /** @type {HTMLElement} Button that enters fullscreen mode. */
-const enterButton = document.getElementById("enter-fullscreen");
+const enterButton = document.getElementById('enter-fullscreen');
 /** @type {HTMLElement} Button that exits fullscreen mode. */
-const exitButton = document.getElementById("exit-fullscreen");
+const exitButton = document.getElementById('exit-fullscreen');
 /** @type {boolean} Whether a game session has been started at least once. */
 let gameStarted = false;
 /** @type {boolean|undefined} Tracks the mute state for external use. */
 let isMuted;
 /** @type {HTMLImageElement} The mute/unmute toggle button image element. */
-let muteButton = document.getElementById("mute-button");
+let muteButton = document.getElementById('mute-button');
 AudioHub.loadMuteState();
 
-document.addEventListener("fullscreenchange", updateFullscreenButton);
-document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+document.addEventListener('fullscreenchange', updateFullscreenButton);
+document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
 
 /**
  * Initialises and starts a new game session.
@@ -36,7 +36,7 @@ function init() {
   }
   IntervalHub.stopAllIntervals();
   initLevel();
-  canvas = document.getElementById("canvas");
+  canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
   AudioHub.BACKGROUND_STARTSCREEN.pause();
   startTouchControls();
@@ -67,25 +67,28 @@ function playStartscreenMusic() {
   }
   let music = AudioHub.BACKGROUND_STARTSCREEN;
   music.loop = true;
-  music.play().then(() => {
-    if (!AudioHub.muteSound) {
-      AudioHub.changeMusicVolume();
-    }
-    document.removeEventListener("click", playStartscreenMusic);
-    document.removeEventListener("keydown", playStartscreenMusic);
-    document.removeEventListener("touchstart", playStartscreenMusic);
-  }).catch(() => {});
+  music
+    .play()
+    .then(() => {
+      if (!AudioHub.muteSound) {
+        AudioHub.changeMusicVolume();
+      }
+      document.removeEventListener('click', playStartscreenMusic);
+      document.removeEventListener('keydown', playStartscreenMusic);
+      document.removeEventListener('touchstart', playStartscreenMusic);
+    })
+    .catch(() => {});
 }
 
-document.addEventListener("click", playStartscreenMusic);
-document.addEventListener("keydown", playStartscreenMusic);
-document.addEventListener("touchstart", playStartscreenMusic);
+document.addEventListener('click', playStartscreenMusic);
+document.addEventListener('keydown', playStartscreenMusic);
+document.addEventListener('touchstart', playStartscreenMusic);
 
 /**
  * Requests fullscreen on the main game container element.
  */
 function fullscreen() {
-  const fullscreen = document.getElementById("fullscreen");
+  const fullscreen = document.getElementById('fullscreen');
   enterFullscreen(fullscreen);
 }
 
@@ -119,7 +122,7 @@ function exitFullscreen() {
  */
 function startGame() {
   gameStarted = true;
-  document.getElementById("pause-btn").src = "assets/icons/pause.png";
+  document.getElementById('pause-btn').src = 'assets/icons/pause.png';
   init();
   updateGameScreens();
   playStartSounds();
@@ -130,11 +133,11 @@ function startGame() {
  * Fades out the start screen and hides win/game-over overlays when a game begins.
  */
 function updateGameScreens() {
-  let startRef = document.getElementById("start-screen");
-  startRef.classList.add("fade-out");
-  startRef.classList.remove("fade-in");
-  refWinningScreen.classList.add("d-none");
-  refGameOverScreen.classList.add("d-none");
+  let startRef = document.getElementById('start-screen');
+  startRef.classList.add('fade-out');
+  startRef.classList.remove('fade-in');
+  refWinningScreen.classList.add('d-none');
+  refGameOverScreen.classList.add('d-none');
 }
 
 /**
@@ -150,11 +153,11 @@ function playStartSounds() {
  */
 function syncAudioAndButtons() {
   if (AudioHub.muteSound) {
-    muteButton.src = "assets/icons/mute.png";
+    muteButton.src = 'assets/icons/mute.png';
   } else {
     AudioHub.changeMusicVolume();
     AudioHub.changeSfxVolume();
-    muteButton.src = "assets/icons/unmute.png";
+    muteButton.src = 'assets/icons/unmute.png';
   }
 }
 
@@ -164,11 +167,11 @@ function syncAudioAndButtons() {
 function updateFullscreenButton() {
   const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
   if (isFullscreen) {
-    enterButton.classList.add("d-none");
-    exitButton.classList.remove("d-none");
+    enterButton.classList.add('d-none');
+    exitButton.classList.remove('d-none');
   } else {
-    enterButton.classList.remove("d-none");
-    exitButton.classList.add("d-none");
+    enterButton.classList.remove('d-none');
+    exitButton.classList.add('d-none');
   }
 }
 
@@ -176,44 +179,44 @@ function updateFullscreenButton() {
  * Shows the keyboard controls overlay.
  */
 function openControls() {
-  document.getElementById("controls-overlay").classList.remove("d-none");
+  document.getElementById('controls-overlay').classList.remove('d-none');
 }
 
 /**
  * Hides the keyboard controls overlay.
  */
 function closeControls() {
-  document.getElementById("controls-overlay").classList.add("d-none");
+  document.getElementById('controls-overlay').classList.add('d-none');
 }
 
 /**
  * Shows the options overlay.
  */
 function openOptions() {
-  document.getElementById("options-overlay").classList.remove("d-none");
+  document.getElementById('options-overlay').classList.remove('d-none');
 }
 
 /**
  * Hides the options overlay.
  */
 function closeOptions() {
-  document.getElementById("options-overlay").classList.add("d-none");
+  document.getElementById('options-overlay').classList.add('d-none');
 }
 
 /**
  * Hides the options overlay and shows the impressum (legal notice) overlay.
  */
 function openImpressum() {
-  document.getElementById("options-overlay").classList.add("d-none");
-  document.getElementById("impressum-overlay").classList.remove("d-none");
+  document.getElementById('options-overlay').classList.add('d-none');
+  document.getElementById('impressum-overlay').classList.remove('d-none');
 }
 
 /**
  * Hides the impressum overlay and returns to the options overlay.
  */
 function closeImpressum() {
-  document.getElementById("impressum-overlay").classList.add("d-none");
-  document.getElementById("options-overlay").classList.remove("d-none");
+  document.getElementById('impressum-overlay').classList.add('d-none');
+  document.getElementById('options-overlay').classList.remove('d-none');
 }
 
 /**
@@ -221,11 +224,11 @@ function closeImpressum() {
  * Resets {@link gameStarted} so the music listener can fire again.
  */
 function openStartscreen() {
-  let startRef = document.getElementById("start-screen");
-  startRef.classList.add("fade-in");
-  startRef.classList.remove("fade-out");
-  refWinningScreen.classList.add("d-none");
-  refGameOverScreen.classList.add("d-none");
+  let startRef = document.getElementById('start-screen');
+  startRef.classList.add('fade-in');
+  startRef.classList.remove('fade-out');
+  refWinningScreen.classList.add('d-none');
+  refGameOverScreen.classList.add('d-none');
   AudioHub.BACKGROUND_STARTSCREEN.loop = true;
   AudioHub.BACKGROUND_STARTSCREEN.play();
   gameStarted = false;
@@ -238,13 +241,13 @@ function openStartscreen() {
 function toggleMute() {
   if (AudioHub.muteSound) {
     AudioHub.unmute();
-    muteButton.src = "assets/icons/unmute.png";
+    muteButton.src = 'assets/icons/unmute.png';
     if (gameStarted && !IntervalHub.isGamePaused) {
       AudioHub.BACKGROUND_LEVEL.play();
     }
   } else {
     AudioHub.mute();
-    muteButton.src = "assets/icons/mute.png";
+    muteButton.src = 'assets/icons/mute.png';
   }
 }
 
@@ -254,13 +257,13 @@ function toggleMute() {
  */
 function togglePause() {
   IntervalHub.isGamePaused = !IntervalHub.isGamePaused;
-  let pauseBtn = document.getElementById("pause-btn");
+  let pauseBtn = document.getElementById('pause-btn');
   if (IntervalHub.isGamePaused) {
-    pauseBtn.src = "assets/icons/play.png";
+    pauseBtn.src = 'assets/icons/play.png';
     AudioHub.BACKGROUND_LEVEL.pause();
     AudioHub.stopAll();
   } else {
-    pauseBtn.src = "assets/icons/pause.png";
+    pauseBtn.src = 'assets/icons/pause.png';
     if (!AudioHub.muteSound) {
       AudioHub.BACKGROUND_LEVEL.play();
     }
@@ -275,17 +278,31 @@ function togglePause() {
  */
 function addTouchLogic(buttonId, key) {
   let button = document.getElementById(buttonId);
-  button.addEventListener("touchstart", (e) => {
-    if (e.cancelable) e.preventDefault();
+  button.addEventListener(
+    'touchstart',
+    (e) => {
+      if (e.cancelable) e.preventDefault();
+      keyboard[key] = true;
+    },
+    { passive: false },
+  );
+  button.addEventListener(
+    'touchend',
+    (e) => {
+      if (e.cancelable) e.preventDefault();
+      keyboard[key] = false;
+    },
+    { passive: false },
+  );
+  button.addEventListener('mousedown', () => {
     keyboard[key] = true;
-  }, { passive: false });
-  button.addEventListener("touchend", (e) => {
-    if (e.cancelable) e.preventDefault();
+  });
+  button.addEventListener('mouseup', () => {
     keyboard[key] = false;
-  }, { passive: false });
-  button.addEventListener("mousedown", () => { keyboard[key] = true; });
-  button.addEventListener("mouseup", () => { keyboard[key] = false; });
-  button.addEventListener("mouseleave", () => { keyboard[key] = false; });
+  });
+  button.addEventListener('mouseleave', () => {
+    keyboard[key] = false;
+  });
 }
 
 /**
@@ -293,11 +310,11 @@ function addTouchLogic(buttonId, key) {
  * Also suppresses the context menu on the mobile button container.
  */
 function startTouchControls() {
-  addTouchLogic("btnLeft", "LEFT");
-  addTouchLogic("btnRight", "RIGHT");
-  addTouchLogic("btnJump", "SPACE");
-  addTouchLogic("btnThrow", "F");
-  document.getElementById("mobile-buttons").addEventListener("contextmenu", (e) => {
+  addTouchLogic('btnLeft', 'LEFT');
+  addTouchLogic('btnRight', 'RIGHT');
+  addTouchLogic('btnJump', 'SPACE');
+  addTouchLogic('btnThrow', 'F');
+  document.getElementById('mobile-buttons').addEventListener('contextmenu', (e) => {
     e.preventDefault();
   });
 }
@@ -318,13 +335,13 @@ function returnToHome() {
  * Toggles the visibility of the on-screen mobile control buttons.
  */
 function toggleTouchControls() {
-  let mobileButtons = document.getElementById("mobile-buttons");
-  if (window.getComputedStyle(mobileButtons).display === "none") {
-    mobileButtons.style.display = "flex";
-    mobileButtons.classList.remove("d-none");
+  let mobileButtons = document.getElementById('mobile-buttons');
+  if (window.getComputedStyle(mobileButtons).display === 'none') {
+    mobileButtons.style.display = 'flex';
+    mobileButtons.classList.remove('d-none');
   } else {
-    mobileButtons.style.display = "none";
-    mobileButtons.classList.add("d-none");
+    mobileButtons.style.display = 'none';
+    mobileButtons.classList.add('d-none');
   }
 }
 
@@ -332,7 +349,7 @@ function toggleTouchControls() {
  * Toggles fullscreen mode: enters fullscreen if not currently active, exits if it is.
  */
 function toggleFullscreen() {
-  let fullscreenContainer = document.getElementById("fullscreen");
+  let fullscreenContainer = document.getElementById('fullscreen');
   if (!document.fullscreenElement) {
     enterFullscreen(fullscreenContainer);
   } else {

@@ -117,9 +117,7 @@ class MoveableObject extends DrawableObject {
    * sprite dimensions and the configured offsets, taking direction into account.
    */
   getRealFrame() {
-    this.rX = this.otherDirection
-      ? this.x + this.offset.right
-      : this.x + this.offset.left;
+    this.rX = this.otherDirection ? this.x + this.offset.right : this.x + this.offset.left;
     this.rY = this.y + this.offset.top;
     this.rWidth = this.width - this.offset.left - this.offset.right;
     this.rHeight = this.height - this.offset.top - this.offset.bottom;

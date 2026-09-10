@@ -20,7 +20,7 @@ class Endboss extends MoveableObject {
   /** @type {boolean} Whether the hit sound has already been played in the current hurt cycle. */
   hitSoundPlayed = false;
   /** @type {string} Current movement direction: "left", "right", or "stand". */
-  moveDirection = "stand";
+  moveDirection = 'stand';
   /** @type {number} Horizontal movement speed in pixels per tick. */
   speed = 0;
   /** @type {number} Hit-point threshold below which the endboss enters enraged mode. */
@@ -41,7 +41,7 @@ class Endboss extends MoveableObject {
    * Creates the endboss, loads all animation frames, sets initial position, and starts loops.
    */
   constructor() {
-    super().loadImage("./assets/img/4_enemie_boss_chicken/2_alert/G5.png");
+    super().loadImage('./assets/img/4_enemie_boss_chicken/2_alert/G5.png');
     this.x = 17300;
     this.loadImages(ImageHub.endboss.walking);
     this.loadImages(ImageHub.endboss.alert);
@@ -92,10 +92,10 @@ class Endboss extends MoveableObject {
     IntervalHub.startInterval(() => {
       if (this.canMove()) {
         this.playAlarmOnce();
-        if (this.moveDirection === "left") {
+        if (this.moveDirection === 'left') {
           this.moveLeft();
           this.otherDirection = false;
-        } else if (this.moveDirection === "right" && this.x < 17900) {
+        } else if (this.moveDirection === 'right' && this.x < 17900) {
           this.moveRight();
           this.otherDirection = true;
         }
@@ -146,9 +146,9 @@ class Endboss extends MoveableObject {
   makeAngryMove() {
     let action = Math.random();
     if (action < 0.7) {
-      this.setMovement("left", 10 + Math.random() * 5, true);
+      this.setMovement('left', 10 + Math.random() * 5, true);
     } else {
-      this.setMovement("right", 9, false);
+      this.setMovement('right', 9, false);
     }
   }
 
@@ -159,11 +159,11 @@ class Endboss extends MoveableObject {
   makeCalmMove() {
     let action = Math.random();
     if (action < 0.5) {
-      this.setMovement("left", 8 + Math.random() * 5, true);
+      this.setMovement('left', 8 + Math.random() * 5, true);
     } else if (action < 0.8) {
-      this.setMovement("right", 4, false);
+      this.setMovement('right', 4, false);
     } else {
-      this.setMovement("stand", 0, false);
+      this.setMovement('stand', 0, false);
     }
   }
 
@@ -208,9 +208,13 @@ class Endboss extends MoveableObject {
       AudioHub.BACKGROUND_LEVEL.pause();
       AudioHub.ENDBOSS_START.volume = 1;
       AudioHub.ENDBOSS_START.play();
-      AudioHub.ENDBOSS_START.addEventListener("ended", () => {
-        AudioHub.BACKGROUND_ENDBOSS.play();
-      }, { once: true });
+      AudioHub.ENDBOSS_START.addEventListener(
+        'ended',
+        () => {
+          AudioHub.BACKGROUND_ENDBOSS.play();
+        },
+        { once: true },
+      );
       this.alarmSoundPlayed = true;
     }
   }
@@ -247,7 +251,7 @@ class Endboss extends MoveableObject {
     let lastIndex = ImageHub.endboss.dead.length - 1;
     if (this.currentImage === lastIndex) {
       IntervalHub.stopAllIntervals();
-      refWinningScreen.classList.remove("d-none");
+      refWinningScreen.classList.remove('d-none');
       AudioHub.stopAll(AudioHub.ENDBOSS_DEAD);
       AudioHub.WINNING.play();
     }
@@ -264,11 +268,11 @@ class Endboss extends MoveableObject {
       let flightChance = Math.random() < 0.5;
       let canFleeRight = this.x < 17900;
       if (flightChance && canFleeRight) {
-        this.moveDirection = "right";
+        this.moveDirection = 'right';
         this.speed = 10;
         this.isAttacking = false;
       } else {
-        this.moveDirection = "left";
+        this.moveDirection = 'left';
         this.speed = 15;
         this.isAttacking = true;
       }
@@ -285,7 +289,7 @@ class Endboss extends MoveableObject {
       this.playAnimation(ImageHub.endboss.alert);
       return;
     }
-    if (this.moveDirection === "stand") {
+    if (this.moveDirection === 'stand') {
       this.playAnimation(ImageHub.endboss.alert);
     } else {
       this.playAnimation(ImageHub.endboss.walking);
@@ -325,10 +329,10 @@ class Endboss extends MoveableObject {
    */
   draw(ctx) {
     if (this.hitPoints < this.enrageThreshold) {
-      ctx.filter = "sepia(1) hue-rotate(-50deg) saturate(5)";
+      ctx.filter = 'sepia(1) hue-rotate(-50deg) saturate(5)';
     }
     super.draw(ctx);
-    ctx.filter = "none";
+    ctx.filter = 'none';
   }
 
   /**

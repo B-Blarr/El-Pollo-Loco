@@ -13,7 +13,7 @@ class Cloud extends MoveableObject {
    * Creates a cloud at a random horizontal position and starts its drift animation.
    */
   constructor() {
-    super().loadImage("./assets/img/5_background/layers/4_clouds/1.png");
+    super().loadImage('./assets/img/5_background/layers/4_clouds/1.png');
     this.x = 480 + Math.random() * 3800;
     this.animate();
   }

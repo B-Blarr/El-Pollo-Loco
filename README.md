@@ -35,12 +35,12 @@ ElevenLabs and kept only what still worked.
 
 ## Controls
 
-| Action | Keyboard | Touch |
-|---|---|---|
-| Move left | `←` or `A` | on-screen button |
-| Move right | `→` or `D` | on-screen button |
-| Jump | `Space` | on-screen button |
-| Throw bottle | `F` | on-screen button |
+| Action       | Keyboard   | Touch            |
+| ------------ | ---------- | ---------------- |
+| Move left    | `←` or `A` | on-screen button |
+| Move right   | `→` or `D` | on-screen button |
+| Jump         | `Space`    | on-screen button |
+| Throw bottle | `F`        | on-screen button |
 
 The in-game menu adds fullscreen, pause, mute and a toggle for the touch
 buttons. The interface itself is in German.

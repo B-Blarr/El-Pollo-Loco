@@ -2,7 +2,10 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <title>El Pollo Loco</title>
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/mobile.css" />
@@ -46,11 +49,30 @@
       <div id="start-screen" class="start-screen-overlay">
         <div class="start-image-wrapper">
           <div class="menu-container">
-            <img onclick="openOptions()" src="./assets/icons/optionen.png" class="menu-button small-button" alt="Optionen" />
-            <img onclick="openControls()" src="./assets/icons/steuerung.png" class="menu-button small-button" alt="Steuerung" />
-            <img onclick="startGame()" src="./assets/icons/startbutton7.png" class="menu-button start-button" alt="Start" />
+            <img
+              onclick="openOptions()"
+              src="./assets/icons/optionen.png"
+              class="menu-button small-button"
+              alt="Optionen"
+            />
+            <img
+              onclick="openControls()"
+              src="./assets/icons/steuerung.png"
+              class="menu-button small-button"
+              alt="Steuerung"
+            />
+            <img
+              onclick="startGame()"
+              src="./assets/icons/startbutton7.png"
+              class="menu-button start-button"
+              alt="Start"
+            />
           </div>
-          <img class="start-bg" src="./assets/img/9_intro_outro_screens/start/startscreen_1.png" alt="start-screen" />
+          <img
+            class="start-bg"
+            src="./assets/img/9_intro_outro_screens/start/startscreen_1.png"
+            alt="start-screen"
+          />
           <button class="impressum-link" onclick="openImpressum()">Impressum</button>
         </div>
       </div>
@@ -58,17 +80,31 @@
       <div id="winning-screen" class="winning-screen-overlay d-none">
         <div class="end-buttons">
           <button onclick="openStartscreen()">
-            <img class="overlay-button-images" src="./assets/icons/start-menu-button.png" alt="startscreen" />
+            <img
+              class="overlay-button-images"
+              src="./assets/icons/start-menu-button.png"
+              alt="startscreen"
+            />
           </button>
-          <button onclick="startGame()"><img class="overlay-button-images" src="./assets/icons/restart-button.png" alt="restart" /></button>
+          <button onclick="startGame()">
+            <img
+              class="overlay-button-images"
+              src="./assets/icons/restart-button.png"
+              alt="restart"
+            />
+          </button>
         </div>
         <img src="./assets/img/You won, you lost/You Win A.png" alt="winning screen" />
       </div>
       <!-- Game Over Screen -->
       <div id="game-over-screen" class="game-over-overlay d-none">
         <div class="end-buttons">
-          <button onclick="openStartscreen()"><img src="./assets/icons/start-menu-button.png" alt="startscreen" /></button>
-          <button onclick="startGame()"><img src="./assets/icons/restart-button.png" alt="restart" /></button>
+          <button onclick="openStartscreen()">
+            <img src="./assets/icons/start-menu-button.png" alt="startscreen" />
+          </button>
+          <button onclick="startGame()">
+            <img src="./assets/icons/restart-button.png" alt="restart" />
+          </button>
         </div>
         <img src="assets/img/9_intro_outro_screens/game_over/game over!.png" alt="game-over" />
       </div>
@@ -82,17 +118,37 @@
           <h2>Einstellungen</h2>
           <div class="option-row">
             <span>Musik</span>
-            <input type="range" id="music-volume" oninput="AudioHub.changeMusicVolume()" min="0" max="1" step="0.01" value="0.2" />
+            <input
+              type="range"
+              id="music-volume"
+              oninput="AudioHub.changeMusicVolume()"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.2"
+            />
           </div>
           <div class="option-row">
             <span>Soundeffekte</span>
-            <input type="range" id="sfx-volume" oninput="AudioHub.changeSfxVolume()" min="0" max="1" step="0.01" value="0.2" />
+            <input
+              type="range"
+              id="sfx-volume"
+              oninput="AudioHub.changeSfxVolume()"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.2"
+            />
           </div>
           <div class="option-row">
             <span>Lautstärke</span>
             <div class="icon-group">
-              <button class="menu-icon-button" onclick="AudioHub.mute()"><img class="mute-button" src="./assets/icons/mute.png" /> Aus</button>
-              <button class="menu-icon-button" onclick="AudioHub.unmute()"><img class="mute-button" src="./assets/icons/unmute.png" /> An</button>
+              <button class="menu-icon-button" onclick="AudioHub.mute()">
+                <img class="mute-button" src="./assets/icons/mute.png" /> Aus
+              </button>
+              <button class="menu-icon-button" onclick="AudioHub.unmute()">
+                <img class="mute-button" src="./assets/icons/unmute.png" /> An
+              </button>
             </div>
           </div>
           <div class="option-row">
@@ -127,17 +183,19 @@
             <h3>Haftungsausschluss (Disclaimer)</h3>
             <p>
               <strong>Haftung für Inhalte</strong><br />
-              Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir
-              sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
+              Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten
+              nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet,
+              übermittelte oder gespeicherte fremde Informationen zu überwachen.
             </p>
             <p>
               <strong>Urheberrecht</strong><br />
-              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+              unterliegen dem deutschen Urheberrecht.
             </p>
             <h3>Datenschutz</h3>
             <p>
-              Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Es werden keine Tracking-Cookies verwendet
-              oder Nutzerdaten gespeichert.
+              Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten
+              möglich. Es werden keine Tracking-Cookies verwendet oder Nutzerdaten gespeichert.
             </p>
             <h3>Grafiken & Quellen</h3>
             <p>
@@ -150,8 +208,8 @@
             </p>
             <p>
               <strong>KI-Generierung:</strong><br />
-              Buttons auf der Startseite wurden mit Hilfe von ChatGPT erstellt. Sämtliche Musik und der Großteil der Soundeffekte wurden mit
-              elevenlabs.io erstellt.
+              Buttons auf der Startseite wurden mit Hilfe von ChatGPT erstellt. Sämtliche Musik und
+              der Großteil der Soundeffekte wurden mit elevenlabs.io erstellt.
             </p>
           </div>
           <button class="close-button" onclick="closeImpressum()">Zurück</button>
@@ -181,10 +239,30 @@
         </div>
         <div class="ingame-mute">
           <img src="assets/icons/home.png" class="hud-button" onclick="returnToHome()" alt="Home" />
-          <img src="assets/icons/touch-toggle.png" class="hud-button" onclick="toggleTouchControls()" alt="Toggle_Touch_Buttons" />
-          <img id="mute-button" class="hud-button" src="assets/icons/unmute.png" onclick="toggleMute()" />
-          <img id="pause-btn" class="hud-button" src="assets/icons/pause.png" onclick="togglePause()" />
-          <img src="assets/icons/fullscreen.png" class="hud-button" onclick="toggleFullscreen()" alt="Fullscreen" />
+          <img
+            src="assets/icons/touch-toggle.png"
+            class="hud-button"
+            onclick="toggleTouchControls()"
+            alt="Toggle_Touch_Buttons"
+          />
+          <img
+            id="mute-button"
+            class="hud-button"
+            src="assets/icons/unmute.png"
+            onclick="toggleMute()"
+          />
+          <img
+            id="pause-btn"
+            class="hud-button"
+            src="assets/icons/pause.png"
+            onclick="togglePause()"
+          />
+          <img
+            src="assets/icons/fullscreen.png"
+            class="hud-button"
+            onclick="toggleFullscreen()"
+            alt="Fullscreen"
+          />
         </div>
       </section>
     </div>

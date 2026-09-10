@@ -149,7 +149,10 @@ class Character extends MoveableObject {
    * @returns {boolean} True if the right key is held and the level end has not been reached.
    */
   canMoveRight() {
-    return (this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < (this.world.level.level_end_x - 650);
+    return (
+      (this.world.keyboard.RIGHT || this.world.keyboard.D) &&
+      this.x < this.world.level.level_end_x - 650
+    );
   }
 
   /**
@@ -187,7 +190,7 @@ class Character extends MoveableObject {
   checkGameOverCondition() {
     if (this.currentImage === this.lastDeadIndex && this.img === this.imageCache[this.lastPath]) {
       IntervalHub.stopAllIntervals();
-      refGameOverScreen.classList.remove("d-none");
+      refGameOverScreen.classList.remove('d-none');
       AudioHub.stopAll(AudioHub.CHARACTER_DEAD);
       AudioHub.GAME_OVER.play();
     }
@@ -220,7 +223,12 @@ class Character extends MoveableObject {
    * @returns {boolean} True if the character is walking.
    */
   isWalking() {
-    return this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.D || this.world.keyboard.A;
+    return (
+      this.world.keyboard.RIGHT ||
+      this.world.keyboard.LEFT ||
+      this.world.keyboard.D ||
+      this.world.keyboard.A
+    );
   }
 
   /**

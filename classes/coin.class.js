@@ -19,7 +19,7 @@ class Coin extends CollectableObject {
    * Creates a coin at a random position, starts the spinning animation, and computes its hit frame.
    */
   constructor() {
-    super().loadImage("./assets/img/8_coin/coin_1.png");
+    super().loadImage('./assets/img/8_coin/coin_1.png');
     this.loadImages(ImageHub.icon.coin);
     this.x = 480 + Math.random() * 16000;
     this.y = 700 - Math.random() * 350;

@@ -11,9 +11,8 @@ class BackgroundObject extends MoveableObject {
    * Creates a background tile at the given position using the specified image.
    * @param {string} imagePath - Path to the background layer image.
    * @param {number} x - Horizontal position on the canvas.
-   * @param {number} y - Vertical position on the canvas (unused; computed from height).
    */
-  constructor(imagePath, x, y) {
+  constructor(imagePath, x) {
     super();
     this.loadImage(imagePath);
     this.y = 960 - this.height;

@@ -1,0 +1,14 @@
+{
+  "name": "el-pollo-loco",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint ."
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
+  }
+}

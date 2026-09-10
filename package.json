@@ -10,5 +10,8 @@
   "prettier": {
     "printWidth": 100,
     "singleQuote": true
+  },
+  "devDependencies": {
+    "prettier": "^3.9.6"
   }
 }

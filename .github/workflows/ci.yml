@@ -31,3 +31,57 @@ jobs:
       - name: Check formatting
         if: '!cancelled()'
         run: npm run format:check
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: checks
+
+    # Pull requests run the checks above, but never deploy.
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v7
+
+      # ssh refuses a private key file that others can read, hence chmod 600.
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      # There is no build: the files go to the server exactly as they sit in the
+      # repository. The exclude list is therefore the only thing separating the
+      # site from the tooling around it. --chmod sets permissions while writing,
+      # which nginx needs to enter the directories.
+      - name: Deploy to server
+        run: |
+          rsync -rltv --dry-run --delete --chmod=D755,F644 \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='.gitattributes' \
+            --exclude='.gitignore' \
+            --exclude='node_modules/' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='eslint.config.js' \
+            --exclude='README.md' \
+            --exclude='assets/img/1_editables/' \
+            --exclude='fonts/__MACOSX/' \
+            --exclude='*.zip' \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            ./ \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/el-pollo-loco/"
+
+      # A directory nginx cannot enter makes it answer with index.html and status
+      # 200 instead of the file. A stylesheet coming back as text/html is the
+      # symptom, so a broken rollout fails here instead of looking fine.
+      - name: Verify deployment
+        run: |
+          curl -sS -o /dev/null -w 'index.html: %{http_code}\n' https://benjaminblarr.de/el-pollo-loco/
+          typ=$(curl -sSI https://benjaminblarr.de/el-pollo-loco/styles/style.css | grep -i '^content-type:')
+          echo "$typ"
+          echo "$typ" | grep -qi 'text/css'

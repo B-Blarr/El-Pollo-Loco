@@ -59,7 +59,7 @@ jobs:
       # which nginx needs to enter the directories.
       - name: Deploy to server
         run: |
-          rsync -rltv --dry-run --delete --chmod=D755,F644 \
+          rsync -rltv --delete --chmod=D755,F644 \
             --exclude='.git/' \
             --exclude='.github/' \
             --exclude='.gitattributes' \
